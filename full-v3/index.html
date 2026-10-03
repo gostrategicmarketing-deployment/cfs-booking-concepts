@@ -1,0 +1,1215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- GHL: remove the noindex meta on the live domain -->
+<title>Tax Scholarships: 3 Steps to Pay for College Differently</title>
+<meta name="description" content="Book a Tax &amp; College Opportunity Review and see how the Reduce, Offset, Fund framework could apply to your family's income, tax bill, college timeline, and retirement.">
+<meta property="og:title" content="Tax Scholarships: 3 Steps to Pay for College Differently">
+<meta property="og:description" content="Book a Tax &amp; College Opportunity Review and see how the Reduce, Offset, Fund framework could apply to your family's income, tax bill, college timeline, and retirement.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!--
+  CFS Book-A-Call page, V3 "Blue Interactive" (full build, 2026-10-02).
+  Hand-off for the GoHighLevel rebuild: each GHL SECTION block below maps to one GHL section/row.
+  All copy is verbatim from booking-page-copy.md; proof is verbatim from social-proof.md and press-cards.md.
+  JS is progressive enhancement only (step tabs + calendar mockup states). Everything is readable with JS off.
+-->
+<style>
+  /* =====================================================================
+     TOKENS (from the approved V3 mockup; brand-guide verified)
+     ===================================================================== */
+  :root {
+    --blue: #4192D7;
+    --navy: #072B53;
+    --gold: #FCB903;
+    --green: #A6E22E;
+    --gray: #F5F7FA;
+    --white: #FFFFFF;
+    --ink: #101828;
+    --ink-2: #2C3345;
+    --line: rgba(7, 43, 83, 0.10);
+    --tint: rgba(65, 146, 215, 0.10);
+    --radius-card: 18px;
+    --radius-ctl: 10px;
+    --gutter: 16px;
+    --sec-pad: 56px;
+    --font-head: "Epilogue", "Inter", sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (min-width: 640px) { :root { --gutter: 28px; } }
+  @media (min-width: 980px) { :root { --sec-pad: 88px; } }
+
+  /* =====================================================================
+     BASE
+     ===================================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body {
+    margin: 0;
+    background: var(--gray);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: var(--font-head); margin: 0; }
+  p { margin: 0; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* =====================================================================
+     SHARED COMPONENTS: CTA button, section chrome, stars, expanders
+     ===================================================================== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px;
+    padding: 14px 26px;
+    background: var(--green);
+    color: var(--navy); /* navy on green = 10.6:1 */
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-ctl);
+    box-shadow: 0 0 0 2px var(--navy), 0 5px 0 2px var(--navy);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--navy), 0 7px 0 2px var(--navy); }
+  .btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 5px; }
+  .btn svg { flex: none; }
+
+  .sec { padding: var(--sec-pad) 0; }
+  .eyebrow {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy);
+  }
+  .sec-h {
+    font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.5rem);
+    line-height: 1.1; letter-spacing: -0.02em; color: var(--navy); text-wrap: balance;
+  }
+  .eyebrow + .sec-h { margin-top: 8px; }
+
+  .stars { display: block; flex: none; }
+  .stars .s-empty polygon { fill: rgba(7, 43, 83, 0.55); } /* empty star 3.4:1 on the gray review card, 3.9:1 on white */
+  .stars .s-full polygon { fill: var(--gold); stroke: var(--navy); stroke-width: 0.7; stroke-linejoin: round; }
+
+  .more { margin-top: 16px; }
+  .more > summary {
+    list-style: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; padding: 10px 20px; border-radius: var(--radius-ctl);
+    font-weight: 600; font-size: 16px;
+    border: 1.5px solid var(--navy); color: var(--navy); background: var(--white);
+  }
+  .more > summary::-webkit-details-marker { display: none; }
+  .more > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .more > summary svg { transition: transform 0.2s ease; }
+  .more[open] > summary svg { transform: rotate(180deg); }
+  .more .when-open { display: none; }
+  .more[open] .when-open { display: inline; }
+  .more[open] .when-closed { display: none; }
+
+  /* =====================================================================
+     GHL SECTION 01: header (logo only, CFS blue)
+     ===================================================================== */
+  .cfs-header { background: var(--blue); }
+  .cfs-header .wrap { display: flex; align-items: center; height: 64px; }
+  .cfs-header img { height: 30px; width: auto; filter: brightness(0) invert(1); }
+  @media (min-width: 980px) {
+    .cfs-header .wrap { height: 84px; }
+    .cfs-header img { height: 36px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 02: hero (CFS blue, asymmetric, steps as right column)
+     ===================================================================== */
+  .hero {
+    position: relative;
+    background: var(--blue);
+    color: var(--white);
+    padding-bottom: 72px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* static architectural accent: a navy wedge low right, deepens the ground under the card */
+  .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -12%;
+    bottom: -38%;
+    width: 78%;
+    height: 90%;
+    background: var(--navy);
+    opacity: 0.10; /* <= 0.10 keeps #101828 text on the darkened blue >= 4.5:1 */
+    transform: rotate(-14deg);
+    border-radius: 48px;
+  }
+  .hero-grid { display: grid; gap: 28px; padding-top: 18px; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    line-height: 1.2;
+  }
+  .kicker svg { flex: none; }
+  .h1 {
+    margin-top: 16px;
+    font-weight: 800;
+    font-size: clamp(2.05rem, 1.25rem + 3.6vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    color: var(--white); /* white on CFS blue = 3.3:1, AA large (800 weight, 33px+) */
+  }
+  /* large display text: navy on blue = 4.27:1, passes AA large */
+  .h1 .deep { color: var(--navy); }
+  .sub {
+    margin-top: 16px;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--ink); /* 5.2:1 on CFS blue */
+    max-width: 36em;
+  }
+  .cta-row { margin-top: 22px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+  .hero .btn:focus-visible { outline-color: var(--white); }
+  .qual {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 16px; line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .qual::before {
+    content: ""; flex: none; width: 4px; align-self: stretch;
+    background: var(--navy); border-radius: 2px;
+  }
+  /* trust bar under the qualifier */
+  .trust { margin-top: 18px; display: grid; gap: 12px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge {
+    display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px;
+    background: var(--white); color: var(--navy);
+    border-radius: 8px; padding: 7px 11px;
+    font-size: 14px; font-weight: 600; line-height: 1.25;
+    box-shadow: 0 1px 0 rgba(7, 43, 83, 0.18);
+  }
+  .badge svg.ico { flex: none; color: var(--navy); }
+  .badge .muted { font-weight: 500; color: var(--ink-2); }
+  .badge .stars { width: 78px; height: 16px; }
+  .featured { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .featured .lbl { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+  .featured ul { list-style: none; margin: 0; padding: 0; display: contents; }
+  .featured li {
+    font-family: var(--font-head); font-weight: 700; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--ink); white-space: nowrap;
+  }
+  @media (min-width: 640px) {
+    .cta-row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+    .cta-row .btn { align-self: flex-start; }
+    .qual { flex-basis: 100%; }
+    .trust { margin-top: 20px; }
+  }
+  @media (min-width: 980px) {
+    .hero { padding-bottom: 168px; }
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.9fr);
+      gap: 56px;
+      align-items: end;
+      padding-top: 26px;
+    }
+    .sub { margin-top: 20px; }
+    .cta-row { margin-top: 28px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 03: steps (tabbed selector; stacked and readable without JS)
+     ===================================================================== */
+  .steps {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-card);
+    padding: 18px;
+    box-shadow: 0 18px 40px rgba(7, 43, 83, 0.28);
+  }
+  .tablist { display: none; gap: 8px; }
+  .js .tablist { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .tab {
+    position: relative;
+    appearance: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    color: var(--white);
+    border-radius: 999px;
+    min-height: 52px;
+    padding: 6px 8px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1.1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .tab .n { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tab .w { font-family: var(--font-head); font-weight: 800; font-size: 17px; margin-top: 3px; }
+  .tab:hover { border-color: var(--white); }
+  .tab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .tab[aria-selected="true"] { background: var(--green); border-color: var(--green); color: var(--navy); }
+  /* the ONE ambient motion on the page: a gentle pulse ring on the selected pill */
+  .tab[aria-selected="true"]::after {
+    content: ""; position: absolute; inset: -2px;
+    border-radius: inherit;
+    border: 2px solid var(--green);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tab[aria-selected="true"]::after { animation: cfs-pulse 2.8s ease-out infinite; }
+  }
+  @keyframes cfs-pulse {
+    0% { transform: scale(1); opacity: 0.85; }
+    70% { transform: scale(1.14, 1.32); opacity: 0; }
+    100% { transform: scale(1.14, 1.32); opacity: 0; }
+  }
+  .panels { display: grid; gap: 16px; }
+  .js .panels { margin-top: 16px; display: block; }
+  .panel { display: block; }
+  .js .panel[hidden] { display: none; }
+  .panel-h {
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .js .panel-h { margin-bottom: 6px; }
+  .panel p { font-size: 17px; line-height: 1.5; color: var(--white); }
+  /* no-JS stacked fallback gets thin dividers */
+  html:not(.js) .panel + .panel { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 14px; }
+  .dots { display: none; }
+  .js .dots { display: flex; gap: 6px; margin-top: 14px; }
+  .dots span { width: 22px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); transition: background-color 0.2s ease; }
+  .dots span.on { background: var(--green); }
+  @media (min-width: 980px) {
+    .steps { padding: 22px; margin-bottom: 6px; }
+    .tab { min-height: 60px; }
+    .tab .w { font-size: 19px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 04: book (light gray; white card overlaps the hero edge)
+     ===================================================================== */
+  .book-sec {
+    position: relative; z-index: 2;
+    background: linear-gradient(to bottom, transparent 0, transparent 44px, var(--gray) 44px);
+    margin-top: -44px; padding-bottom: var(--sec-pad);
+    scroll-margin-top: 16px;
+  }
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 18px 48px rgba(7, 43, 83, 0.16);
+    padding: 24px 18px;
+    display: grid;
+    gap: 24px;
+  }
+  .card-title {
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+  .lead { font-size: 17px; color: var(--ink-2); }
+  /* mobile (<760px): heading, then the calendar widget, then the agenda, so the hero button lands on the widget */
+  @media (max-width: 759px) {
+    .card-title { order: 0; }
+    .widget-col { order: 1; }
+    .card-head { order: 2; }
+  }
+  @media (min-width: 760px) { .card-head { margin-top: -12px; } }
+  .agenda { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+  .agenda li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.45; color: var(--ink); }
+  .agenda .ck {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--tint); color: var(--navy);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  /* static calendar mockup (.cal-mock), replaced by the GHL calendar embed */
+  .widget { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--white); }
+  .w-head { background: var(--navy); color: var(--white); padding: 16px 18px; }
+  .w-title { font-family: var(--font-head); font-weight: 700; font-size: 18px; line-height: 1.25; }
+  .w-meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
+  .w-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .w-meta .sep { color: rgba(255, 255, 255, 0.6); }
+  .w-body { display: grid; }
+  .month { padding: 14px 10px 10px; }
+  .m-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 8px; }
+  .m-nav strong { font-family: var(--font-head); font-size: 18px; color: var(--navy); }
+  .m-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--white); color: var(--navy); display: inline-flex; align-items: center; justify-content: center;
+  }
+  .m-btn[disabled] { opacity: 0.4; }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+  .dow { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-2); padding: 6px 0; text-transform: uppercase; }
+  .d {
+    height: 44px; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-variant-numeric: tabular-nums; color: rgba(44, 51, 69, 0.72); /* unavailable day 5.2:1 on white */
+    position: relative;
+  }
+  .d.today::after { content: ""; position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--ink-2); }
+  button.d {
+    appearance: none; border: 0; background: transparent; font-family: inherit; cursor: pointer; padding: 0;
+    color: var(--navy); font-weight: 600;
+  }
+  button.d span {
+    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--tint); transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  button.d:hover span { background: rgba(65, 146, 215, 0.22); }
+  button.d[aria-pressed="true"] span { background: var(--navy); color: var(--white); }
+  button.d:focus-visible span, .slot:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .slots { border-top: 1px solid var(--line); padding: 14px; }
+  .slots-h { font-weight: 600; font-size: 16px; color: var(--navy); }
+  .slots-list { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .slot {
+    appearance: none; min-height: 48px; border-radius: var(--radius-ctl);
+    border: 2px solid var(--blue); background: var(--white); color: var(--navy); /* blue border 3.3:1 on white */
+    font-family: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .slot:hover { background: var(--tint); }
+  .slot[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .tz {
+    border-top: 1px solid var(--line);
+    padding: 12px 16px;
+    font-size: 15px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+    background: var(--gray);
+  }
+  .micro { margin-top: 14px; font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+  /* 375: widget bleeds 10px into the card padding and the month loses its side padding so each day cell is >= 44px wide */
+  @media (max-width: 639px) {
+    .widget-col { margin-inline: -10px; }
+    .month { padding: 14px 4px 10px; }
+    .micro { padding-inline: 10px; }
+  }
+  @media (min-width: 640px) {
+    .card { padding: 32px; }
+    .month { padding: 16px 16px 12px; }
+    .slots-list { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 980px) {
+    .book-sec { margin-top: -120px; background: linear-gradient(to bottom, transparent 0, transparent 120px, var(--gray) 120px); }
+    .card {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.3fr);
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "title widget" "head widget";
+      column-gap: 44px;
+      row-gap: 12px;
+      padding: 40px;
+      align-items: start;
+    }
+    .card-title { grid-area: title; padding-top: 6px; }
+    .card-head { grid-area: head; margin-top: 0; }
+    .widget-col { grid-area: widget; }
+    .w-body { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+    .slots { border-top: 0; border-left: 1px solid var(--line); padding: 16px; }
+    .slots-list { grid-template-columns: 1fr; }
+    .slot { min-height: 46px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 05: reviews (white ground, light-gray cards)
+     ===================================================================== */
+  .reviews { background: var(--white); }
+  .ratings { margin-top: 20px; display: grid; gap: 10px; }
+  .rating {
+    background: var(--gray); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+  }
+  .rating .big { font-family: var(--font-head); font-weight: 800; font-size: 30px; line-height: 1; color: var(--navy); }
+  .rating .stars { width: 98px; height: 20px; }
+  .rating .txt { font-size: 15px; line-height: 1.4; color: var(--ink-2); }
+  .rating .txt strong { color: var(--ink); font-weight: 600; }
+  .seal {
+    flex: none; width: 56px; height: 56px; border-radius: 12px; background: var(--navy); color: var(--white);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 800; line-height: 1;
+  }
+  .seal b { font-size: 20px; }
+  .seal small { font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; margin-top: 3px; }
+  .rev-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; align-items: start; }
+  .more .rev-list { margin-top: 12px; }
+  .rev figure {
+    margin: 0;
+    background: var(--gray); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .rev-stars { width: 88px; height: 18px; }
+  .rev blockquote { margin: 0; }
+  .rev blockquote p { font-size: 17px; line-height: 1.55; color: var(--ink); }
+  .rev blockquote p::before { content: "\201C"; }
+  .rev blockquote p::after { content: "\201D"; }
+  .rev figcaption { margin-top: auto; padding-top: 4px; display: grid; gap: 4px; font-size: 15px; }
+  .rev figcaption strong { color: var(--navy); font-weight: 600; }
+  .rev-src { color: var(--ink-2); }
+  /* inline proof links get a 44px tap row */
+  .rev-src a, .rating .txt a {
+    display: inline-block; padding: 12px 0; margin: -12px 0;
+    color: var(--navy); font-weight: 600; text-underline-offset: 2px; text-decoration: underline;
+  }
+  .rev-src a:focus-visible, .rating .txt a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+  .asof { margin-top: 16px; font-size: 15px; color: var(--ink-2); }
+  @media (min-width: 640px) {
+    .ratings { grid-template-columns: 1fr 1fr; }
+    .rev-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 980px) {
+    .ratings { max-width: 860px; }
+    .rev-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 06: fit (light gray; two-column contrast on desktop)
+     ===================================================================== */
+  .cfs-fit { background: var(--gray); }
+  .cfs-fit-grid { margin-top: 24px; display: grid; gap: 16px; }
+  .cfs-fit-card { border-radius: var(--radius-card); padding: 22px 20px; }
+  .cfs-fit-yes { background: var(--white); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(7, 43, 83, 0.05); }
+  .cfs-fit-no { background: var(--navy); color: var(--white); }
+  .cfs-fit-card h3, .cfs-fit-lead {
+    font-family: var(--font-head); font-weight: 700; font-size: 20px; line-height: 1.25; letter-spacing: -0.01em;
+  }
+  .cfs-fit-lead { color: var(--navy); }
+  .cfs-fit-no h3 { color: var(--white); }
+  .cfs-fit-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+  .cfs-fit-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.5; }
+  .cfs-fit-yes li { color: var(--ink); }
+  .cfs-fit-no li { color: var(--white); }
+  .cfs-ic {
+    flex: none; width: 26px; height: 26px; border-radius: 50%; margin-top: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .cfs-fit-yes .cfs-ic { background: var(--green); color: var(--navy); }
+  .cfs-fit-no .cfs-ic { border: 1.5px solid rgba(255, 255, 255, 0.7); color: var(--white); }
+  @media (min-width: 640px) {
+    .cfs-fit-card { padding: 30px 28px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-fit .sec-h { max-width: 18em; }
+    .cfs-fit-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; margin-top: 32px; align-items: start; }
+    .cfs-fit-card { padding: 36px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 07: numbers (CFS blue; checklist card)
+     small text on blue is #101828 only; white is reserved for the large bold heading
+     ===================================================================== */
+  .cfs-numbers { background: var(--blue); position: relative; overflow: hidden; isolation: isolate; }
+  .cfs-numbers::before {
+    content: ""; position: absolute; z-index: -1; right: -20%; top: -30%; width: 60%; height: 140%;
+    background: var(--navy); opacity: 0.12; transform: rotate(14deg); border-radius: 48px;
+  }
+  .cfs-numbers-grid { display: grid; gap: 22px; }
+  .cfs-numbers .sec-h { color: var(--white); } /* 800 weight, 26px+ : AA large */
+  .cfs-numbers-lead { margin-top: 12px; font-size: 18px; line-height: 1.5; font-weight: 500; color: var(--ink); max-width: 30em; }
+  .cfs-checklist {
+    list-style: none; margin: 0; padding: 6px 18px;
+    background: var(--white); border-radius: var(--radius-card);
+    box-shadow: 0 0 0 2px var(--navy), 0 6px 0 2px var(--navy);
+    display: grid;
+  }
+  .cfs-checklist li {
+    display: flex; align-items: center; gap: 14px;
+    min-height: 56px; padding: 10px 0;
+    font-size: 17px; line-height: 1.4; font-weight: 500; color: var(--ink);
+  }
+  .cfs-checklist li + li { border-top: 1px solid var(--line); }
+  .cfs-box { flex: none; color: var(--navy); display: inline-flex; }
+  @media (min-width: 640px) {
+    .cfs-checklist { grid-template-columns: 1fr 1fr; column-gap: 28px; padding: 10px 26px; }
+    .cfs-checklist li:nth-child(2) { border-top: 0; }
+  }
+  @media (min-width: 980px) {
+    .cfs-numbers-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: 56px; align-items: center; }
+    .cfs-checklist li { min-height: 68px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 08: lance (white; photo slot + bio; the one mid-page CTA)
+     ===================================================================== */
+  .cfs-lance { background: var(--white); }
+  .cfs-lance-grid {
+    display: grid; grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-areas: "photo head" "body body";
+    column-gap: 18px; row-gap: 18px; align-items: center;
+  }
+  .cfs-photo { grid-area: photo; }
+  .cfs-lance-head { grid-area: head; }
+  .cfs-lance-body { grid-area: body; }
+  .cfs-photo {
+    width: 100%; aspect-ratio: 4 / 5;
+    border-radius: var(--radius-card);
+    background: var(--gray);
+    border: 2px dashed rgba(7, 43, 83, 0.28);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    padding: 8px; text-align: center;
+    color: var(--ink-2); font-size: 14px; font-weight: 600; line-height: 1.3;
+  }
+  .cfs-photo svg { color: var(--navy); opacity: 0.55; }
+  .cfs-lance h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3rem); }
+  .cfs-lance-bio { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 38em; }
+  .cfs-lance .btn { margin-top: 26px; }
+  @media (min-width: 640px) {
+    .cfs-lance-grid {
+      grid-template-columns: 200px minmax(0, 1fr);
+      grid-template-areas: "photo head" "photo body";
+      grid-template-rows: auto 1fr; column-gap: 32px; row-gap: 14px; align-items: start;
+    }
+    .cfs-photo { font-size: 14px; padding: 12px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lance-grid { grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); column-gap: 64px; align-content: center; }
+    .cfs-lance-head { align-self: end; }
+    .cfs-photo { max-width: 380px; font-size: 15px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 09: faq (light gray; native details accordions)
+     ===================================================================== */
+  .cfs-faq { background: var(--gray); }
+  .cfs-faq-grid { display: grid; gap: 20px; }
+  .cfs-faq-list { display: grid; gap: 10px; }
+  .cfs-q { background: var(--white); border: 1px solid var(--line); border-radius: 14px; }
+  .cfs-q > summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 60px; padding: 14px 18px;
+    border-radius: 14px;
+  }
+  .cfs-q > summary::-webkit-details-marker { display: none; }
+  .cfs-q > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .cfs-q-t { font-family: var(--font-head); font-weight: 700; font-size: 18px; line-height: 1.3; color: var(--navy); }
+  .cfs-q-ic {
+    flex: none; position: relative; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--tint);
+  }
+  .cfs-q-ic::before, .cfs-q-ic::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2.5px; margin: -1.25px 0 0 -6px;
+    background: var(--navy); border-radius: 2px; transition: transform 0.2s ease;
+  }
+  .cfs-q-ic::after { transform: rotate(90deg); }
+  .cfs-q[open] .cfs-q-ic { background: var(--navy); }
+  .cfs-q[open] .cfs-q-ic::before, .cfs-q[open] .cfs-q-ic::after { background: var(--white); }
+  .cfs-q[open] .cfs-q-ic::after { transform: rotate(0deg); }
+  .cfs-q-a { padding: 0 18px 18px; }
+  .cfs-q-a p { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 44em; }
+  @media (min-width: 980px) {
+    .cfs-faq-grid { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 56px; align-items: start; }
+    .cfs-q > summary { padding: 18px 24px; }
+    .cfs-q-a { padding: 0 24px 22px; }
+    .cfs-q-t { font-size: 19px; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 10: press (navy; 32 cards + 2 text features)
+     ===================================================================== */
+  .press { background: var(--navy); color: var(--white); }
+  .press .sec-h { color: var(--white); }
+  .press-grid { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .more .press-grid { margin-top: 12px; }
+  .pc a {
+    display: block; border-radius: 12px; overflow: hidden; background: var(--white);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease;
+  }
+  .pc a:hover { transform: translateY(-2px); }
+  .pc a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .pc img { width: 100%; height: auto; aspect-ratio: 860 / 1330; object-fit: contain; object-position: center top; background: var(--white); }
+  .pc.dk { display: none; }
+  .press .more > summary { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.7); }
+  .press .more > summary:hover { border-color: var(--white); }
+  .press .more > summary:focus-visible { outline-color: var(--green); }
+  .also { margin-top: 30px; }
+  .also h3 { font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
+  .also ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+  .also a {
+    display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px;
+    border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.06);
+    color: var(--white); text-decoration: none;
+  }
+  .also a:hover { border-color: rgba(255, 255, 255, 0.55); }
+  .also a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .also .ic { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .also .t { display: grid; gap: 2px; flex: 1; min-width: 0; }
+  .also .t strong { font-weight: 600; font-size: 16px; line-height: 1.35; }
+  .also .t span { font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+  .also .go { flex: none; }
+  @media (min-width: 640px) {
+    .press-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .also ul { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 980px) {
+    .press-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+    .pc.dk { display: block; }
+    .pc.mb { display: none; }
+  }
+
+  /* =====================================================================
+     GHL SECTION 11: closer (CFS blue)
+     ===================================================================== */
+  .closer { background: var(--blue); position: relative; overflow: hidden; isolation: isolate; }
+  .closer::before {
+    content: ""; position: absolute; z-index: -1; left: -18%; top: -40%; width: 70%; height: 120%;
+    background: var(--navy); opacity: 0.10; transform: rotate(-14deg); border-radius: 48px; /* <= 0.10 keeps body text >= 4.5:1 */
+  }
+  .closer-in { max-width: 760px; }
+  .closer h2 {
+    font-weight: 800; font-size: clamp(1.75rem, 1.2rem + 2.3vw, 2.75rem);
+    line-height: 1.08; letter-spacing: -0.02em; color: var(--white); text-wrap: balance; /* AA large */
+  }
+  .closer p { margin-top: 14px; font-size: 18px; line-height: 1.5; font-weight: 500; color: var(--ink); max-width: 36em; }
+  .closer .btn { margin-top: 24px; }
+  .closer .btn:focus-visible { outline-color: var(--white); }
+
+  /* =====================================================================
+     GHL SECTION 12: footer (white; compliance + copyright)
+     ===================================================================== */
+  .cfs-footer { background: var(--white); border-top: 1px solid var(--line); padding: 32px 0 36px; }
+  .cfs-footer img { height: 26px; width: auto; }
+  .cfs-footer .legal { margin-top: 18px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 62em; }
+  .cfs-footer-row {
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 20px;
+    font-size: 15px; color: var(--ink-2);
+  }
+  .cfs-footer-links { display: flex; align-items: center; gap: 4px; }
+  .cfs-footer-links a {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px;
+    color: var(--navy); font-weight: 600; text-underline-offset: 2px;
+  }
+  .cfs-footer-links a:first-child { padding-left: 0; }
+  .cfs-footer-links a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+  .cfs-footer-links .bar { color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<!-- ===== GHL SECTION 01: header ===== -->
+<section id="site-header" class="cfs-header" data-ghl-section="01-header" aria-label="Site header">
+  <header class="wrap" role="banner">
+    <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181">
+  </header>
+</section>
+
+<main>
+
+<!-- ===== GHL SECTION 02: hero ===== -->
+<section id="hero" class="hero" data-ghl-section="02-hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="kicker">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="2.2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          BOOK A FREE 30-MINUTE CALL
+        </span>
+        <h1 class="h1" id="hero-h">3 Steps to Pay for College <span class="deep">Without Sacrificing Your Financial Future</span></h1>
+        <p class="sub">Pick a time for a free 30-minute review call with our advisory team. We'll look at how the three steps could apply to your family's income, tax bill, college timeline, and retirement.</p>
+        <div class="cta-row">
+          <a class="btn" href="#book">
+            Pick a Time for My Review Call
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="qual">This review is for families earning about $250,000+ or paying $30,000+ a year in federal taxes.</p>
+        </div>
+        <div class="trust" aria-label="Ratings and press">
+          <div class="badges">
+            <!-- GHL: production MUST use BBB's dynamic Accredited Business seal and the official Trustpilot TrustBox widget here. These two text badges are mockup stand-ins only. -->
+            <span class="badge"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5l8 3v6.2c0 4.7-3.3 8.7-8 9.8-4.7-1.1-8-5.1-8-9.8V5.5l8-3z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>BBB Accredited · A+ Rating</span>
+            <span class="badge"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-hero"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-hero)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><span>4.4 out of 5 on Trustpilot <span class="muted">· 26 reviews</span></span></span>
+          </div>
+          <div class="featured">
+            <span class="lbl">As featured in</span>
+            <ul>
+              <li>Yahoo Finance</li><li>MarketWatch</li><li>CNET</li><li>Realtor.com</li><li>GOBankingRates</li><li>Financial Advisor magazine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== GHL SECTION 03: steps ===== -->
+      <!-- GHL: steps live inside the hero row in this design; build as one section or a two-column row -->
+      <!-- Right column of the hero row on desktop; directly under the hero copy on mobile.
+           Without JS all three steps render stacked; with JS they become Reduce / Offset / Fund tabs. -->
+      <section class="steps" id="steps" data-ghl-section="03-steps" aria-label="The three steps">
+        <div class="tablist" role="tablist" aria-label="The three steps">
+          <button class="tab" role="tab" id="tab-1" aria-controls="step-1" aria-selected="true" tabindex="0"><span class="n">Step 1</span><span class="w">Reduce</span></button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="step-2" aria-selected="false" tabindex="-1"><span class="n">Step 2</span><span class="w">Offset</span></button>
+          <button class="tab" role="tab" id="tab-3" aria-controls="step-3" aria-selected="false" tabindex="-1"><span class="n">Step 3</span><span class="w">Fund</span></button>
+        </div>
+        <div class="panels">
+          <div class="panel" id="step-1" role="tabpanel" aria-labelledby="tab-1">
+            <h2 class="panel-h">STEP 1 · REDUCE</h2>
+            <p>Understand what college may really cost your family, including school choice and financial aid eligibility, before you decide how to pay.</p>
+          </div>
+          <div class="panel" id="step-2" role="tabpanel" aria-labelledby="tab-2">
+            <h2 class="panel-h">STEP 2 · OFFSET</h2>
+            <p>See how strategic tax planning could cover more of what's left, even if you're a W-2 earner. For some families, that includes real estate they own.</p>
+          </div>
+          <div class="panel" id="step-3" role="tabpanel" aria-labelledby="tab-3">
+            <h2 class="panel-h">STEP 3 · FUND</h2>
+            <p>Pay the balance without draining the savings and retirement money that should keep compounding for you.</p>
+          </div>
+        </div>
+        <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 04: book ===== -->
+<section id="book" class="book-sec" data-ghl-section="04-book" aria-labelledby="book-h">
+  <div class="wrap">
+    <div class="card">
+      <h2 class="card-title" id="book-h">Book Your Tax &amp; College Opportunity Review Call</h2>
+      <div class="card-head">
+        <p class="lead">Pick a time below. During this first conversation, we'll:</p>
+        <ul class="agenda">
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Understand your current tax and college-funding picture</li>
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Identify whether there may be opportunities worth exploring</li>
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decide together whether a deeper strategy conversation makes sense</li>
+        </ul>
+      </div>
+
+      <div class="widget-col">
+        <!-- GHL: replace .cal-mock with the Tax & College Opportunity Review Call calendar embed (inline, full width) -->
+        <div class="widget cal-mock" aria-label="Booking calendar preview">
+          <div class="w-head">
+            <div class="w-title">Tax &amp; College Opportunity Review Call</div>
+            <div class="w-meta">
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>30 min</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5" stroke="currentColor" stroke-width="2.2"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .7 3.2 2.5 3.6 5.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Advisory Team</span>
+            </div>
+          </div>
+          <div class="w-body">
+            <div class="month">
+              <div class="m-nav">
+                <button class="m-btn" type="button" disabled aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <strong>October 2026</strong>
+                <button class="m-btn" type="button" aria-label="Next month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+              <div class="grid" id="cal">
+                <div class="dow">Su</div><div class="dow">Mo</div><div class="dow">Tu</div><div class="dow">We</div><div class="dow">Th</div><div class="dow">Fr</div><div class="dow">Sa</div>
+                <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+                <div class="d">1</div><div class="d today">2</div><div class="d">3</div>
+                <div class="d">4</div><div class="d">5</div>
+                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 6"><span>6</span></button>
+                <button class="d" type="button" aria-pressed="true" aria-label="Wednesday, October 7"><span>7</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 8"><span>8</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Friday, October 9"><span>9</span></button>
+                <div class="d">10</div>
+                <div class="d">11</div><div class="d">12</div>
+                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 13"><span>13</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Wednesday, October 14"><span>14</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 15"><span>15</span></button>
+                <div class="d">16</div><div class="d">17</div>
+                <div class="d">18</div><div class="d">19</div><div class="d">20</div><div class="d">21</div><div class="d">22</div><div class="d">23</div><div class="d">24</div>
+                <div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div><div class="d">29</div><div class="d">30</div><div class="d">31</div>
+              </div>
+            </div>
+            <div class="slots">
+              <div class="slots-h" id="slots-h">Wednesday, October 7</div>
+              <div class="slots-list" role="group" aria-labelledby="slots-h">
+                <button class="slot" type="button" aria-pressed="false">9:00 am</button>
+                <button class="slot" type="button" aria-pressed="true">10:30 am</button>
+                <button class="slot" type="button" aria-pressed="false">12:00 pm</button>
+                <button class="slot" type="button" aria-pressed="false">1:30 pm</button>
+                <button class="slot" type="button" aria-pressed="false">3:00 pm</button>
+                <button class="slot" type="button" aria-pressed="false">4:30 pm</button>
+              </div>
+            </div>
+          </div>
+          <div class="tz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.5 2.7 3.7 5.7 3.7 9s-1.2 6.3-3.7 9c-2.5-2.7-3.7-5.7-3.7-9S9.5 5.7 12 3z" stroke="currentColor" stroke-width="2"/></svg>
+            Time zone: Eastern Time (US &amp; Canada)
+          </div>
+        </div>
+        <!-- /GHL calendar embed -->
+        <p class="micro">There's no need to choose a strategy on this call. It's an exploratory conversation, and no tax, legal, investment, or financial outcome is promised.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 05: reviews ===== -->
+<section id="reviews" class="sec reviews" data-ghl-section="05-reviews" aria-labelledby="rev-h">
+  <div class="wrap">
+    <h2 class="sec-h" id="rev-h">What Families Say</h2>
+    <!-- GHL: production MUST use the official Trustpilot TrustBox widget and the BBB dynamic Accredited Business seal here (both self-update). These styled text cards are mockup stand-ins only. -->
+    <div class="ratings">
+      <div class="rating">
+        <span class="big">4.4</span>
+        <div class="txt"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-rev"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-rev)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><strong>out of 5 on Trustpilot</strong>, 26 reviews. <a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">See Trustpilot</a></div>
+      </div>
+      <div class="rating">
+        <span class="seal" aria-hidden="true"><b>A+</b><small>BBB</small></span>
+        <div class="txt"><strong>BBB Accredited Business, A+ rating.</strong> Customer reviews 5 out of 5, average of 8 reviews. <a href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">See BBB profile</a></div>
+      </div>
+    </div>
+    <ul class="rev-list">
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs1"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs1)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Each member of the team was knowledgeable, professional and nice. We appreciate that there was always clear next steps and follow up though no one was pushy</p></blockquote>
+            <figcaption><strong>Jennifer Kornicks Askjaer</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-05-24">May 24, 2026</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs11"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs11)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>The entire process felt incredibly educational and genuine [...] and we never felt pressured to continue.</p></blockquote>
+            <figcaption><strong>Rita T</strong><span class="rev-src"><a href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">BBB</a> · <time datetime="2025-01-30">Jan 30, 2025</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs2"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs2)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Most comprehensive way to save money for college and retirement that I have seen so far. This is not a one size fits all type of college planning company. They work with you on your situation to determine what would fit best.</p></blockquote>
+            <figcaption><strong>James McKinney</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2025-12-01">Dec 1, 2025</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="4 out of 5 stars"><defs><clipPath id="rs6"><rect x="0" y="0" width="80.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs6)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Every one of them was incredibly patient, knowledgeable, and willing to explain every detail, making sure I understood the process every step of the way.</p></blockquote>
+            <figcaption><strong>Sumathi Nandagopalan</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-08-06">Aug 6, 2026</time></span></figcaption>
+          </figure>
+        </li>
+    </ul>
+    <details class="more">
+      <summary><span class="when-closed">Read more reviews</span><span class="when-open">Show fewer reviews</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <ul class="rev-list">
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs10"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs10)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Great team to work with. Very knowledgeable - they truly help you understand the pros and cons of each strategy. Their approach to college funding is innovative and eye opening.</p></blockquote>
+            <figcaption><strong>Laura R</strong><span class="rev-src"><a href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">BBB</a> · <time datetime="2025-11-07">Nov 7, 2025</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs7"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs7)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Working with College Funding Secrets, I've consistently been impressed by the depth of knowledge of this team. From tax strategy, to College planning, [Lance's] team does an exceptional job at distilling complex planning into a clear process.</p></blockquote>
+            <figcaption><strong>Michael Hammack</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2025-12-19">Dec 19, 2025</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs3"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs3)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>Everyone I've worked with has been so helpful and patient while navigating a complicated process. The team is committed to being hands on and really working with my own financial situation for the best possible solutions. I've seen the strategies they help with work for my family. I plan to be with them for a long time.</p></blockquote>
+            <figcaption><strong>Jesse Wasson</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-07-29">Jul 29, 2026</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs4"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs4)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>College Funding Secrets helped our family with tax strategies and held our hand in completing FAFSA and CSS forms. They also walked us through the financial aid appeals process which gave us peace of mind to know that we have the team at College Funding Secrets on our side to navigate the complexities of financial aid.</p></blockquote>
+            <figcaption><strong>Sophia Park</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-07-29">Jul 29, 2026</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs5"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs5)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>We recently started working with College Funding Secrets, and although we're still early in the process, we've been very impressed with our experience so far. We feel confident that we're in the right place to receive exceptional, practical guidance on planning for our daughter's college education.</p></blockquote>
+            <figcaption><strong>Mora da Silva</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-07-31">Jul 31, 2026</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs8"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs8)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>The entire team that we have worked with has been amazing. [...] We are looking forward to many years to come as their clients.</p></blockquote>
+            <figcaption><strong>Alicia Balsman</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-07-24">Jul 24, 2026</time></span></figcaption>
+          </figure>
+        </li>
+        <li class="rev">
+          <figure>
+            <svg class="stars rev-stars" viewBox="0 0 100 20" role="img" aria-label="5 out of 5 stars"><defs><clipPath id="rs9"><rect x="0" y="0" width="100.0" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#rs9)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg>
+            <blockquote><p>The team they have put together, really works for you and is very responsive!</p></blockquote>
+            <figcaption><strong>Toby</strong><span class="rev-src"><a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot</a> · <time datetime="2026-03-26">Mar 26, 2026</time></span></figcaption>
+          </figure>
+        </li>
+      </ul>
+    </details>
+    <p class="asof">Ratings as of October 2026.</p>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 06: fit ===== -->
+<section id="fit" class="sec cfs-fit" data-ghl-section="06-fit" aria-labelledby="fit-h">
+  <div class="wrap">
+    <h2 class="sec-h" id="fit-h">This Review Is Built for Families Like Yours</h2>
+    <div class="cfs-fit-grid">
+      <div class="cfs-fit-card cfs-fit-yes">
+        <p class="cfs-fit-lead">It will be most useful if:</p>
+        <ul class="cfs-fit-list">
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Your household earns about $250,000 or more, or pays about $30,000 or more a year in federal taxes.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>You expect to help pay for college.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>You have college costs coming up or already underway.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>You have savings, investments, retirement contributions, or annual cash flow that should be looked at together.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>You want to weigh suitability, risk, liquidity, timing, and tax consequences before acting.</span></li>
+        </ul>
+      </div>
+      <div class="cfs-fit-card cfs-fit-no">
+        <h3>It's Probably Not a Fit If</h3>
+        <ul class="cfs-fit-list">
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span>You don't expect to help pay for college.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span>You're looking for guaranteed tax savings, investment returns, cash flow, or financial aid.</span></li>
+            <li><span class="cfs-ic" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span>You want to act on a tax or investment idea without professional review.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 07: numbers ===== -->
+<section id="numbers" class="sec cfs-numbers" data-ghl-section="07-numbers" aria-labelledby="num-h">
+  <div class="wrap">
+    <div class="cfs-numbers-grid">
+      <div>
+        <h2 class="sec-h" id="num-h">Have These Rough Numbers Ready</h2>
+        <p class="cfs-numbers-lead">Rough numbers are fine. They make the 30 minutes count.</p>
+      </div>
+      <ul class="cfs-checklist">
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Approximate household income</span></li>
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Approximate annual federal tax bill</span></li>
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Expected annual college cost</span></li>
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Savings or investments set aside for college</span></li>
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Approximate annual available cash flow</span></li>
+          <li><span class="cfs-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2.2"/></svg></span><span>Current annual retirement contributions</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 08: lance ===== -->
+<section id="lance" class="sec cfs-lance" data-ghl-section="08-lance" aria-labelledby="lance-h">
+  <div class="wrap">
+    <div class="cfs-lance-grid">
+      <!-- GHL: replace .cfs-photo with Lance's headshot (client to supply). No AI or stock faces. -->
+      <div class="cfs-photo" role="img" aria-label="Lance photo (client to supply)">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14.5" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 5l1.5-2h4l1.5 2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12.2" r="3.6" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Lance photo (client to supply)</span>
+      </div>
+      <div class="cfs-lance-head">
+        <p class="eyebrow">MEET THE FOUNDER</p>
+        <h2 class="sec-h" id="lance-h">Lance Morgan</h2>
+      </div>
+      <div class="cfs-lance-body">
+        <p class="cfs-lance-bio">Lance is a best-selling author and a college-funding strategist with more than 20 years in the financial industry, and he's a dad of five. For years he saved in 529s and taught clients to do the same. As his own kids got closer to college, he saw that tuition couldn't be planned apart from taxes and retirement, and the tax side is where he found a better way to pay. That's the framework the team walks through with you on the review.</p>
+        <a class="btn" href="#book">
+          Pick a Time for My Review Call
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 09: faq ===== -->
+<section id="faq" class="sec cfs-faq" data-ghl-section="09-faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="cfs-faq-grid">
+      <h2 class="sec-h" id="faq-h">Common Questions</h2>
+      <div class="cfs-faq-list">
+        <details class="cfs-q" open>
+          <summary><span class="cfs-q-t">Will this really work for someone like me?</span><span class="cfs-q-ic" aria-hidden="true"></span></summary>
+          <div class="cfs-q-a"><p>That's exactly why the first conversation exists.</p></div>
+        </details>
+        <details class="cfs-q">
+          <summary><span class="cfs-q-t">I'm a W-2 employee. Does this still apply?</span><span class="cfs-q-ic" aria-hidden="true"></span></summary>
+          <div class="cfs-q-a"><p>It can. The framework includes tax-planning concepts that may apply to W-2 employees, 1099 earners, and business owners. Whether a strategy fits depends on your situation and the rules involved.</p></div>
+        </details>
+        <details class="cfs-q">
+          <summary><span class="cfs-q-t">Do I have to leave my CPA?</span><span class="cfs-q-ic" aria-hidden="true"></span></summary>
+          <div class="cfs-q-a"><p>Not necessarily. Where it makes sense, your existing CPA can stay part of the process.</p></div>
+        </details>
+        <details class="cfs-q">
+          <summary><span class="cfs-q-t">I don't have time for another project.</span><span class="cfs-q-ic" aria-hidden="true"></span></summary>
+          <div class="cfs-q-a"><p>Neither do most of the families we work with. That's one of the reasons our model exists.</p></div>
+        </details>
+        <details class="cfs-q">
+          <summary><span class="cfs-q-t">How much money do I need?</span><span class="cfs-q-ic" aria-hidden="true"></span></summary>
+          <div class="cfs-q-a"><p>Some strategies require meaningful capital. Others have different requirements. The first conversation is where we look at what resources are available and whether these strategies are realistic for your situation.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 10: press ===== -->
+<section id="press" class="sec press" data-ghl-section="10-press" aria-labelledby="press-h">
+  <div class="wrap">
+    <h2 class="sec-h" id="press-h">In the News</h2>
+    <ul class="press-grid">
+          <li class="pc"><a href="https://podcasts.apple.com/us/podcast/college-without-the-debt-smart-funding-secrets-for-parents/id1844377860?i=1000730428301" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f60646195fbb.png" alt="Parenting Teens Today feature on Lance Morgan" width="856" height="1104" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.theamericanreporter.com/retirement-proofing-college-how-creative-college-funding-helps-families-fund-education-without-sacrificing-long-term-security/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d13183771c42.png" alt="The American Reporter feature on Lance Morgan" width="860" height="1454" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://washingtonindependent.org/how-to-pay-for-college-tuition/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e0b47f7a877555fa42b9e.png" alt="The Washington Independent feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://epodcastnetwork.com/college-funding-secrets-founder-breaks-down-the-intersection-of-taxes-real-estate-and-tuition-planning/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f7305aa7318707385.png" alt="EPN Enterprise Podcast Network feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.cnet.com/tech/services-and-software/w2-vs-1099-difference/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f017707f5f7c15910.png" alt="CNET feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.gobankingrates.com/taxes/tax-laws/im-financial-advisor-capital-gains-moves-that-can-quietly-increase-your-tax-bill/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69b2b049bfc81fc4dcb16b66.png" alt="GOBankingRates feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc dk"><a href="https://www.marketwatch.com/picks/i-have-1-4m-in-cash-and-2-5m-invested-but-my-adviser-who-i-pay-0-5-seems-like-a-set-it-and-forget-it-type-of-guy-what-now-69044d22" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b8773428bd9a0.png" alt="MarketWatch feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc dk"><a href="https://www.mpamag.com/us/mortgage-industry/market-updates/what-brokers-need-to-know-before-clients-use-401k-funds-for-a-down-payment/568406" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48dd7871cddf7075b60.png" alt="MPA (Mortgage Professional America) feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+    </ul>
+    <details class="more">
+      <summary><span class="when-closed">See all 32 features</span><span class="when-open">Show fewer features</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <ul class="press-grid">
+          <li class="pc mb"><a href="https://www.marketwatch.com/picks/i-have-1-4m-in-cash-and-2-5m-invested-but-my-adviser-who-i-pay-0-5-seems-like-a-set-it-and-forget-it-type-of-guy-what-now-69044d22" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b8773428bd9a0.png" alt="MarketWatch feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc mb"><a href="https://www.mpamag.com/us/mortgage-industry/market-updates/what-brokers-need-to-know-before-clients-use-401k-funds-for-a-down-payment/568406" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48dd7871cddf7075b60.png" alt="MPA (Mortgage Professional America) feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://wbznewsradio.iheart.com/featured/nightside-with-dan-rea/content/2025-11-21-1002-nightside-with-dan-rea-nightside-news-update-112125/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877d8c8a3f4ae.png" alt="WBZ NewsRadio 1030 feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.realtor.com/advice/finance/emergency-savings-insurance-crisis-homeowners/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d1aec6771c45.png" alt="Realtor.com feature on Lance Morgan" width="868" height="1318" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://soundcloud.com/kmet-1490-am/reverse-your-thinking-december" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877e0dba3f4af.png" alt="KMET 1490 AM feature on Lance Morgan" width="860" height="1308" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://podcasts.apple.com/us/podcast/dr-jason-r-williams-cynthia-rivard-lance-morgan-ig-live/id1678157057?i=1000733018168" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877954ca3f4ad.png" alt="Office Hours podcast with Dr. Jason R. Williams feature on Lance Morgan" width="860" height="1106" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://podcasts.apple.com/us/podcast/how-this-7-figure-entrepreneur-grew-his-online-empire/id1495662075?i=1000725725609" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1fd82745e11641f3.png" alt="Profit Your Knowledge feature on Lance Morgan" width="858" height="1104" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://podcasts.apple.com/us/podcast/lance-morgan-college-funding-secrets-mark-stephen-pooler/id994705264?i=1000720934293" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb66e7ca8b8f57aa4c.png" alt="Business Innovators Radio feature on Lance Morgan" width="862" height="1462" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.fa-mag.com/news/mortgage-rates-drop-again--should-you-buy-now-84893.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f61493195fb9.png" alt="Financial Advisor magazine feature on Lance Morgan" width="852" height="1456" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://calbizjournal.com/behind-the-scenes-of-college-funding-secrets-real-families-real-savings/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e0b58f7a877b669a42d50.png" alt="California Business Journal feature on Lance Morgan" width="854" height="1328" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.kulr8.com/news/state/come-to-jesus-moment-are-we-ready-to-deal-with-social-securitys-looming-fiscal-cliff/article_69a45ea8-d4ef-50c1-b203-b0c1fbf7785d.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d12810771c43.png" alt="NonStop Local feature on Lance Morgan" width="854" height="1336" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.reflector.com/news/local/come-to-jesus-moment-are-we-ready-to-deal-with-social-securitys-looming-fiscal-cliff/article_2dafa874-b0e7-5754-9a50-fd162ceea277.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d1af98771c44.png" alt="The Daily Reflector feature on Lance Morgan" width="858" height="1336" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.newsbreak.com/the-daily-reflector-1593112/4317893655587-come-to-jesus-moment-are-we-ready-to-deal-with-social-security-s-looming-fiscal-cliff" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f6738f195fba.png" alt="NewsBreak feature on Lance Morgan" width="858" height="1332" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://thelosangelestribune.com/2025/10/27/creative-college-funding-the-only-done-with-you-program-combining-tax-real-estate-and-financial-aid/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1fd827967c1641f4.png" alt="The Los Angeles Tribune feature on Lance Morgan" width="848" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://programminginsider.com/creative-college-funding-the-only-done-with-you-program-combining-tax-real-estate-and-financial-aid/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f62d14195fbc.png" alt="Programming Insider feature on Lance Morgan" width="868" height="1330" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://finance.yahoo.com/news/financial-expert-smartest-way-boomers-150759170.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f01770704efc15911.png" alt="Yahoo Finance feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://groovemoney.org/2025-student-loan-changes-explained-what-they-mean-for-borrowers" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b87c80d8bd99f.png" alt="GrooveMoney feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.dailyscanner.com/real-estate-investing-tips-is-buying-a-condo-a-better-investment-strategy-than-a-401k/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f52c952edb8ee5089.png" alt="Daily Scanner feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://usawire.com/investor-tips-real-estate-investing-with-a-50-year-mortgage/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b871f5e8bd9a1.png" alt="USA Wire feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://businesspartnermagazine.com/home-loan-strategies-borrowing-from-401k-for-down-payment/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f7f6dcf0af4ffcbcd.png" alt="Business Partner Magazine feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.youtube.com/watch?v=3hsb1UPX2tI" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f0177070a3ac1590f.png" alt="The Business Roundup feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.onnj.com/videos/home-payments/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f01770744c3c1590e.png" alt="ON NJ feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://finance.yahoo.com/news/m-financial-advisor-7-capital-141310303.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69b2b049bfc81f4e7db16b65.png" alt="Yahoo Finance feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.gobankingrates.com/home-loans/refinance/im-financial-advisor-when-retirees-should-refinance-mortgages-in-2026/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d23917331fbbaa1e4.png" alt="GOBankingRates feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.lifehealth.com/401k-vs-real-estate/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d019dc508d3fb811e.png" alt="eNewsLink feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+          <li class="pc"><a href="https://www.youtube.com/watch?v=eGH_gKICR5Y" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d019dc508d3fb811f.png" alt="CNTV feature on Lance Morgan" width="856" height="1334" loading="lazy" decoding="async"></a></li>
+      </ul>
+    </details>
+    <div class="also">
+      <h3>Also featured</h3>
+      <ul>
+        <li><a href="https://moneytreepodcast.com/real-estate-to-reduce-college-costs-lance-morgan-818/" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="2.2"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <span class="t"><strong>Using Real Estate to Reduce College Costs</strong><span>Money Tree Podcast</span></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+        <li><a href="https://www.youtube.com/watch?v=T41LSiwIk5w" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l10.5-6.5L8 5.5z" fill="currentColor"/></svg></span>
+          <span class="t"><strong>Solutions to use your Tax Bill to pay for college</strong><span>Money Matters TV</span></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GHL SECTION 11: closer ===== -->
+<section id="closer" class="sec closer" data-ghl-section="11-closer" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closer-in">
+      <h2 id="close-h">You Don't Need to Figure It Out Today</h2>
+      <p>There's no need to choose a strategy today. You're simply taking the next logical step: finding out what may apply to your family.</p>
+      <a class="btn" href="#book">
+        Book My Free Call
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== GHL SECTION 12: footer ===== -->
+<section id="site-footer" class="cfs-footer" data-ghl-section="12-footer" aria-label="Site footer">
+  <footer class="wrap" role="contentinfo">
+    <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181" loading="lazy">
+    <p class="legal">This page is for educational purposes only and does not provide tax, legal, investment, accounting, or financial advice. Tax outcomes, financial aid eligibility, investment performance, cash flow, and other results depend on individual circumstances and are not guaranteed. Any strategy should be reviewed with qualified tax, legal, and financial professionals before implementation.</p>
+    <div class="cfs-footer-row">
+      <p>Copyright © 2026. College Funding Education, LLC. All Rights Reserved.</p>
+      <!-- GHL: point to the canonical privacy/terms URLs -->
+      <p class="cfs-footer-links"><a href="#">Privacy Policy</a><span class="bar" aria-hidden="true">|</span><a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
+</section>
+
+<script>
+(function () {
+  // Step tabs: progressive enhancement. Without JS all three steps render stacked and readable.
+  var root = document.getElementById('steps');
+  if (!root) return;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  var dots = Array.prototype.slice.call(root.querySelectorAll('.dots span'));
+
+  function select(i, focus) {
+    tabs.forEach(function (t, j) {
+      var on = j === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+      if (dots[j]) dots[j].className = on ? 'on' : '';
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i, false); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key, n = tabs.length;
+      if (k === 'ArrowRight') { e.preventDefault(); select((i + 1) % n, true); }
+      else if (k === 'ArrowLeft') { e.preventDefault(); select((i - 1 + n) % n, true); }
+      else if (k === 'Home') { e.preventDefault(); select(0, true); }
+      else if (k === 'End') { e.preventDefault(); select(n - 1, true); }
+    });
+  });
+  select(0, false);
+  document.documentElement.classList.add('js');
+
+  // Calendar mockup only (removed with .cal-mock in GHL): date + slot selection states, visual only.
+  var days = Array.prototype.slice.call(document.querySelectorAll('.cal-mock button.d'));
+  var head = document.getElementById('slots-h');
+  days.forEach(function (d) {
+    d.addEventListener('click', function () {
+      days.forEach(function (x) { x.setAttribute('aria-pressed', x === d ? 'true' : 'false'); });
+      if (head) head.textContent = d.getAttribute('aria-label');
+    });
+  });
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.cal-mock .slot'));
+  slots.forEach(function (s) {
+    s.addEventListener('click', function () {
+      slots.forEach(function (x) { x.setAttribute('aria-pressed', x === s ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
