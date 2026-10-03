@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Your Review Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* V3 "Blue Interactive" : CFS blue ground, asymmetric hero, tabbed steps, floating booking card */
+  :root {
+    --blue: #4192D7;
+    --navy: #072B53;
+    --gold: #FCB903;
+    --green: #A6E22E;
+    --gray: #F5F7FA;
+    --white: #FFFFFF;
+    --ink: #101828;
+    --ink-2: #2C3345;
+    --line: rgba(7, 43, 83, 0.10);
+    --tint: rgba(65, 146, 215, 0.10);
+    --radius-card: 18px;
+    --radius-ctl: 10px;
+    --gutter: 16px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background: var(--gray);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: "Epilogue", "Inter", sans-serif; margin: 0; }
+  p { margin: 0; }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- HERO (blue) ---------- */
+  .hero {
+    position: relative;
+    background: var(--blue);
+    color: var(--white);
+    padding-bottom: 72px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* static architectural accent: a navy wedge low right, deepens the ground under the card */
+  .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -12%;
+    bottom: -38%;
+    width: 78%;
+    height: 90%;
+    background: var(--navy);
+    opacity: 0.16;
+    transform: rotate(-14deg);
+    border-radius: 48px;
+  }
+  .topbar { display: flex; align-items: center; height: 64px; }
+  .topbar img { height: 30px; width: auto; filter: brightness(0) invert(1); }
+
+  .hero-grid { display: grid; gap: 28px; padding-top: 18px; }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    line-height: 1.2;
+  }
+  .kicker svg { flex: none; }
+
+  .h1 {
+    margin-top: 16px;
+    font-weight: 800;
+    font-size: clamp(2.05rem, 1.25rem + 3.6vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    color: var(--white);
+  }
+  /* large display text: navy on blue = 4.27:1, passes AA large */
+  .h1 .deep { color: var(--navy); }
+
+  .sub {
+    margin-top: 16px;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--ink); /* 5.34:1 on CFS blue */
+    max-width: 36em;
+  }
+
+  .cta-row { margin-top: 22px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px;
+    padding: 14px 26px;
+    background: var(--green);
+    color: var(--navy);
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    text-decoration: none;
+    border-radius: var(--radius-ctl);
+    box-shadow: 0 0 0 2px var(--navy), 0 5px 0 2px var(--navy);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--navy), 0 7px 0 2px var(--navy); }
+  .btn:focus-visible { outline: 3px solid var(--white); outline-offset: 5px; }
+  .btn svg { flex: none; }
+
+  .qual {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 16px; line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .qual::before {
+    content: ""; flex: none; width: 4px; align-self: stretch;
+    background: var(--navy); border-radius: 2px;
+  }
+
+  /* ---------- STEPS (tabbed selector, stacked without JS) ---------- */
+  .steps {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-card);
+    padding: 18px;
+    box-shadow: 0 18px 40px rgba(7, 43, 83, 0.28);
+  }
+  .tablist { display: none; gap: 8px; }
+  .js .tablist { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .tab {
+    position: relative;
+    appearance: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    color: var(--white);
+    border-radius: 999px;
+    min-height: 52px;
+    padding: 6px 8px;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1.1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .tab .n { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tab .w { font-family: "Epilogue", sans-serif; font-weight: 800; font-size: 17px; margin-top: 3px; }
+  .tab:hover { border-color: var(--white); }
+  .tab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .tab[aria-selected="true"] { background: var(--green); border-color: var(--green); color: var(--navy); }
+  /* the ONE ambient motion: a gentle pulse ring on the selected pill */
+  .tab[aria-selected="true"]::after {
+    content: ""; position: absolute; inset: -2px;
+    border-radius: inherit;
+    border: 2px solid var(--green);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tab[aria-selected="true"]::after { animation: pulse 2.8s ease-out infinite; }
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.85; }
+    70% { transform: scale(1.14, 1.32); opacity: 0; }
+    100% { transform: scale(1.14, 1.32); opacity: 0; }
+  }
+
+  .panels { display: grid; gap: 16px; }
+  .js .panels { margin-top: 16px; display: block; }
+  .panel { display: block; }
+  .js .panel[hidden] { display: none; }
+  .panel-h {
+    font-family: "Inter", sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .panel p { font-size: 17px; line-height: 1.5; color: var(--white); }
+  /* no-JS stacked fallback gets thin dividers */
+  html:not(.js) .panel + .panel { border-top: 1px solid rgba(255,255,255,0.18); padding-top: 14px; }
+  .js .panel-h { margin-bottom: 6px; }
+
+  .dots { display: none; }
+  .js .dots { display: flex; gap: 6px; margin-top: 14px; }
+  .dots span { width: 22px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.28); transition: background-color 0.2s ease; }
+  .dots span.on { background: var(--green); }
+
+  /* ---------- BOOKING CARD (overlaps hero bottom edge) ---------- */
+  .book-sec { position: relative; z-index: 2; margin-top: -44px; padding-bottom: 56px; }
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04), 0 18px 48px rgba(7, 43, 83, 0.16);
+    padding: 24px 18px;
+    display: grid;
+    gap: 24px;
+    scroll-margin-top: 16px;
+  }
+  .card-head h2 {
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+  .lead { margin-top: 12px; font-size: 17px; color: var(--ink-2); }
+  .agenda { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+  .agenda li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.45; color: var(--ink); }
+  .agenda .ck {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--tint); color: var(--navy);
+    display: inline-flex; align-items: center; justify-content: center; margin-top: 0;
+  }
+
+  /* widget mockup */
+  .widget {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .w-head {
+    background: var(--navy);
+    color: var(--white);
+    padding: 16px 18px;
+  }
+  .w-title { font-family: "Epilogue", sans-serif; font-weight: 700; font-size: 18px; line-height: 1.25; }
+  .w-meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 15px; color: rgba(255,255,255,0.92); }
+  .w-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .w-meta .sep { color: rgba(255,255,255,0.6); }
+  .w-body { display: grid; }
+  .month { padding: 14px 10px 10px; }
+  .m-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 8px; }
+  .m-nav strong { font-family: "Epilogue", sans-serif; font-size: 18px; color: var(--navy); }
+  .m-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--white); color: var(--navy); display: inline-flex; align-items: center; justify-content: center;
+  }
+  .m-btn[disabled] { opacity: 0.4; }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+  .dow { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-2); padding: 6px 0; text-transform: uppercase; }
+  .d {
+    height: 44px; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-variant-numeric: tabular-nums; color: rgba(44, 51, 69, 0.42);
+    position: relative;
+  }
+  .d.today::after { content: ""; position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--ink-2); }
+  button.d {
+    appearance: none; border: 0; background: transparent; font-family: inherit; cursor: pointer; padding: 0;
+    color: var(--navy); font-weight: 600;
+  }
+  button.d span {
+    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--tint); transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  button.d:hover span { background: rgba(65, 146, 215, 0.22); }
+  button.d[aria-pressed="true"] span { background: var(--navy); color: var(--white); }
+  button.d:focus-visible span, .slot:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  .slots { border-top: 1px solid var(--line); padding: 14px; }
+  .slots-h { font-weight: 600; font-size: 16px; color: var(--navy); }
+  .slots-list { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .slot {
+    appearance: none; min-height: 48px; border-radius: var(--radius-ctl);
+    border: 1.5px solid var(--blue); background: var(--white); color: var(--navy);
+    font-family: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .slot:hover { background: var(--tint); }
+  .slot[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .tz {
+    border-top: 1px solid var(--line);
+    padding: 12px 16px;
+    font-size: 15px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+    background: var(--gray);
+  }
+  .micro { margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+
+  /* ---------- FOOTER ---------- */
+  .foot { border-top: 1px solid var(--line); padding: 22px 0 28px; background: var(--gray); }
+  .foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .foot img { height: 24px; width: auto; }
+  .foot p { font-size: 14px; color: var(--ink-2); }
+
+  /* ---------- TABLET / DESKTOP ---------- */
+  @media (min-width: 640px) {
+    :root { --gutter: 28px; }
+    .cta-row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+    .btn { align-self: flex-start; }
+    .qual { flex-basis: 100%; }
+    .card { padding: 32px; }
+    .month { padding: 16px 16px 12px; }
+    .slots-list { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 980px) {
+    .topbar { height: 84px; }
+    .topbar img { height: 36px; }
+    .hero { padding-bottom: 168px; }
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.9fr);
+      gap: 56px;
+      align-items: end;
+      padding-top: 26px;
+    }
+    .sub { margin-top: 20px; }
+    .cta-row { margin-top: 28px; }
+    .steps { padding: 22px; margin-bottom: 6px; }
+    .tab { min-height: 60px; }
+    .tab .w { font-size: 19px; }
+    .book-sec { margin-top: -120px; padding-bottom: 80px; }
+    .card {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.3fr);
+      gap: 44px;
+      padding: 40px;
+      align-items: start;
+    }
+    .card-head { padding-top: 6px; }
+    .w-body { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+    .slots { border-top: 0; border-left: 1px solid var(--line); padding: 16px; }
+    .slots-list { grid-template-columns: 1fr; }
+    .slot { min-height: 46px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181">
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="kicker">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="2.2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          BOOK A FREE 30-MINUTE CALL
+        </span>
+        <h1 class="h1">3 Steps to Pay for College <span class="deep">Without Sacrificing Your Financial Future</span></h1>
+        <p class="sub">Pick a time for a free 30-minute review call with our advisory team. We'll look at how the three steps could apply to your family's income, tax bill, college timeline, and retirement.</p>
+        <div class="cta-row">
+          <a class="btn" href="#book">
+            Pick a Time for My Review Call
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="qual">This review is for families earning about $250,000+ or paying $30,000+ a year in federal taxes.</p>
+        </div>
+      </div>
+
+      <section class="steps" id="steps" aria-label="The three steps">
+        <div class="tablist" role="tablist" aria-label="The three steps">
+          <button class="tab" role="tab" id="tab-1" aria-controls="step-1" aria-selected="true" tabindex="0"><span class="n">Step 1</span><span class="w">Reduce</span></button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="step-2" aria-selected="false" tabindex="-1"><span class="n">Step 2</span><span class="w">Offset</span></button>
+          <button class="tab" role="tab" id="tab-3" aria-controls="step-3" aria-selected="false" tabindex="-1"><span class="n">Step 3</span><span class="w">Fund</span></button>
+        </div>
+        <div class="panels">
+          <div class="panel" id="step-1" role="tabpanel" aria-labelledby="tab-1">
+            <h3 class="panel-h">STEP 1 · Reduce</h3>
+            <p>Understand what college may really cost your family, including school choice and financial aid eligibility, before you decide how to pay.</p>
+          </div>
+          <div class="panel" id="step-2" role="tabpanel" aria-labelledby="tab-2">
+            <h3 class="panel-h">STEP 2 · Offset</h3>
+            <p>See how strategic tax planning could cover more of what's left, even if you're a W-2 earner. For some families, that includes real estate they own.</p>
+          </div>
+          <div class="panel" id="step-3" role="tabpanel" aria-labelledby="tab-3">
+            <h3 class="panel-h">STEP 3 · Fund</h3>
+            <p>Pay the balance without draining the savings and retirement money that should keep compounding for you.</p>
+          </div>
+        </div>
+        <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      </section>
+    </div>
+  </div>
+</header>
+
+<main class="book-sec">
+  <div class="wrap">
+    <section class="card" id="book" aria-labelledby="book-h">
+      <div class="card-head">
+        <h2 id="book-h">Book Your Tax &amp; College Opportunity Review Call</h2>
+        <p class="lead">Pick a time below. During this first conversation, we'll:</p>
+        <ul class="agenda">
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Understand your current tax and college-funding picture</li>
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Identify whether there may be opportunities worth exploring</li>
+          <li><span class="ck" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decide together whether a deeper strategy conversation makes sense</li>
+        </ul>
+      </div>
+
+      <div class="widget-col">
+        <div class="widget" aria-label="Booking calendar preview">
+          <div class="w-head">
+            <div class="w-title">Tax &amp; College Opportunity Review Call</div>
+            <div class="w-meta">
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>30 min</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5" stroke="currentColor" stroke-width="2.2"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .7 3.2 2.5 3.6 5.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Advisory Team</span>
+            </div>
+          </div>
+          <div class="w-body">
+            <div class="month">
+              <div class="m-nav">
+                <button class="m-btn" type="button" disabled aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <strong>October 2026</strong>
+                <button class="m-btn" type="button" aria-label="Next month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+              <div class="grid" id="cal">
+                <div class="dow">Su</div><div class="dow">Mo</div><div class="dow">Tu</div><div class="dow">We</div><div class="dow">Th</div><div class="dow">Fr</div><div class="dow">Sa</div>
+                <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+                <div class="d">1</div><div class="d today">2</div><div class="d">3</div>
+                <div class="d">4</div><div class="d">5</div>
+                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 6"><span>6</span></button>
+                <button class="d" type="button" aria-pressed="true" aria-label="Wednesday, October 7"><span>7</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 8"><span>8</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Friday, October 9"><span>9</span></button>
+                <div class="d">10</div>
+                <div class="d">11</div><div class="d">12</div>
+                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 13"><span>13</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Wednesday, October 14"><span>14</span></button>
+                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 15"><span>15</span></button>
+                <div class="d">16</div><div class="d">17</div>
+                <div class="d">18</div><div class="d">19</div><div class="d">20</div><div class="d">21</div><div class="d">22</div><div class="d">23</div><div class="d">24</div>
+                <div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div><div class="d">29</div><div class="d">30</div><div class="d">31</div>
+              </div>
+            </div>
+            <div class="slots">
+              <div class="slots-h" id="slots-h">Wednesday, October 7</div>
+              <div class="slots-list" role="group" aria-labelledby="slots-h">
+                <button class="slot" type="button" aria-pressed="false">9:00 am</button>
+                <button class="slot" type="button" aria-pressed="true">10:30 am</button>
+                <button class="slot" type="button" aria-pressed="false">12:00 pm</button>
+                <button class="slot" type="button" aria-pressed="false">1:30 pm</button>
+                <button class="slot" type="button" aria-pressed="false">3:00 pm</button>
+                <button class="slot" type="button" aria-pressed="false">4:30 pm</button>
+              </div>
+            </div>
+          </div>
+          <div class="tz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.5 2.7 3.7 5.7 3.7 9s-1.2 6.3-3.7 9c-2.5-2.7-3.7-5.7-3.7-9S9.5 5.7 12 3z" stroke="currentColor" stroke-width="2"/></svg>
+            Time zone: Eastern Time (US &amp; Canada)
+          </div>
+        </div>
+        <p class="micro">There's no need to choose a strategy on this call. It's an exploratory conversation, and no tax, legal, investment, or financial outcome is promised.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181">
+    <p>Copyright 2026. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Tabs: progressive enhancement. Without JS all three steps render stacked and readable.
+  var root = document.getElementById('steps');
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  var dots = Array.prototype.slice.call(root.querySelectorAll('.dots span'));
+
+  function select(i, focus) {
+    tabs.forEach(function (t, j) {
+      var on = j === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+      if (dots[j]) dots[j].className = on ? 'on' : '';
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i, false); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key, n = tabs.length;
+      if (k === 'ArrowRight') { e.preventDefault(); select((i + 1) % n, true); }
+      else if (k === 'ArrowLeft') { e.preventDefault(); select((i - 1 + n) % n, true); }
+      else if (k === 'Home') { e.preventDefault(); select(0, true); }
+      else if (k === 'End') { e.preventDefault(); select(n - 1, true); }
+    });
+  });
+  select(0, false);
+  document.documentElement.classList.add('js');
+
+  // Calendar mockup: date + slot selection states (visual only)
+  var days = Array.prototype.slice.call(document.querySelectorAll('button.d'));
+  var head = document.getElementById('slots-h');
+  days.forEach(function (d) {
+    d.addEventListener('click', function () {
+      days.forEach(function (x) { x.setAttribute('aria-pressed', x === d ? 'true' : 'false'); });
+      head.textContent = d.getAttribute('aria-label');
+    });
+  });
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.slot'));
+  slots.forEach(function (s) {
+    s.addEventListener('click', function () {
+      slots.forEach(function (x) { x.setAttribute('aria-pressed', x === s ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>
+</body>
+</html>

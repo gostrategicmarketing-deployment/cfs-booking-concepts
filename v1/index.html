@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CFS Booking Split</title>
+<meta name="description" content="V1 Booking-Forward Split: visual-direction mockup for the College Funding Secrets review-call booking page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#072B53;
+    --blue:#4192D7;
+    --gold:#FCB903;
+    --green:#A6E22E;
+    --gray:#F5F7FA;
+    --white:#FFFFFF;
+    --ink:#101828;
+    --slate:#2C3345;
+    --muted:#4A5263;
+    --line:rgba(7,43,83,.10);
+    --blue-wash:rgba(65,146,215,.10);
+    --blue-soft:rgba(65,146,215,.16);
+    --gutter:16px;
+    --radius-card:16px;
+    --radius-ctl:10px;
+    --shadow-card:0 4px 8px rgba(7,43,83,.04),0 12px 32px rgba(7,43,83,.10);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--white);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:Epilogue,Inter,sans-serif;color:var(--navy);margin:0}
+  p{margin:0}
+  .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 var(--gutter)}
+
+  /* top bar */
+  .bar{background:var(--white);border-bottom:1px solid var(--line)}
+  .bar .wrap{height:56px;display:flex;align-items:center}
+  .bar img{height:30px;width:auto}
+
+  /* hero */
+  .hero{background:
+      radial-gradient(900px 520px at 82% 18%, rgba(65,146,215,.10), transparent 70%),
+      var(--gray);
+    padding:24px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "steps" "book";gap:24px}
+  .hero-copy{grid-area:copy}
+  .kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--blue-soft);color:var(--navy);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+  h1{margin-top:14px;font-weight:800;font-size:clamp(1.85rem,4.4vw,3.35rem);line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+  .u{background-image:linear-gradient(var(--gold),var(--gold));background-repeat:no-repeat;background-position:0 94%;background-size:100% .16em;padding-bottom:.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone;animation:draw 1.8s cubic-bezier(.22,.7,.2,1) .5s both}
+  @keyframes draw{from{background-size:0% .16em}to{background-size:100% .16em}}
+  .sub{margin-top:14px;color:var(--slate);font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.5;max-width:36em}
+  .cta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:20px;min-height:56px;padding:0 26px;border-radius:var(--radius-ctl);background:var(--gold);color:var(--navy);font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 14px rgba(252,185,3,.35);transition:transform .15s ease,box-shadow .15s ease}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(252,185,3,.40)}
+  .cta:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+  .cta svg{flex:none}
+  .qual{margin-top:12px;display:flex;gap:10px;align-items:flex-start;color:var(--slate);font-size:16px;line-height:1.45}
+  .qual svg{flex:none;margin-top:3px}
+
+  /* steps: chip strip on mobile, connected timeline on desktop */
+  .steps{grid-area:steps;list-style:none;margin:0 calc(-1 * var(--gutter));padding:4px var(--gutter) 6px;display:grid;grid-auto-flow:column;grid-auto-columns:80%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-padding:0 var(--gutter)}
+  .steps::-webkit-scrollbar{display:none}
+  .step{scroll-snap-align:start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px 16px;position:relative}
+  .step-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .node{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--white);display:grid;place-items:center;font-family:Epilogue,sans-serif;font-weight:800;font-size:14px;box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--gold)}
+  .step h3{font-size:17px;font-weight:700;letter-spacing:.01em;line-height:1.2}
+  .step h3 .num{font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+  .step p{font-size:16px;line-height:1.5;color:var(--slate)}
+  .step:not(:last-child)::after{content:"";position:absolute;top:29px;right:-13px;width:14px;height:2px;background:var(--blue)}
+
+  /* booking card (#book) */
+  .book{grid-area:book;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-card);padding:20px 16px 18px;scroll-margin-top:12px}
+  .book h2{font-weight:800;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.15;letter-spacing:-.015em;text-wrap:balance}
+  .lead{margin-top:10px;color:var(--slate)}
+  .agenda{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+  .agenda li{display:flex;gap:10px;align-items:flex-start;color:var(--ink);line-height:1.45}
+  .agenda li svg{flex:none;margin-top:2px}
+
+  .widget{margin-top:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .w-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:12px 14px;background:var(--navy);color:var(--white)}
+  .w-title{font-weight:700;font-size:15px;line-height:1.3;text-wrap:balance}
+  .w-meta{display:flex;align-items:center;gap:6px;font-size:14px;color:rgba(255,255,255,.88)}
+  .w-meta svg{flex:none}
+  .w-body{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:14px 0 16px}
+  .cal{padding:0}
+  .cal-top{display:flex;align-items:center;justify-content:space-between;padding:0 6px 8px}
+  .cal-month{font-weight:700;color:var(--navy);font-size:16px}
+  .cal-nav{display:flex;gap:4px}
+  .cal-nav button{width:44px;height:44px;border:1px solid var(--line);background:var(--white);border-radius:var(--radius-ctl);display:grid;place-items:center;color:var(--navy);cursor:pointer}
+  .cal-nav button[disabled]{opacity:.45;cursor:default}
+  .grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+  .dow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;padding:4px 0 6px}
+  .day{height:44px;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums;color:#6B7385;border:0;background:none;font-family:inherit;padding:0}
+  .day.open{color:var(--navy);font-weight:700;cursor:pointer;position:relative}
+  .day.open span{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--blue-soft)}
+  .day.open:hover span{background:rgba(65,146,215,.28)}
+  .day.sel span{background:var(--navy);color:var(--white)}
+  .day:focus-visible{outline:none}
+  .day:focus-visible span{outline:3px solid var(--blue);outline-offset:2px}
+
+  .slots-wrap{border-top:1px solid var(--line);padding:14px 6px 0}
+  .slots-date{font-weight:700;color:var(--navy);font-size:15px}
+  .slots-hint{font-size:14px;color:var(--muted);margin-top:2px}
+  .slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+  .slot{min-height:48px;border:1.5px solid var(--blue);border-radius:var(--radius-ctl);background:var(--white);color:var(--navy);font:600 15px/1 Inter,sans-serif;cursor:pointer;font-variant-numeric:tabular-nums}
+  .slot:hover{background:var(--blue-wash)}
+  .slot.sel{background:var(--navy);border-color:var(--navy);color:var(--white)}
+  .slot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .next{margin-top:12px;width:100%;min-height:52px;border:0;border-radius:var(--radius-ctl);background:var(--gold);color:var(--navy);font:700 16px/1 Inter,sans-serif;cursor:pointer}
+  .tz{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:var(--gray);font-size:14px;color:var(--slate)}
+  .tz svg{flex:none}
+  .micro{margin-top:14px;font-size:16px;line-height:1.5;color:var(--muted);text-align:center;max-width:34em;margin-left:auto;margin-right:auto}
+
+  /* footer */
+  .foot{background:var(--navy);color:rgba(255,255,255,.86);padding:22px 0;font-size:14px}
+  .foot .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+  .foot img{height:26px;width:auto;filter:brightness(0) invert(1)}
+  .foot a{color:var(--white);text-underline-offset:3px}
+  .foot nav{display:inline-flex;gap:8px;align-items:center}
+
+  /* tablet */
+  @media (min-width:640px){
+    :root{--gutter:24px}
+    .steps{grid-auto-columns:minmax(0,1fr);grid-auto-flow:column;overflow:visible;margin:0;padding:0}
+    .book{padding:24px}
+    .w-body{padding:16px 16px 18px}
+    .cta{display:inline-flex}
+  }
+
+  /* desktop split */
+  @media (min-width:1024px){
+    :root{--gutter:32px}
+    .bar .wrap{height:64px}
+    .bar img{height:34px}
+    .hero{padding:40px 0 56px}
+    .hero-grid{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);grid-template-areas:"copy book" "steps steps";column-gap:clamp(40px,5vw,64px);row-gap:40px;align-items:start}
+    .hero-copy{align-self:start;padding-top:80px}
+    h1{margin-top:20px}
+    .sub{margin-top:20px}
+    .cta{margin-top:28px}
+    .book{padding:26px 28px 22px}
+    .w-body{grid-template-columns:minmax(0,1fr) 168px;gap:20px;align-items:start}
+    .slots-wrap{border-top:0;border-left:1px solid var(--line);padding:2px 0 0 18px;align-self:stretch}
+    .slots{grid-template-columns:1fr;gap:6px}
+    .slot{min-height:44px}
+    .agenda{gap:6px}
+    /* connected timeline */
+    .steps{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);padding:28px 32px 30px;gap:40px;position:relative}
+    .steps::before{content:"";position:absolute;left:48px;right:48px;top:44px;height:2px;background:linear-gradient(90deg,var(--blue),rgba(65,146,215,.35))}
+    .step{border:0;padding:0;background:transparent}
+    .step:not(:last-child)::after{display:none}
+    .step-head{margin-bottom:12px;gap:0}
+    .node{width:34px;height:34px;font-size:15px;position:relative;z-index:1}
+    .step h3{font-size:19px;background:var(--white);padding:0 12px 0 14px;position:relative;z-index:1}
+    .step p{font-size:16.5px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .u{animation:none;background-size:100% .16em}
+    .cta,.cta:hover{transition:none;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap"><img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181"></div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero-grid">
+
+      <div class="hero-copy">
+        <span class="kicker">BOOK A FREE 30-MINUTE CALL</span>
+        <h1 id="h1">3 Steps to Pay for College <span class="u">Without Sacrificing</span> Your Financial Future</h1>
+        <p class="sub">Pick a time for a free 30-minute review call with our advisory team. We'll look at how the three steps could apply to your family's income, tax bill, college timeline, and retirement.</p>
+        <a class="cta" href="#book">Pick a Time for My Review Call
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="qual">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#4192D7" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="#072B53" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span>This review is for families earning about $250,000+ or paying $30,000+ a year in federal taxes.</span>
+        </p>
+      </div>
+
+      <ol class="steps" aria-label="Three steps">
+        <li class="step">
+          <div class="step-head"><span class="node" aria-hidden="true">1</span><h3><span class="num">STEP 1</span> · Reduce</h3></div>
+          <p>Understand what college may really cost your family, including school choice and financial aid eligibility, before you decide how to pay.</p>
+        </li>
+        <li class="step">
+          <div class="step-head"><span class="node" aria-hidden="true">2</span><h3><span class="num">STEP 2</span> · Offset</h3></div>
+          <p>See how strategic tax planning could cover more of what's left, even if you're a W-2 earner. For some families, that includes real estate they own.</p>
+        </li>
+        <li class="step">
+          <div class="step-head"><span class="node" aria-hidden="true">3</span><h3><span class="num">STEP 3</span> · Fund</h3></div>
+          <p>Pay the balance without draining the savings and retirement money that should keep compounding for you.</p>
+        </li>
+      </ol>
+
+      <section class="book" id="book" aria-labelledby="book-h">
+        <h2 id="book-h">Book Your Tax &amp; College Opportunity Review Call</h2>
+        <p class="lead">Pick a time below. During this first conversation, we'll:</p>
+        <ul class="agenda">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(65,146,215,.16)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#072B53" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Understand your current tax and college-funding picture</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(65,146,215,.16)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#072B53" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Identify whether there may be opportunities worth exploring</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(65,146,215,.16)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#072B53" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Decide together whether a deeper strategy conversation makes sense</li>
+        </ul>
+
+        <div class="widget" role="group" aria-label="Booking calendar (static mockup)">
+          <div class="w-head">
+            <span class="w-title">Tax &amp; College Opportunity Review Call</span>
+            <span class="w-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              30 min · Advisory Team
+            </span>
+          </div>
+
+          <div class="w-body">
+            <div class="cal">
+              <div class="cal-top">
+                <span class="cal-month">October 2026</span>
+                <span class="cal-nav">
+                  <button type="button" disabled aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button type="button" aria-label="Next month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                </span>
+              </div>
+              <div class="grid7" aria-hidden="true">
+                <span class="dow">Sun</span><span class="dow">Mon</span><span class="dow">Tue</span><span class="dow">Wed</span><span class="dow">Thu</span><span class="dow">Fri</span><span class="dow">Sat</span>
+              </div>
+              <div class="grid7" id="days"><span class="day" aria-hidden="true"></span><span class="day" aria-hidden="true"></span><span class="day" aria-hidden="true"></span><span class="day" aria-hidden="true"></span><span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><button type="button" class="day open" data-d="5" aria-label="October 5, available"><span>5</span></button><button type="button" class="day open sel" data-d="6" aria-label="October 6, available" aria-pressed="true"><span>6</span></button><button type="button" class="day open" data-d="7" aria-label="October 7, available"><span>7</span></button><button type="button" class="day open" data-d="8" aria-label="October 8, available"><span>8</span></button><button type="button" class="day open" data-d="9" aria-label="October 9, available"><span>9</span></button><span class="day">10</span><span class="day">11</span><button type="button" class="day open" data-d="12" aria-label="October 12, available"><span>12</span></button><button type="button" class="day open" data-d="13" aria-label="October 13, available"><span>13</span></button><button type="button" class="day open" data-d="14" aria-label="October 14, available"><span>14</span></button><button type="button" class="day open" data-d="15" aria-label="October 15, available"><span>15</span></button><span class="day">16</span><span class="day">17</span><span class="day">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day">31</span></div>
+            </div>
+
+            <div class="slots-wrap">
+              <p class="slots-date" id="slots-date">Tuesday, October 6</p>
+              <p class="slots-hint">Select a time</p>
+              <div class="slots" id="slots">
+                <button type="button" class="slot">10:00 AM</button>
+                <button type="button" class="slot">11:30 AM</button>
+                <button type="button" class="slot sel" aria-pressed="true">1:00 PM</button>
+                <button type="button" class="slot">2:30 PM</button>
+                <button type="button" class="slot">4:00 PM</button>
+              </div>
+              <button type="button" class="next">Next</button>
+            </div>
+          </div>
+
+          <div class="tz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2C3345" stroke-width="1.8"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" stroke="#2C3345" stroke-width="1.6"/></svg>
+            Time zone: Eastern Time (US &amp; Canada)
+          </div>
+        </div>
+
+        <p class="micro">There's no need to choose a strategy on this call. It's an exploratory conversation, and no tax, legal, investment, or financial outcome is promised.</p>
+      </section>
+
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181">
+    <span>Copyright © 2026. College Funding Education, LLC. All Rights Reserved. · <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></span>
+  </div>
+</footer>
+
+<script>
+  // Mockup interactions only; the calendar markup is static (Oct 1 2026 = Thursday).
+  (function(){
+    var names={5:"Monday",6:"Tuesday",7:"Wednesday",8:"Thursday",9:"Friday",12:"Monday",13:"Tuesday",14:"Wednesday",15:"Thursday"};
+    var days=document.getElementById('days');
+    days.addEventListener('click',function(e){
+      var btn=e.target.closest('.day.open'); if(!btn) return;
+      days.querySelectorAll('.day.sel').forEach(function(x){x.classList.remove('sel');x.removeAttribute('aria-pressed')});
+      btn.classList.add('sel');btn.setAttribute('aria-pressed','true');
+      document.getElementById('slots-date').textContent=names[btn.dataset.d]+', October '+btn.dataset.d;
+    });
+    document.getElementById('slots').addEventListener('click',function(e){
+      var s=e.target.closest('.slot'); if(!s) return;
+      this.querySelectorAll('.slot').forEach(function(x){x.classList.remove('sel');x.removeAttribute('aria-pressed')});
+      s.classList.add('sel');s.setAttribute('aria-pressed','true');
+    });
+  })();
+</script>
+</body>
+</html>
