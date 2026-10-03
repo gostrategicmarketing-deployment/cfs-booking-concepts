@@ -1,0 +1,126 @@
+<!-- CFS booking page (V3 Blue Interactive) for GHL. Generated from v3/index.html by tools/build_ghl.py. Do not edit by hand. -->
+<!-- Paste into Page Settings > Tracking Code > Footer (body). Step tabs + 5s rotation, video facades. Works when the sections are separate GHL elements. -->
+<script>
+(function () {
+  // CFS booking page scripts. Progressive enhancement only: with JS off every step is stacked and readable,
+  // and every video link opens the video. Safe when the page's blocks are separate GHL elements: it finds
+  // them by ID/class, runs on DOMContentLoaded (or at once if the DOM is ready), and retries briefly in case
+  // GHL renders the custom-code blocks after this script runs.
+  if (window.cfsLpBooted) return;
+  window.cfsLpBooted = true;
+
+  var ROTATE_MS = 5000;
+  var reduceMq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+  // ---- Reduce / Offset / Fund tabs: auto-advance every 5s until the visitor uses a tab ----
+  function initSteps(root) {
+    if (!root || root.getAttribute('data-cfs-ready') === '1') return !!root;
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    if (!tabs.length || panels.indexOf(null) !== -1) return false;
+    root.setAttribute('data-cfs-ready', '1');
+    var dots = Array.prototype.slice.call(root.querySelectorAll('.dots span'));
+    var current = 0, timer = null, startedAt = 0, remaining = ROTATE_MS;
+    var stopped = false, hovering = false, focused = false;
+
+    function select(i, focus) {
+      current = i;
+      tabs.forEach(function (t, j) {
+        var on = j === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[j].hidden = !on;
+        if (dots[j]) dots[j].className = on ? 'on' : '';
+      });
+      if (focus) tabs[i].focus();
+    }
+    function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
+    function schedule(ms) {
+      clearTimer();
+      remaining = ms;
+      startedAt = Date.now();
+      timer = setTimeout(advance, ms);
+    }
+    function advance() {
+      timer = null;
+      if (stopped) return;
+      select((current + 1) % tabs.length, false);
+      schedule(ROTATE_MS);
+    }
+    function pause() {
+      if (stopped) return;
+      if (timer) { remaining = Math.max(0, remaining - (Date.now() - startedAt)); clearTimer(); }
+      root.classList.add('is-paused');
+    }
+    function resume() {
+      if (stopped || hovering || focused || timer) return;
+      root.classList.remove('is-paused');
+      schedule(remaining);
+    }
+    function stop() {
+      stopped = true;
+      clearTimer();
+      root.classList.remove('is-rotating', 'is-paused');
+    }
+
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { stop(); select(i, false); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = tabs.length;
+        if (k === 'ArrowRight') { e.preventDefault(); stop(); select((i + 1) % n, true); }
+        else if (k === 'ArrowLeft') { e.preventDefault(); stop(); select((i - 1 + n) % n, true); }
+        else if (k === 'Home') { e.preventDefault(); stop(); select(0, true); }
+        else if (k === 'End') { e.preventDefault(); stop(); select(n - 1, true); }
+      });
+    });
+    root.addEventListener('mouseenter', function () { hovering = true; pause(); });
+    root.addEventListener('mouseleave', function () { hovering = false; resume(); });
+    root.addEventListener('focusin', function () { focused = true; pause(); });
+    root.addEventListener('focusout', function () {
+      setTimeout(function () {
+        if (root.contains(document.activeElement)) return;
+        focused = false;
+        resume();
+      }, 0);
+    });
+
+    select(0, false);
+    root.classList.add('cfs-js');
+    if (reduceMq && reduceMq.matches) return true; // no auto-rotation at all under reduced motion
+    if (reduceMq) {
+      var onChange = function (e) { if (e.matches) stop(); };
+      if (reduceMq.addEventListener) reduceMq.addEventListener('change', onChange);
+      else if (reduceMq.addListener) reduceMq.addListener(onChange);
+    }
+    root.classList.add('is-rotating');
+    schedule(ROTATE_MS);
+    return true;
+  }
+
+  // ---- Video facades: no iframe exists until a click (one delegated listener, so late-rendered blocks work) ----
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // keep new-tab clicks
+    var a = e.target && e.target.closest ? e.target.closest('a.cfs-vid[data-embed]') : null;
+    if (!a) return;
+    var src = a.getAttribute('data-embed');
+    if (!src) return;
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.className = 'cfs-vid-frame';
+    f.src = src;
+    f.title = a.getAttribute('data-title') || 'Testimonial video';
+    f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+    f.setAttribute('allowfullscreen', '');
+    a.parentNode.replaceChild(f, a);
+    f.focus();
+  });
+
+  var tries = 0;
+  function boot() {
+    if (initSteps(document.getElementById('steps'))) return;
+    if (tries++ < 40) setTimeout(boot, 250); // up to ~10s for late-rendered GHL blocks
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>

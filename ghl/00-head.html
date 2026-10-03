@@ -1,0 +1,797 @@
+<!-- CFS booking page (V3 Blue Interactive) for GHL. Generated from v3/index.html by tools/build_ghl.py. Do not edit by hand. -->
+<!-- Paste into Page Settings > Tracking Code > Header (head). Loads the brand fonts + the scoped page CSS. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  /* =====================================================================
+     TOKENS (from the approved V3 mockup; brand-guide verified)
+     ===================================================================== */
+  .cfs-lp {
+    --blue: #4192D7;
+    --navy: #072B53;
+    --gold: #FCB903;
+    --green: #A6E22E;
+    --gray: #F5F7FA;
+    --white: #FFFFFF;
+    --ink: #101828;
+    --ink-2: #2C3345;
+    --line: rgba(7, 43, 83, 0.10);
+    --tint: rgba(65, 146, 215, 0.10);
+    --radius-card: 18px;
+    --radius-ctl: 10px;
+    --gutter: 16px;
+    --sec-pad: 56px;
+    --font-head: "Epilogue", "Inter", sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (min-width: 640px) {
+    .cfs-lp { --gutter: 28px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp { --sec-pad: 88px; }
+  }
+  /* =====================================================================
+     SCOPE RESET (GHL build): keeps the host page's global styles out of .cfs-lp
+     ===================================================================== */
+  .cfs-lp { display: block; width: 100%; text-align: left; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  .cfs-lp *, .cfs-lp *::before, .cfs-lp *::after { font-family: inherit; }
+  .cfs-lp section, .cfs-lp header, .cfs-lp footer, .cfs-lp main { display: block; margin: 0; padding: 0; }
+  .cfs-lp h1, .cfs-lp h2, .cfs-lp h3 { margin: 0; padding: 0; color: inherit; text-transform: none; }
+  .cfs-lp p { margin: 0; padding: 0; font-size: inherit; line-height: inherit; color: inherit; }
+  .cfs-lp ul, .cfs-lp ol { margin: 0; padding: 0; list-style: none; }
+  .cfs-lp figure, .cfs-lp blockquote { margin: 0; }
+  .cfs-lp a { color: inherit; }
+  .cfs-lp img { max-width: 100%; width: auto; height: auto; display: block; border: 0; box-shadow: none; }
+  .cfs-lp iframe { max-width: 100%; }
+  .cfs-lp button { margin: 0; text-transform: none; }
+
+  /* =====================================================================
+     BASE
+     ===================================================================== */
+  .cfs-lp *, .cfs-lp *::before, .cfs-lp *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cfs-lp *, .cfs-lp *::before, .cfs-lp *::after { animation: none !important; transition: none !important; }
+  }
+  .cfs-lp { color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+  .cfs-lp img { max-width: 100%; display: block; }
+  .cfs-lp h1, .cfs-lp h2, .cfs-lp h3 { font-family: var(--font-head); margin: 0; }
+  .cfs-lp p { margin: 0; }
+  .cfs-lp .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+  .cfs-lp .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  /* =====================================================================
+     SHARED COMPONENTS: CTA button, section chrome, stars, expanders
+     ===================================================================== */
+  .cfs-lp .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px;
+    padding: 14px 26px;
+    background: var(--green);
+    color: var(--navy); /* navy on green = 10.6:1 */
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-ctl);
+    box-shadow: 0 0 0 2px var(--navy), 0 5px 0 2px var(--navy);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cfs-lp .btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--navy), 0 7px 0 2px var(--navy); }
+  .cfs-lp .btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 5px; }
+  .cfs-lp .btn svg { flex: none; }
+  .cfs-lp .sec { padding: var(--sec-pad) 0; }
+  .cfs-lp .eyebrow {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy);
+  }
+  .cfs-lp .sec-h {
+    font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.5rem);
+    line-height: 1.1; letter-spacing: -0.02em; color: var(--navy); text-wrap: balance;
+  }
+  .cfs-lp .eyebrow + .sec-h { margin-top: 8px; }
+  .cfs-lp .stars { display: block; flex: none; }
+  .cfs-lp .stars .s-empty polygon { fill: rgba(7, 43, 83, 0.55); }
+  /* empty star 3.4:1 on the gray review card, 3.9:1 on white */
+  .cfs-lp .stars .s-full polygon { fill: var(--gold); stroke: var(--navy); stroke-width: 0.7; stroke-linejoin: round; }
+  .cfs-lp .more { margin-top: 16px; }
+  .cfs-lp .more > summary {
+    list-style: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; padding: 10px 20px; border-radius: var(--radius-ctl);
+    font-weight: 600; font-size: 16px;
+    border: 1.5px solid var(--navy); color: var(--navy); background: var(--white);
+  }
+  .cfs-lp .more > summary::-webkit-details-marker { display: none; }
+  .cfs-lp .more > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .cfs-lp .more > summary svg { transition: transform 0.2s ease; }
+  .cfs-lp .more[open] > summary svg { transform: rotate(180deg); }
+  .cfs-lp .more .when-open { display: none; }
+  .cfs-lp .more[open] .when-open { display: inline; }
+  .cfs-lp .more[open] .when-closed { display: none; }
+  /* =====================================================================
+     GHL SECTION 01: header (logo only, CFS blue)
+     ===================================================================== */
+  .cfs-lp .cfs-header { background: var(--blue); }
+  .cfs-lp .cfs-header .wrap { display: flex; align-items: center; height: 64px; }
+  .cfs-lp .cfs-header img { height: 40px; width: auto; }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-header .wrap { height: 84px; }
+    .cfs-lp .cfs-header img { height: 48px; }
+  }
+  /* =====================================================================
+     GHL SECTION 02: hero (CFS blue, asymmetric, steps as right column)
+     ===================================================================== */
+  .cfs-lp .hero {
+    position: relative;
+    background: var(--blue);
+    color: var(--white);
+    padding-bottom: 72px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* static architectural accent: a navy wedge low right, deepens the ground under the card */
+  .cfs-lp .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -12%;
+    bottom: -38%;
+    width: 78%;
+    height: 90%;
+    background: var(--navy);
+    opacity: 0.10; /* <= 0.10 keeps #101828 text on the darkened blue >= 4.5:1 */
+    transform: rotate(-14deg);
+    border-radius: 48px;
+  }
+  .cfs-lp .hero-grid { display: grid; gap: 28px; padding-top: 18px; }
+  .cfs-lp .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    line-height: 1.2;
+  }
+  .cfs-lp .kicker svg { flex: none; }
+  .cfs-lp .h1 {
+    margin-top: 16px;
+    font-weight: 800;
+    font-size: clamp(2.05rem, 1.25rem + 3.6vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    color: var(--white); /* white on CFS blue = 3.3:1, AA large (800 weight, 33px+) */
+  }
+  /* large display text: navy on blue = 4.27:1, passes AA large */
+  .cfs-lp .h1 .deep { color: var(--navy); }
+  .cfs-lp .h1 .lead-in { display: block; }
+  /* the white half sits on its own line so the color split lands on a line break */
+  .cfs-lp .sub {
+    margin-top: 16px;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--ink); /* 5.2:1 on CFS blue */
+    max-width: 36em;
+  }
+  .cfs-lp .cta-row { margin-top: 22px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+  .cfs-lp .hero .btn:focus-visible { outline-color: var(--white); }
+  .cfs-lp .qual {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 16px; line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .cfs-lp .qual::before {
+    content: ""; flex: none; width: 4px; align-self: stretch;
+    background: var(--navy); border-radius: 2px;
+  }
+  /* trust bar under the qualifier */
+  .cfs-lp .trust { margin-top: 18px; display: grid; gap: 12px; }
+  .cfs-lp .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cfs-lp .badge {
+    display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px;
+    background: var(--white); color: var(--navy);
+    border-radius: 8px; padding: 7px 11px;
+    font-size: 14px; font-weight: 600; line-height: 1.25;
+    box-shadow: 0 1px 0 rgba(7, 43, 83, 0.18);
+  }
+  .cfs-lp .badge svg.ico { flex: none; color: var(--navy); }
+  .cfs-lp .badge .muted { font-weight: 500; color: var(--ink-2); }
+  .cfs-lp .badge .stars { width: 78px; height: 16px; }
+  .cfs-lp .featured { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .cfs-lp .featured .lbl { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+  .cfs-lp .featured ul { list-style: none; margin: 0; padding: 0; display: contents; }
+  .cfs-lp .featured li {
+    font-family: var(--font-head); font-weight: 700; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--ink); white-space: nowrap;
+  }
+  /* phones (<640px): tighter hero so the button, both ratings and the press line share the first screen */
+  @media (max-width: 639px) {
+    .cfs-lp .hero { padding-bottom: 48px; }
+    .cfs-lp .hero-grid { padding-top: 8px; gap: 22px; }
+    .cfs-lp .hero-copy { text-align: center; }
+    .cfs-lp .h1, .cfs-lp .sub { text-wrap: balance; margin-left: auto; margin-right: auto; }
+    .cfs-lp .badge { align-items: center; text-align: center; }
+    .cfs-lp .badge:first-child { justify-content: center; }
+    .cfs-lp .steps .panel { text-align: center; }
+    .cfs-lp .kicker { font-size: 12.5px; padding: 6px 12px 6px 9px; gap: 6px; }
+    .cfs-lp .kicker svg { width: 14px; height: 14px; }
+    .cfs-lp .h1 { margin-top: 12px; font-size: 1.875rem; line-height: 1.08; letter-spacing: -0.02em; }
+    /* 30px 800: still AA large */
+    .cfs-lp .sub { margin-top: 12px; font-size: 16px; line-height: 1.5; font-weight: 500; }
+    .cfs-lp .cta-row { margin-top: 18px; gap: 10px; }
+    .cfs-lp .cta-row .btn { min-height: 52px; padding: 12px 18px; font-size: 16.5px; }
+    .cfs-lp .qual { font-size: 14px; line-height: 1.45; margin-top: 2px; text-align: center; justify-content: center; text-wrap: balance; }
+    .cfs-lp .qual::before { display: none; }
+    .cfs-lp .trust { margin-top: 16px; gap: 12px; }
+    /* both ratings in one compact white card, side by side */
+    .cfs-lp .badges {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--white); border-radius: 10px;
+      box-shadow: 0 1px 0 rgba(7, 43, 83, 0.18);
+    }
+    .cfs-lp .badge {
+      background: none; box-shadow: none; border-radius: 0;
+      flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px;
+      padding: 10px 12px; font-size: 13.5px; line-height: 1.3;
+    }
+    .cfs-lp .badge + .badge { border-left: 1px solid rgba(7, 43, 83, 0.14); align-items: center; text-align: center; }
+    .cfs-lp .badge:first-child { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; text-align: left; }
+    .cfs-lp .badge .stars { width: 72px; height: 14px; }
+    /* press names: one centered line of dot-separated names under a small label */
+    .cfs-lp .featured { display: block; text-align: center; }
+    .cfs-lp .featured .lbl { display: block; font-size: 13px; letter-spacing: 0.12em; margin-bottom: 4px; }
+    .cfs-lp .featured ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; }
+    .cfs-lp .featured li { font-size: 14px; }
+  }
+  @media (min-width: 640px) {
+    .cfs-lp .cta-row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+    .cfs-lp .cta-row .btn { align-self: flex-start; }
+    .cfs-lp .qual { flex-basis: 100%; }
+    .cfs-lp .trust { margin-top: 20px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .hero { padding-bottom: 168px; }
+    .cfs-lp .hero-grid {
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.9fr);
+      gap: 56px;
+      align-items: end;
+      padding-top: 26px;
+    }
+    .cfs-lp .sub { margin-top: 20px; }
+    .cfs-lp .cta-row { margin-top: 28px; }
+  }
+  /* =====================================================================
+     GHL SECTION 02 (cont.): steps inside the hero (rotating tabs; stacked and readable without JS)
+     ===================================================================== */
+  .cfs-lp .steps {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-card);
+    padding: 18px;
+    box-shadow: 0 18px 40px rgba(7, 43, 83, 0.28);
+  }
+  .cfs-lp .tablist { display: none; gap: 8px; }
+  .cfs-lp .steps.cfs-js .tablist { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .cfs-lp .tab {
+    position: relative;
+    appearance: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    color: var(--white);
+    border-radius: 999px;
+    min-height: 52px;
+    padding: 6px 8px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1.1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .cfs-lp .tab .n { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .cfs-lp .tab .w { font-family: var(--font-head); font-weight: 800; font-size: 17px; margin-top: 3px; }
+  .cfs-lp .tab:hover { border-color: var(--white); }
+  .cfs-lp .tab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .cfs-lp .tab[aria-selected="true"] { background: var(--green); border-color: var(--green); color: var(--navy); }
+  /* the ONE ambient motion on the page: a gentle pulse ring on the selected pill */
+  .cfs-lp .tab[aria-selected="true"]::after {
+    content: ""; position: absolute; inset: -2px;
+    border-radius: inherit;
+    border: 2px solid var(--green);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .cfs-lp .tab[aria-selected="true"]::after { animation: cfs-pulse 2.8s ease-out infinite; }
+  }
+  @keyframes cfs-pulse {
+    0% { transform: scale(1); opacity: 0.85; }
+    70% { transform: scale(1.14, 1.32); opacity: 0; }
+    100% { transform: scale(1.14, 1.32); opacity: 0; }
+  }
+  .cfs-lp .panels { display: grid; gap: 16px; }
+  .cfs-lp .panel { display: block; }
+  /* with JS all three panels share one grid cell, so the card keeps the tallest panel's height and the page
+     below never jumps when a step auto-advances; unselected panels are visibility:hidden (no opacity fades) */
+  .cfs-lp .steps.cfs-js .panels { margin-top: 16px; display: grid; }
+  .cfs-lp .steps.cfs-js .panel { grid-area: 1 / 1; }
+  .cfs-lp .steps.cfs-js .panel[hidden] { display: block; visibility: hidden; }
+  .cfs-lp .panel-h {
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .cfs-lp .steps.cfs-js .panel-h { margin-bottom: 6px; }
+  .cfs-lp .panel p { font-size: 17px; line-height: 1.5; color: var(--white); }
+  /* no-JS stacked fallback gets thin dividers */
+  .cfs-lp .steps:not(.cfs-js) .panel + .panel { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 14px; }
+  /* progress bars: the selected step's bar fills over the 5s auto-advance (transform only, never opacity) */
+  .cfs-lp .dots { display: none; }
+  .cfs-lp .steps.cfs-js .dots { display: flex; gap: 6px; margin-top: 14px; }
+  .cfs-lp .dots span { position: relative; overflow: hidden; width: 28px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); }
+  .cfs-lp .dots span::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    background: var(--green); transform: scaleX(0); transform-origin: left center;
+  }
+  .cfs-lp .dots span.on::after { transform: scaleX(1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .cfs-lp .steps.is-rotating .dots span.on::after { animation: cfs-count 5s linear both; }
+    .cfs-lp .steps.is-rotating.is-paused .dots span.on::after { animation-play-state: paused; }
+  }
+  @keyframes cfs-count { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (min-width: 980px) {
+    .cfs-lp .steps { padding: 22px; margin-bottom: 6px; }
+    .cfs-lp .tab { min-height: 60px; }
+    .cfs-lp .tab .w { font-size: 19px; }
+  }
+  /* =====================================================================
+     GHL SECTION 03: book (light gray; white card overlaps the hero edge; live GHL calendar)
+     ===================================================================== */
+  .cfs-lp .book-sec {
+    position: relative; z-index: 2;
+    background: linear-gradient(to bottom, transparent 0, transparent 44px, var(--gray) 44px);
+    margin-top: -44px; padding-bottom: var(--sec-pad);
+    scroll-margin-top: 16px;
+  }
+  .cfs-lp .card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 18px 48px rgba(7, 43, 83, 0.16);
+    padding: 24px 18px;
+    display: grid;
+    gap: 24px;
+  }
+  .cfs-lp .card-title {
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+  .cfs-lp .lead { font-size: 17px; color: var(--ink-2); }
+  /* mobile (<760px): heading, then the calendar widget, then the agenda, so the hero button lands on the widget */
+  @media (max-width: 759px) {
+    .cfs-lp .card-title { order: 0; }
+    .cfs-lp .widget-col { order: 1; }
+    .cfs-lp .card-head { order: 2; }
+  }
+  @media (min-width: 760px) {
+    .cfs-lp .card-head { margin-top: -12px; }
+  }
+  .cfs-lp .agenda { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+  .cfs-lp .agenda li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.45; color: var(--ink); }
+  .cfs-lp .agenda .ck {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--tint); color: var(--navy);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  /* live GHL booking widget: the min-height holds the card open until GHL's form_embed.js resizer runs */
+  .cfs-lp .cfs-cal { background: var(--white); border-radius: 14px; overflow: hidden; }
+  .cfs-lp .cfs-cal-frame { display: block; width: 100%; min-height: 900px; border: 0; }
+  /* GHL widget measured 905px tall at 375 */
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-cal-frame { min-height: 720px; }
+  }
+  /* measured 963px at 768 and 1440 */
+  .cfs-lp .micro { margin-top: 14px; font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+  /* phones: the widget bleeds 10px into the card padding so the booking calendar gets the most width */
+  @media (max-width: 639px) {
+    .cfs-lp .widget-col { margin-inline: -10px; }
+    .cfs-lp .micro { padding-inline: 10px; }
+  }
+  @media (min-width: 640px) {
+    .cfs-lp .card { padding: 32px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .book-sec { margin-top: -120px; background: linear-gradient(to bottom, transparent 0, transparent 120px, var(--gray) 120px); }
+    .cfs-lp .card {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.3fr);
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "title widget" "head widget";
+      column-gap: 44px;
+      row-gap: 12px;
+      padding: 40px;
+      align-items: start;
+    }
+    .cfs-lp .card-title { grid-area: title; padding-top: 6px; }
+    .cfs-lp .card-head { grid-area: head; margin-top: 0; }
+    .cfs-lp .widget-col { grid-area: widget; }
+  }
+  /* =====================================================================
+     GHL SECTION 04: reviews (white ground, light-gray cards)
+     ===================================================================== */
+  .cfs-lp .reviews { background: var(--white); }
+  .cfs-lp .ratings { margin-top: 20px; display: grid; gap: 10px; }
+  .cfs-lp .rating {
+    background: var(--gray); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+  }
+  .cfs-lp .rating .big { font-family: var(--font-head); font-weight: 800; font-size: 30px; line-height: 1; color: var(--navy); }
+  .cfs-lp .rating .stars { width: 98px; height: 20px; }
+  .cfs-lp .rating .txt { font-size: 15px; line-height: 1.4; color: var(--ink-2); }
+  .cfs-lp .rating .txt strong { color: var(--ink); font-weight: 600; }
+  .cfs-lp .seal {
+    flex: none; width: 56px; height: 56px; border-radius: 12px; background: var(--navy); color: var(--white);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 800; line-height: 1;
+  }
+  .cfs-lp .seal b { font-size: 20px; }
+  .cfs-lp .seal small { font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; margin-top: 3px; }
+  .cfs-lp .rev-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; align-items: start; }
+  .cfs-lp .more .rev-list { margin-top: 12px; }
+  .cfs-lp .rev figure {
+    margin: 0;
+    background: var(--gray); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .cfs-lp .rev-stars { width: 88px; height: 18px; }
+  .cfs-lp .rev blockquote { margin: 0; }
+  .cfs-lp .rev blockquote p { font-size: 17px; line-height: 1.55; color: var(--ink); }
+  .cfs-lp .rev blockquote p::before { content: "\201C"; }
+  .cfs-lp .rev blockquote p::after { content: "\201D"; }
+  .cfs-lp .rev figcaption { margin-top: auto; padding-top: 4px; display: grid; gap: 4px; font-size: 15px; }
+  .cfs-lp .rev figcaption strong { color: var(--navy); font-weight: 600; }
+  .cfs-lp .rev-src { color: var(--ink-2); }
+  /* inline proof links get a 44px tap row */
+  .cfs-lp .rev-src a, .cfs-lp .rating .txt a {
+    display: inline-block; padding: 12px 0; margin: -12px 0;
+    color: var(--navy); font-weight: 600; text-underline-offset: 2px; text-decoration: underline;
+  }
+  .cfs-lp .rev-src a:focus-visible, .cfs-lp .rating .txt a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+  .cfs-lp .asof { margin-top: 16px; font-size: 15px; color: var(--ink-2); }
+  @media (min-width: 640px) {
+    .cfs-lp .ratings { grid-template-columns: 1fr 1fr; }
+    .cfs-lp .rev-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .ratings { max-width: 860px; }
+    .cfs-lp .rev-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  }
+  /* =====================================================================
+     GHL SECTION 05: videos (navy; click-to-play facades, no iframe until a click)
+     ===================================================================== */
+  .cfs-lp .cfs-videos { background: var(--navy); color: var(--white); }
+  .cfs-lp .cfs-videos .sec-h { color: var(--white); }
+  .cfs-lp .cfs-vid-media {
+    position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden;
+    background: var(--ink); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  }
+  .cfs-lp .cfs-vid, .cfs-lp .cfs-vid-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .cfs-lp .cfs-vid { color: var(--navy); text-decoration: none; }
+  .cfs-lp .cfs-vid img { width: 100%; height: 100%; object-fit: cover; }
+  .cfs-lp .cfs-vid:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
+  .cfs-lp .cfs-vid-play {
+    position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px;
+    border-radius: 50%; background: var(--green); color: var(--navy); /* navy on green = 10.6:1 */
+    box-shadow: 0 0 0 2px var(--navy), 0 6px 16px rgba(0, 0, 0, 0.35);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .cfs-lp .cfs-vid-play svg { margin-left: 4px; }
+  .cfs-lp .cfs-vid:hover .cfs-vid-play { transform: scale(1.08); }
+  .cfs-lp .cfs-vid-dur {
+    position: absolute; right: 10px; bottom: 10px; padding: 3px 8px; border-radius: 6px;
+    background: var(--navy); color: var(--white); font-size: 14px; font-weight: 600; line-height: 1.3;
+  }
+  .cfs-lp .cfs-vid-feat { margin-top: 24px; display: grid; gap: 16px; }
+  .cfs-lp .cfs-vid-feat .cfs-vid-play { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
+  .cfs-lp .cfs-vid-cap { margin-top: 12px; display: grid; gap: 6px; }
+  .cfs-lp .cfs-vid-feat .cfs-vid-cap { margin-top: 0; }
+  .cfs-lp .cfs-vid-name { font-family: var(--font-head); font-weight: 700; font-size: 19px; line-height: 1.25; color: var(--white); }
+  .cfs-lp .cfs-vid-feat .cfs-vid-name { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); }
+  .cfs-lp .cfs-vid-cap p { font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, 0.9); }
+  .cfs-lp .cfs-vid-cap blockquote { margin: 0; }
+  .cfs-lp .cfs-vid-cap blockquote p::before { content: "\201C"; }
+  .cfs-lp .cfs-vid-cap blockquote p::after { content: "\201D"; }
+  .cfs-lp .cfs-vid-row { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 22px; }
+  .cfs-lp .cfs-vid-hint { display: none; }
+  .cfs-lp .cfs-vid-note { margin-top: 22px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+  @media (max-width: 639px) {
+    .cfs-lp .cfs-vid-hint {
+      display: flex; align-items: center; gap: 8px; margin-top: 26px;
+      font-size: 15px; font-weight: 600; color: var(--green);
+    }
+    .cfs-lp .cfs-vid-row {
+      margin: 12px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter) 10px;
+      grid-auto-flow: column; grid-auto-columns: 80%; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--gutter);
+      -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+    }
+    .cfs-lp .cfs-vid-row > li { scroll-snap-align: start; }
+  }
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-vid-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-vid-feat { margin-top: 32px; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+    .cfs-lp .cfs-vid-feat .cfs-vid-cap p { font-size: 18px; }
+    .cfs-lp .cfs-vid-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; margin-top: 40px; }
+  }
+  /* =====================================================================
+     GHL SECTION 06: fit (light gray; two-column contrast on desktop)
+     ===================================================================== */
+  .cfs-lp .cfs-fit { background: var(--gray); }
+  .cfs-lp .cfs-fit-grid { margin-top: 24px; display: grid; gap: 16px; }
+  .cfs-lp .cfs-fit-card { border-radius: var(--radius-card); padding: 22px 20px; }
+  .cfs-lp .cfs-fit-yes { background: var(--white); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(7, 43, 83, 0.05); }
+  .cfs-lp .cfs-fit-no { background: var(--navy); color: var(--white); }
+  .cfs-lp .cfs-fit-card h3, .cfs-lp .cfs-fit-lead {
+    font-family: var(--font-head); font-weight: 700; font-size: 20px; line-height: 1.25; letter-spacing: -0.01em;
+  }
+  .cfs-lp .cfs-fit-lead { color: var(--navy); }
+  .cfs-lp .cfs-fit-no h3 { color: var(--white); }
+  .cfs-lp .cfs-fit-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+  .cfs-lp .cfs-fit-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.5; }
+  .cfs-lp .cfs-fit-yes li { color: var(--ink); }
+  .cfs-lp .cfs-fit-no li { color: var(--white); }
+  .cfs-lp .cfs-ic {
+    flex: none; width: 26px; height: 26px; border-radius: 50%; margin-top: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .cfs-lp .cfs-fit-yes .cfs-ic { background: var(--green); color: var(--navy); }
+  .cfs-lp .cfs-fit-no .cfs-ic { border: 1.5px solid rgba(255, 255, 255, 0.7); color: var(--white); }
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-fit-card { padding: 30px 28px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-fit .sec-h { max-width: 18em; }
+    .cfs-lp .cfs-fit-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; margin-top: 32px; align-items: start; }
+    .cfs-lp .cfs-fit-card { padding: 36px; }
+  }
+  /* =====================================================================
+     GHL SECTION 07: numbers (CFS blue; checklist card)
+     small text on blue is #101828 only; white is reserved for the large bold heading
+     ===================================================================== */
+  .cfs-lp .cfs-numbers { background: var(--blue); position: relative; overflow: hidden; isolation: isolate; }
+  .cfs-lp .cfs-numbers::before {
+    content: ""; position: absolute; z-index: -1; right: -20%; top: -30%; width: 60%; height: 140%;
+    background: var(--navy); opacity: 0.12; transform: rotate(14deg); border-radius: 48px;
+  }
+  .cfs-lp .cfs-numbers-grid { display: grid; gap: 22px; }
+  .cfs-lp .cfs-numbers .sec-h { color: var(--white); }
+  /* 800 weight, 26px+ : AA large */
+  .cfs-lp .cfs-numbers-lead { margin-top: 12px; font-size: 18px; line-height: 1.5; font-weight: 500; color: var(--ink); max-width: 30em; }
+  .cfs-lp .cfs-checklist {
+    list-style: none; margin: 0; padding: 6px 18px;
+    background: var(--white); border-radius: var(--radius-card);
+    box-shadow: 0 0 0 2px var(--navy), 0 6px 0 2px var(--navy);
+    display: grid;
+  }
+  .cfs-lp .cfs-checklist li {
+    display: flex; align-items: center; gap: 14px;
+    min-height: 56px; padding: 10px 0;
+    font-size: 17px; line-height: 1.4; font-weight: 500; color: var(--ink);
+  }
+  .cfs-lp .cfs-checklist li + li { border-top: 1px solid var(--line); }
+  .cfs-lp .cfs-box { flex: none; color: var(--navy); display: inline-flex; }
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-checklist { grid-template-columns: 1fr 1fr; column-gap: 28px; padding: 10px 26px; }
+    .cfs-lp .cfs-checklist li:nth-child(2) { border-top: 0; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-numbers-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: 56px; align-items: center; }
+    .cfs-lp .cfs-checklist li { min-height: 68px; }
+  }
+  /* =====================================================================
+     GHL SECTION 08: lance (white; photo slot + bio; the one mid-page CTA)
+     ===================================================================== */
+  .cfs-lp .cfs-lance { background: var(--white); }
+  .cfs-lp .cfs-lance-grid {
+    display: grid; grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-areas: "photo head" "body body";
+    column-gap: 18px; row-gap: 18px; align-items: center;
+  }
+  .cfs-lp .cfs-photo { grid-area: photo; }
+  .cfs-lp .cfs-lance-head { grid-area: head; }
+  .cfs-lp .cfs-lance-body { grid-area: body; }
+  .cfs-lp .cfs-photo {
+    width: 100%; aspect-ratio: 4 / 5;
+    border-radius: var(--radius-card);
+    background: var(--gray);
+    border: 2px dashed rgba(7, 43, 83, 0.28);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    padding: 8px; text-align: center;
+    color: var(--ink-2); font-size: 14px; font-weight: 600; line-height: 1.3;
+  }
+  .cfs-lp .cfs-photo svg { color: var(--navy); opacity: 0.55; }
+  .cfs-lp .cfs-lance h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3rem); }
+  .cfs-lp .cfs-lance-bio { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 38em; }
+  .cfs-lp .cfs-lance .btn { margin-top: 26px; }
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-lance-grid {
+      grid-template-columns: 200px minmax(0, 1fr);
+      grid-template-areas: "photo head" "photo body";
+      grid-template-rows: auto 1fr; column-gap: 32px; row-gap: 14px; align-items: start;
+    }
+    .cfs-lp .cfs-photo { font-size: 14px; padding: 12px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-lance-grid { grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); column-gap: 64px; align-content: center; }
+    .cfs-lp .cfs-lance-head { align-self: end; }
+    .cfs-lp .cfs-photo { max-width: 380px; font-size: 15px; }
+  }
+  /* =====================================================================
+     GHL SECTION 09: faq (light gray; native details accordions)
+     ===================================================================== */
+  .cfs-lp .cfs-faq { background: var(--gray); }
+  .cfs-lp .cfs-faq-grid { display: grid; gap: 20px; }
+  .cfs-lp .cfs-faq-list { display: grid; gap: 10px; }
+  .cfs-lp .cfs-q { background: var(--white); border: 1px solid var(--line); border-radius: 14px; }
+  .cfs-lp .cfs-q > summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 60px; padding: 14px 18px;
+    border-radius: 14px;
+  }
+  .cfs-lp .cfs-q > summary::-webkit-details-marker { display: none; }
+  .cfs-lp .cfs-q > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .cfs-lp .cfs-q-t { font-family: var(--font-head); font-weight: 700; font-size: 18px; line-height: 1.3; color: var(--navy); }
+  .cfs-lp .cfs-q-ic {
+    flex: none; position: relative; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--tint);
+  }
+  .cfs-lp .cfs-q-ic::before, .cfs-lp .cfs-q-ic::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2.5px; margin: -1.25px 0 0 -6px;
+    background: var(--navy); border-radius: 2px; transition: transform 0.2s ease;
+  }
+  .cfs-lp .cfs-q-ic::after { transform: rotate(90deg); }
+  .cfs-lp .cfs-q[open] .cfs-q-ic { background: var(--navy); }
+  .cfs-lp .cfs-q[open] .cfs-q-ic::before, .cfs-lp .cfs-q[open] .cfs-q-ic::after { background: var(--white); }
+  .cfs-lp .cfs-q[open] .cfs-q-ic::after { transform: rotate(0deg); }
+  .cfs-lp .cfs-q-a { padding: 0 18px 18px; }
+  .cfs-lp .cfs-q-a p { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 44em; }
+  @media (min-width: 980px) {
+    .cfs-lp .cfs-faq-grid { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 56px; align-items: start; }
+    .cfs-lp .cfs-q > summary { padding: 18px 24px; }
+    .cfs-lp .cfs-q-a { padding: 0 24px 22px; }
+    .cfs-lp .cfs-q-t { font-size: 19px; }
+  }
+  /* =====================================================================
+     GHL SECTION 10: press (navy; 32 cards + 2 text features)
+     ===================================================================== */
+  .cfs-lp .press { background: var(--navy); color: var(--white); }
+  .cfs-lp .press .sec-h { color: var(--white); }
+  .cfs-lp .press-grid { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .cfs-lp .more .press-grid { margin-top: 12px; }
+  .cfs-lp .pc a {
+    display: block; border-radius: 12px; overflow: hidden; background: var(--white);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease;
+  }
+  .cfs-lp .pc a:hover { transform: translateY(-2px); }
+  .cfs-lp .pc a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .cfs-lp .pc img { width: 100%; height: auto; aspect-ratio: 860 / 1330; object-fit: contain; object-position: center top; background: var(--white); }
+  .cfs-lp .pc.dk { display: none; }
+  .cfs-lp .press .more > summary { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.7); }
+  .cfs-lp .press .more > summary:hover { border-color: var(--white); }
+  .cfs-lp .press .more > summary:focus-visible { outline-color: var(--green); }
+  .cfs-lp .also { margin-top: 30px; }
+  .cfs-lp .also h3 { font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
+  .cfs-lp .also ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+  .cfs-lp .also a {
+    display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px;
+    border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.06);
+    color: var(--white); text-decoration: none;
+  }
+  .cfs-lp .also a:hover { border-color: rgba(255, 255, 255, 0.55); }
+  .cfs-lp .also a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .cfs-lp .also .ic { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .cfs-lp .also .t { display: grid; gap: 2px; flex: 1; min-width: 0; }
+  .cfs-lp .also .t strong { font-weight: 600; font-size: 16px; line-height: 1.35; }
+  .cfs-lp .also .t span { font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+  .cfs-lp .also .go { flex: none; }
+  @media (min-width: 640px) {
+    .cfs-lp .press-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .cfs-lp .also ul { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .press-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+    .cfs-lp .pc.dk { display: block; }
+    .cfs-lp .pc.mb { display: none; }
+  }
+  /* =====================================================================
+     GHL SECTION 11: closer (CFS blue)
+     ===================================================================== */
+  .cfs-lp .closer { background: var(--blue); position: relative; overflow: hidden; isolation: isolate; }
+  .cfs-lp .closer::before {
+    content: ""; position: absolute; z-index: -1; left: -18%; top: -40%; width: 70%; height: 120%;
+    background: var(--navy); opacity: 0.10; transform: rotate(-14deg); border-radius: 48px; /* <= 0.10 keeps body text >= 4.5:1 */
+  }
+  .cfs-lp .closer-in { max-width: 760px; }
+  .cfs-lp .closer h2 {
+    font-weight: 800; font-size: clamp(1.75rem, 1.2rem + 2.3vw, 2.75rem);
+    line-height: 1.08; letter-spacing: -0.02em; color: var(--white); text-wrap: balance; /* AA large */
+  }
+  .cfs-lp .closer p { margin-top: 14px; font-size: 18px; line-height: 1.5; font-weight: 500; color: var(--ink); max-width: 36em; }
+  .cfs-lp .closer .btn { margin-top: 24px; }
+  .cfs-lp .closer .btn:focus-visible { outline-color: var(--white); }
+  /* =====================================================================
+     GHL SECTION 12: footer (white; compliance + copyright)
+     ===================================================================== */
+  .cfs-lp .cfs-footer { background: var(--white); border-top: 1px solid var(--line); padding: 32px 0 36px; }
+  .cfs-lp .cfs-footer img { height: 36px; width: auto; }
+  .cfs-lp .cfs-footer .legal { margin-top: 18px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 62em; }
+  .cfs-lp .cfs-footer-row {
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 20px;
+    font-size: 15px; color: var(--ink-2);
+  }
+  .cfs-lp .cfs-footer-links { display: flex; align-items: center; gap: 4px; }
+  .cfs-lp .cfs-footer-links a {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px;
+    color: var(--navy); font-weight: 600; text-underline-offset: 2px;
+  }
+  .cfs-lp .cfs-footer-links a:first-child { padding-left: 0; }
+  .cfs-lp .cfs-footer-links a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+  .cfs-lp .cfs-footer-links .bar { color: var(--ink-2); }
+  /* =====================================================================
+     PHONES (<640px): centered headings, intro lines and CTAs to match the centered hero.
+     Lists, review cards, FAQ answers and the calendar stay left-aligned for readability.
+     ===================================================================== */
+  @media (max-width: 639px) {
+    .cfs-lp .card-title, .cfs-lp .sec-h, .cfs-lp .eyebrow, .cfs-lp .cfs-numbers-lead, .cfs-lp #book .lead, .cfs-lp .closer-in, .cfs-lp .cfs-lance-head { text-align: center; text-wrap: balance; }
+    .cfs-lp .cfs-lance-body { text-align: center; }
+    .cfs-lp .cfs-lance-body .btn, .cfs-lp .closer-in .btn { margin-left: auto; margin-right: auto; }
+    .cfs-lp .cfs-photo { margin-left: auto; margin-right: auto; }
+    .cfs-lp #book .micro { text-align: center; text-wrap: balance; }
+    .cfs-lp .cfs-vid-note { text-align: center; text-wrap: balance; }
+    .cfs-lp .cfs-vid-hint { justify-content: center; }
+    .cfs-lp .cfs-header img { margin-left: auto; margin-right: auto; }
+    /* Lance: photo stacked and centered above the name */
+    .cfs-lp .cfs-lance-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "head" "body"; row-gap: 14px; }
+    .cfs-lp .cfs-photo { width: 140px; }
+  }
+  /* =====================================================================
+     DESKTOP / TABLET polish (2026-10-03): balanced hero for the longer H1, calendar space reserved while
+     GHL's widget loads, centered closer, capped photo slot.
+     ===================================================================== */
+  /* hold the calendar's space before form_embed.js reveals the iframe (it starts absolutely positioned) */
+  .cfs-lp .cfs-cal { position: relative; min-height: 900px; }
+  @media (min-width: 640px) {
+    .cfs-lp .cfs-cal { min-height: 720px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp .hero-grid { grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.86fr); gap: 48px; align-items: center; }
+    .cfs-lp .h1 { font-size: clamp(2.6rem, 1.4rem + 2.2vw, 3.35rem); line-height: 1.05; }
+    .cfs-lp .h1 .lead-in { display: block; }
+    .cfs-lp .sub { font-size: 1.25rem; max-width: 34em; }
+    .cfs-lp .closer-in { margin-left: auto; margin-right: auto; text-align: center; }
+    .cfs-lp .closer-in p { margin-left: auto; margin-right: auto; }
+    .cfs-lp .closer-in .btn { margin-left: auto; margin-right: auto; }
+    .cfs-lp .cfs-photo { max-width: 320px; justify-self: center; }
+  }
+</style>

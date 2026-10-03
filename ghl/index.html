@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>GHL Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#072B53;--blue:#4192D7;--ink:#101828;--muted:#475467;--line:#E4E7EC;--bg:#F5F7FA;--card:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--navy:#CFE3F7;--blue:#7DB6EA;--ink:#E7ECF3;--muted:#A9B4C3;--line:#2A3646;--bg:#0E1622;--card:#152031}}
+:root[data-theme="dark"]{--navy:#CFE3F7;--blue:#7DB6EA;--ink:#E7ECF3;--muted:#A9B4C3;--line:#2A3646;--bg:#0E1622;--card:#152031}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
+main{max-width:820px;margin:0 auto;padding:32px 16px 64px}
+h1{color:var(--navy);font-size:30px;line-height:1.2;margin:0 0 8px} h2{color:var(--navy);font-size:22px;margin:36px 0 10px} h3{color:var(--navy);font-size:18px;margin:24px 0 8px}
+a{color:var(--blue)} code{font-size:.92em;background:var(--card);border:1px solid var(--line);padding:1px 6px;border-radius:6px;overflow-wrap:anywhere}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:20px 0}
+ul,ol{padding-left:22px} li{margin:6px 0} .muted{color:var(--muted);font-size:14px}
+</style></head><body><main>
+<div class="box"><b>Preview of the finished page:</b> <a href="../full-v3/">full-v3</a><br><b>All paste-in files</b> (click a name to view it on GitHub with a Copy button, or download):<ul><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-custom.css"><code>00-custom.css</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/00-custom.css" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-head.html"><code>00-head.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/00-head.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/01-header.html"><code>01-header.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/01-header.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/02-hero.html"><code>02-hero.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/02-hero.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/03-book.html"><code>03-book.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/03-book.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/04-reviews.html"><code>04-reviews.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/04-reviews.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/05-videos.html"><code>05-videos.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/05-videos.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/06-fit.html"><code>06-fit.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/06-fit.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/07-numbers.html"><code>07-numbers.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/07-numbers.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/08-lance.html"><code>08-lance.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/08-lance.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/09-faq.html"><code>09-faq.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/09-faq.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/10-press.html"><code>10-press.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/10-press.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/11-closer.html"><code>11-closer.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/11-closer.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/12-footer.html"><code>12-footer.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/12-footer.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/99-footer-scripts.html"><code>99-footer-scripts.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/99-footer-scripts.html" download>download</a></li><li><a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/ALL-IN-ONE.html"><code>ALL-IN-ONE.html</code></a> &middot; <a href="https://raw.githubusercontent.com/gostrategicmarketing-deployment/cfs-booking-concepts/main/ghl/ALL-IN-ONE.html" download>download</a></li></ul>
+<p class="muted">Updated 2026-10-03. Calendar embed = the live calendar from taxscholarshipsecrets.com.</p></div>
+<h1>CFS booking page: how to put it into GoHighLevel</h1>
+<p>This folder is the new booking page (the "V3 Blue Interactive" design), ready to paste into the existing GHL funnel
+page at https://taxscholarshipsecrets.com/. To see what it should look like, open <a href="../full-v3/"><code>../v3/index.html</code></a> in a browser.
+That preview and these files hold the same content.</p>
+<p>All the page's styles are scoped under one class, <code>cfs-lp</code>, so they can't change the rest of your GHL page, and GHL's
+styles can't change this page. That was tested against a deliberately hostile stylesheet (see <code>test-harness.html</code>).</p>
+<h2>Pick ONE option</h2>
+<h3>Option A (recommended): one block, the whole page</h3>
+<p>Use this unless you need to edit sections separately inside GHL. It is the most faithful to the preview.</p>
+<ol>
+<li>In the funnel page editor, add ONE new section. Set it to <strong>Full Width</strong>, with section, row and column
+   <strong>padding 0</strong>, margins 0, and <strong>no background</strong> (no color, no image).</li>
+<li>Add ONE <strong>Custom Code</strong> element to that column and paste in all of <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/ALL-IN-ONE.html"><code>ALL-IN-ONE.html</code></a>.</li>
+<li>Do NOT also add <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-head.html"><code>00-head.html</code></a> or <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/99-footer-scripts.html"><code>99-footer-scripts.html</code></a>. ALL-IN-ONE already has the fonts, styles and scripts.</li>
+</ol>
+<h3>Option B: one GHL section per page section</h3>
+<p>Use this if the team wants to move, hide or edit sections one at a time in GHL.</p>
+<ol>
+<li><strong>Page Settings &gt; Tracking Code &gt; Header:</strong> paste <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-head.html"><code>00-head.html</code></a> (fonts + styles).
+   <em>Or</em> paste <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-custom.css"><code>00-custom.css</code></a> into the page's <strong>Custom CSS</strong> box instead. Use one, not both.</li>
+<li>Create 12 GHL sections in this order. In each one, set it to <strong>Full Width</strong>, with section, row and column
+   <strong>padding 0</strong>, margins 0, and <strong>no background</strong>. Add one <strong>Custom Code</strong> element and paste in the matching file:
+   <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/01-header.html"><code>01-header</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/02-hero.html"><code>02-hero</code></a> (includes the Reduce / Offset / Fund steps), <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/03-book.html"><code>03-book</code></a> (includes the live calendar),
+   <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/04-reviews.html"><code>04-reviews</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/05-videos.html"><code>05-videos</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/06-fit.html"><code>06-fit</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/07-numbers.html"><code>07-numbers</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/08-lance.html"><code>08-lance</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/09-faq.html"><code>09-faq</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/10-press.html"><code>10-press</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/11-closer.html"><code>11-closer</code></a>, <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/12-footer.html"><code>12-footer</code></a>.</li>
+<li><strong>Page Settings &gt; Tracking Code &gt; Footer:</strong> paste <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/99-footer-scripts.html"><code>99-footer-scripts.html</code></a>. This runs the rotating steps and the
+   click-to-play videos.</li>
+<li>The white booking card (03) is designed to overlap the bottom of the blue hero (02). If the top of the card looks
+   cut off, the GHL section holding 03 is hiding its overflow. Switch that section's overflow to visible if the editor
+   allows it, or use Option A.</li>
+</ol>
+<h2>Both options</h2>
+<ul>
+<li><strong>Header and footer.</strong> This page brings its own Legetty header (01) and footer with the compliance text (12).
+  Remove GHL's own header and footer from this page, or keep them and delete 01 / 12. Don't show both.</li>
+<li><strong>Remove the old page's sections.</strong> Remove the old hero, the "Scholarship House" subhead, the old calendar
+  section, the three old featured cards, the old media grid and the "Don't wait until it's too late" closer.
+  The page must end up with one H1 and one calendar.</li>
+<li><strong>Rename the calendar.</strong> In <strong>Calendars &gt; Settings</strong>, rename "Tax Scholarships 1 on 1 mtg" to
+  <strong>Tax &amp; College Opportunity Review Call</strong>. The calendar widget shows that name as its own header.</li>
+<li><strong>The calendar embed is the live one</strong> (calendar <code>jz4PWYKlNfHjOEj0p1p5</code>, same as today). It sits inside <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/03-book.html"><code>03-book</code></a>
+  (and ALL-IN-ONE) with GHL's <code>form_embed.js</code>, which resizes it. Today's page embed also has <code>allow="payment"</code> on the
+  iframe. The call is free, so it isn't needed, but it's harmless to add.</li>
+<li><strong>Keep the tracking.</strong> Leave the page's existing tracking codes (Meta pixel, Hyros and anything else) in place.
+  When you paste <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/00-head.html"><code>00-head</code></a> / <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/99-footer-scripts.html"><code>99-footer-scripts</code></a>, add them next to the existing codes. Don't replace the codes.</li>
+<li><strong>SEO.</strong> Set the title and description in the GHL page's SEO settings:</li>
+<li>Title: <code>Tax Scholarships: 3 Steps to Pay for College Differently</code></li>
+<li>Description: <code>Book a Tax &amp; College Opportunity Review and see how the Reduce, Offset, Fund framework could apply to your family's income, tax bill, college timeline, and retirement.</code></li>
+</ul>
+<p>These files contain no noindex tag.
+- <strong>Logos.</strong> The Legetty logos are embedded in 01 and 12, so nothing has to be uploaded. If you'd rather host them,
+  upload <code>../v3/assets/legetty-white.png</code> / <code>legetty-navy.png</code> to Media and swap the <code>src</code>.</p>
+<h2>Test before publishing (on a real phone, and on a desktop)</h2>
+<ol>
+<li>Tap every green button ("Pick a Time for My Review Call", "Book My Free Call"). Each one must scroll down to
+   the calendar card. On a phone, the button in the hero should land on the calendar itself.</li>
+<li><strong>Book a real test appointment</strong> on the calendar, then confirm it shows up in GHL (and that the pixel/Hyros
+   booking events fire as they do today). Cancel the test booking afterwards.</li>
+<li>The Reduce / Offset / Fund box should change step every 5 seconds. It should pause while the mouse is over it and
+   stop for good once a step is tapped.</li>
+<li>Tap a testimonial video. It should start playing in place.</li>
+<li>On a phone, check that the page doesn't scroll sideways.</li>
+</ol>
+<h2>Still TODO (client)</h2>
+<ul>
+<li><strong>Lance's photo.</strong> In <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/08-lance.html"><code>08-lance</code></a>, replace the dashed "Lance photo (client to supply)" box (<code>.cfs-photo</code>) with
+  his real headshot. No AI or stock faces.</li>
+<li><strong>Privacy Policy / Terms of Service links.</strong> In <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/12-footer.html"><code>12-footer</code></a> they are <code>href="#"</code> placeholders. Point them to the
+  canonical URLs.</li>
+<li><strong>Official rating widgets.</strong> The Trustpilot and BBB ratings in <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/02-hero.html"><code>02-hero</code></a> and <a href="https://github.com/gostrategicmarketing-deployment/cfs-booking-concepts/blob/main/ghl/04-reviews.html"><code>04-reviews</code></a> are styled text stand-ins.
+  Production must use the official Trustpilot TrustBox widget and BBB's dynamic Accredited Business seal.</li>
+<li><strong>Calendar rename</strong> (see above).</li>
+<li><strong>Calendar logo.</strong> The calendar widget still shows the old College Funding Secrets graduation-cap logo at its
+  top. Swap it for the Legetty logo in the calendar's settings so the widget matches the page.</li>
+<li><strong>Booking window (FYI).</strong> On 2026-10-03 the calendar offered one bookable day (Mon Oct 5), because it is set to
+  book a few days out. That caps how many people can book from this page; widen it in the calendar's availability
+  settings if that is not intended.</li>
+</ul>
+<h2>For whoever edits the page later</h2>
+<p>Don't hand-edit these files. Edit <a href="../full-v3/"><code>../v3/index.html</code></a>, then run <code>python3 ../tools/build_ghl.py</code> to regenerate this
+folder. It rebuilds every file, including <code>test-harness.html</code>.</p>
+</main></body></html>
