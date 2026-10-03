@@ -15,9 +15,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <!--
   CFS Book-A-Call page, V3 "Blue Interactive" (full build, 2026-10-02).
-  Hand-off for the GoHighLevel rebuild: each GHL SECTION block below maps to one GHL section/row.
+  Unscoped preview of the GHL build. Each GHL SECTION NN block below = ../ghl/NN-name.html (scoped under .cfs-lp there).
+  Edit this file, then regenerate ../ghl/ with ../tools/build_ghl.py so the two stay in sync.
   All copy is verbatim from booking-page-copy.md; proof is verbatim from social-proof.md and press-cards.md.
-  JS is progressive enhancement only (step tabs + calendar mockup states). Everything is readable with JS off.
+  JS is progressive enhancement only (rotating step tabs + video facades). Everything is readable with JS off.
+  The only third-party script is GHL's calendar embed (form_embed.js) in the #book section.
 -->
 <style>
   /* =====================================================================
@@ -185,6 +187,7 @@
   }
   /* large display text: navy on blue = 4.27:1, passes AA large */
   .h1 .deep { color: var(--navy); }
+  .h1 .lead-in { display: block; } /* the white half sits on its own line so the color split lands on a line break */
   .sub {
     margin-top: 16px;
     font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
@@ -283,7 +286,7 @@
   }
 
   /* =====================================================================
-     GHL SECTION 03: steps (tabbed selector; stacked and readable without JS)
+     GHL SECTION 02 (cont.): steps inside the hero (rotating tabs; stacked and readable without JS)
      ===================================================================== */
   .steps {
     background: var(--navy);
@@ -293,7 +296,7 @@
     box-shadow: 0 18px 40px rgba(7, 43, 83, 0.28);
   }
   .tablist { display: none; gap: 8px; }
-  .js .tablist { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .steps.cfs-js .tablist { display: grid; grid-template-columns: repeat(3, 1fr); }
   .tab {
     position: relative;
     appearance: none;
@@ -330,23 +333,36 @@
     100% { transform: scale(1.14, 1.32); opacity: 0; }
   }
   .panels { display: grid; gap: 16px; }
-  .js .panels { margin-top: 16px; display: block; }
   .panel { display: block; }
-  .js .panel[hidden] { display: none; }
+  /* with JS all three panels share one grid cell, so the card keeps the tallest panel's height and the page
+     below never jumps when a step auto-advances; unselected panels are visibility:hidden (no opacity fades) */
+  .steps.cfs-js .panels { margin-top: 16px; display: grid; }
+  .steps.cfs-js .panel { grid-area: 1 / 1; }
+  .steps.cfs-js .panel[hidden] { display: block; visibility: hidden; }
   .panel-h {
     font-family: var(--font-body);
     font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--green);
     margin-bottom: 4px;
   }
-  .js .panel-h { margin-bottom: 6px; }
+  .steps.cfs-js .panel-h { margin-bottom: 6px; }
   .panel p { font-size: 17px; line-height: 1.5; color: var(--white); }
   /* no-JS stacked fallback gets thin dividers */
-  html:not(.js) .panel + .panel { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 14px; }
+  .steps:not(.cfs-js) .panel + .panel { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 14px; }
+  /* progress bars: the selected step's bar fills over the 5s auto-advance (transform only, never opacity) */
   .dots { display: none; }
-  .js .dots { display: flex; gap: 6px; margin-top: 14px; }
-  .dots span { width: 22px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); transition: background-color 0.2s ease; }
-  .dots span.on { background: var(--green); }
+  .steps.cfs-js .dots { display: flex; gap: 6px; margin-top: 14px; }
+  .dots span { position: relative; overflow: hidden; width: 28px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); }
+  .dots span::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    background: var(--green); transform: scaleX(0); transform-origin: left center;
+  }
+  .dots span.on::after { transform: scaleX(1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .steps.is-rotating .dots span.on::after { animation: cfs-count 5s linear both; }
+    .steps.is-rotating.is-paused .dots span.on::after { animation-play-state: paused; }
+  }
+  @keyframes cfs-count { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @media (min-width: 980px) {
     .steps { padding: 22px; margin-bottom: 6px; }
     .tab { min-height: 60px; }
@@ -354,7 +370,7 @@
   }
 
   /* =====================================================================
-     GHL SECTION 04: book (light gray; white card overlaps the hero edge)
+     GHL SECTION 03: book (light gray; white card overlaps the hero edge; live GHL calendar)
      ===================================================================== */
   .book-sec {
     position: relative; z-index: 2;
@@ -394,70 +410,18 @@
     background: var(--tint); color: var(--navy);
     display: inline-flex; align-items: center; justify-content: center;
   }
-  /* static calendar mockup (.cal-mock), replaced by the GHL calendar embed */
-  .widget { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--white); }
-  .w-head { background: var(--navy); color: var(--white); padding: 16px 18px; }
-  .w-title { font-family: var(--font-head); font-weight: 700; font-size: 18px; line-height: 1.25; }
-  .w-meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
-  .w-meta span { display: inline-flex; align-items: center; gap: 6px; }
-  .w-meta .sep { color: rgba(255, 255, 255, 0.6); }
-  .w-body { display: grid; }
-  .month { padding: 14px 10px 10px; }
-  .m-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 8px; }
-  .m-nav strong { font-family: var(--font-head); font-size: 18px; color: var(--navy); }
-  .m-btn {
-    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
-    background: var(--white); color: var(--navy); display: inline-flex; align-items: center; justify-content: center;
-  }
-  .m-btn[disabled] { opacity: 0.4; }
-  .grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
-  .dow { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-2); padding: 6px 0; text-transform: uppercase; }
-  .d {
-    height: 44px; display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-variant-numeric: tabular-nums; color: rgba(44, 51, 69, 0.72); /* unavailable day 5.2:1 on white */
-    position: relative;
-  }
-  .d.today::after { content: ""; position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--ink-2); }
-  button.d {
-    appearance: none; border: 0; background: transparent; font-family: inherit; cursor: pointer; padding: 0;
-    color: var(--navy); font-weight: 600;
-  }
-  button.d span {
-    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    background: var(--tint); transition: background-color 0.15s ease, color 0.15s ease;
-  }
-  button.d:hover span { background: rgba(65, 146, 215, 0.22); }
-  button.d[aria-pressed="true"] span { background: var(--navy); color: var(--white); }
-  button.d:focus-visible span, .slot:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-  .slots { border-top: 1px solid var(--line); padding: 14px; }
-  .slots-h { font-weight: 600; font-size: 16px; color: var(--navy); }
-  .slots-list { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .slot {
-    appearance: none; min-height: 48px; border-radius: var(--radius-ctl);
-    border: 2px solid var(--blue); background: var(--white); color: var(--navy); /* blue border 3.3:1 on white */
-    font-family: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
-  }
-  .slot:hover { background: var(--tint); }
-  .slot[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
-  .tz {
-    border-top: 1px solid var(--line);
-    padding: 12px 16px;
-    font-size: 15px; color: var(--ink-2);
-    display: flex; align-items: center; gap: 8px;
-    background: var(--gray);
-  }
+  /* live GHL booking widget: the min-height holds the card open until GHL's form_embed.js resizer runs */
+  .cfs-cal { background: var(--white); border-radius: 14px; overflow: hidden; }
+  .cfs-cal-frame { display: block; width: 100%; min-height: 900px; border: 0; } /* GHL widget measured 905px tall at 375 */
+  @media (min-width: 640px) { .cfs-cal-frame { min-height: 720px; } } /* measured 963px at 768 and 1440 */
   .micro { margin-top: 14px; font-size: 16px; line-height: 1.5; color: var(--ink-2); }
-  /* 375: widget bleeds 10px into the card padding and the month loses its side padding so each day cell is >= 44px wide */
+  /* phones: the widget bleeds 10px into the card padding so the booking calendar gets the most width */
   @media (max-width: 639px) {
     .widget-col { margin-inline: -10px; }
-    .month { padding: 14px 4px 10px; }
     .micro { padding-inline: 10px; }
   }
   @media (min-width: 640px) {
     .card { padding: 32px; }
-    .month { padding: 16px 16px 12px; }
-    .slots-list { grid-template-columns: repeat(3, 1fr); }
   }
   @media (min-width: 980px) {
     .book-sec { margin-top: -120px; background: linear-gradient(to bottom, transparent 0, transparent 120px, var(--gray) 120px); }
@@ -473,14 +437,10 @@
     .card-title { grid-area: title; padding-top: 6px; }
     .card-head { grid-area: head; margin-top: 0; }
     .widget-col { grid-area: widget; }
-    .w-body { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
-    .slots { border-top: 0; border-left: 1px solid var(--line); padding: 16px; }
-    .slots-list { grid-template-columns: 1fr; }
-    .slot { min-height: 46px; }
   }
 
   /* =====================================================================
-     GHL SECTION 05: reviews (white ground, light-gray cards)
+     GHL SECTION 04: reviews (white ground, light-gray cards)
      ===================================================================== */
   .reviews { background: var(--white); }
   .ratings { margin-top: 20px; display: grid; gap: 10px; }
@@ -531,7 +491,7 @@
   }
 
   /* =====================================================================
-     GHL SECTION 05b: video testimonials (navy; click-to-play facades, no iframe until a click)
+     GHL SECTION 05: videos (navy; click-to-play facades, no iframe until a click)
      ===================================================================== */
   .cfs-videos { background: var(--navy); color: var(--white); }
   .cfs-videos .sec-h { color: var(--white); }
@@ -854,8 +814,8 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="2.2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
           BOOK A FREE 30-MINUTE CALL
         </span>
-        <h1 class="h1" id="hero-h">3 Steps to Pay for College <span class="deep">Without Sacrificing Your Financial Future</span></h1>
-        <p class="sub">Pick a time for a free 30-minute review call with our advisory team. We'll look at how the three steps could apply to your family's income, tax bill, college timeline, and retirement.</p>
+        <h1 class="h1" id="hero-h"><span class="lead-in">Your Tax Bill Is Your</span> <span class="deep">Biggest Untapped Source of College Funding</span></h1>
+        <p class="sub">Let us show you the 3 steps to pay for college without sacrificing your financial future.</p>
         <div class="cta-row">
           <a class="btn" href="#book">
             Pick a Time for My Review Call
@@ -867,7 +827,7 @@
           <div class="badges">
             <!-- GHL: production MUST use BBB's dynamic Accredited Business seal and the official Trustpilot TrustBox widget here. These two text badges are mockup stand-ins only. -->
             <span class="badge"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5l8 3v6.2c0 4.7-3.3 8.7-8 9.8-4.7-1.1-8-5.1-8-9.8V5.5l8-3z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>BBB Accredited · A+ Rating</span>
-            <span class="badge"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-hero"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-hero)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><span>4.4 out of 5 on Trustpilot <span class="muted">· 26 reviews</span></span></span>
+            <span class="badge"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-hero"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-hero)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><span>4.4 out of 5 on Trustpilot</span></span>
           </div>
           <div class="featured">
             <span class="lbl">As featured in</span>
@@ -878,17 +838,18 @@
         </div>
       </div>
 
-      <!-- ===== GHL SECTION 03: steps ===== -->
-      <!-- GHL: steps live inside the hero row in this design; build as one section or a two-column row -->
+      <!-- ===== steps (part of GHL SECTION 02: hero) ===== -->
+      <!-- GHL: steps live inside the hero row in this design, so they ship inside ghl/02-hero.html (one custom-code block) -->
       <!-- Right column of the hero row on desktop; directly under the hero copy on mobile.
-           Without JS all three steps render stacked; with JS they become Reduce / Offset / Fund tabs. -->
-      <section class="steps" id="steps" data-ghl-section="03-steps" aria-label="The three steps">
+           Without JS all three steps render stacked; with JS they become Reduce / Offset / Fund tabs that
+           auto-advance every 5s (paused on hover/focus, stopped once a tab is used, off under reduced motion). -->
+      <section class="steps" id="steps" data-ghl-section="02-hero-steps" aria-label="The three steps">
         <div class="tablist" role="tablist" aria-label="The three steps">
           <button class="tab" role="tab" id="tab-1" aria-controls="step-1" aria-selected="true" tabindex="0"><span class="n">Step 1</span><span class="w">Reduce</span></button>
           <button class="tab" role="tab" id="tab-2" aria-controls="step-2" aria-selected="false" tabindex="-1"><span class="n">Step 2</span><span class="w">Offset</span></button>
           <button class="tab" role="tab" id="tab-3" aria-controls="step-3" aria-selected="false" tabindex="-1"><span class="n">Step 3</span><span class="w">Fund</span></button>
         </div>
-        <div class="panels">
+        <div class="panels" aria-live="off">
           <div class="panel" id="step-1" role="tabpanel" aria-labelledby="tab-1">
             <h2 class="panel-h">STEP 1 · REDUCE</h2>
             <p>Understand what college may really cost your family, including school choice and financial aid eligibility, before you decide how to pay.</p>
@@ -908,8 +869,8 @@
   </div>
 </section>
 
-<!-- ===== GHL SECTION 04: book ===== -->
-<section id="book" class="book-sec" data-ghl-section="04-book" aria-labelledby="book-h">
+<!-- ===== GHL SECTION 03: book ===== -->
+<section id="book" class="book-sec" data-ghl-section="03-book" aria-labelledby="book-h">
   <div class="wrap">
     <div class="card">
       <h2 class="card-title" id="book-h">Book Your Tax &amp; College Opportunity Review Call</h2>
@@ -923,58 +884,11 @@
       </div>
 
       <div class="widget-col">
-        <!-- GHL: replace .cal-mock with the Tax & College Opportunity Review Call calendar embed (inline, full width) -->
-        <div class="widget cal-mock" aria-label="Booking calendar preview">
-          <div class="w-head">
-            <div class="w-title">Tax &amp; College Opportunity Review Call</div>
-            <div class="w-meta">
-              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>30 min</span>
-              <span class="sep" aria-hidden="true">·</span>
-              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5" stroke="currentColor" stroke-width="2.2"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .7 3.2 2.5 3.6 5.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Advisory Team</span>
-            </div>
-          </div>
-          <div class="w-body">
-            <div class="month">
-              <div class="m-nav">
-                <button class="m-btn" type="button" disabled aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <strong>October 2026</strong>
-                <button class="m-btn" type="button" aria-label="Next month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              </div>
-              <div class="grid" id="cal">
-                <div class="dow">Su</div><div class="dow">Mo</div><div class="dow">Tu</div><div class="dow">We</div><div class="dow">Th</div><div class="dow">Fr</div><div class="dow">Sa</div>
-                <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
-                <div class="d">1</div><div class="d today">2</div><div class="d">3</div>
-                <div class="d">4</div><div class="d">5</div>
-                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 6"><span>6</span></button>
-                <button class="d" type="button" aria-pressed="true" aria-label="Wednesday, October 7"><span>7</span></button>
-                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 8"><span>8</span></button>
-                <button class="d" type="button" aria-pressed="false" aria-label="Friday, October 9"><span>9</span></button>
-                <div class="d">10</div>
-                <div class="d">11</div><div class="d">12</div>
-                <button class="d" type="button" aria-pressed="false" aria-label="Tuesday, October 13"><span>13</span></button>
-                <button class="d" type="button" aria-pressed="false" aria-label="Wednesday, October 14"><span>14</span></button>
-                <button class="d" type="button" aria-pressed="false" aria-label="Thursday, October 15"><span>15</span></button>
-                <div class="d">16</div><div class="d">17</div>
-                <div class="d">18</div><div class="d">19</div><div class="d">20</div><div class="d">21</div><div class="d">22</div><div class="d">23</div><div class="d">24</div>
-                <div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div><div class="d">29</div><div class="d">30</div><div class="d">31</div>
-              </div>
-            </div>
-            <div class="slots">
-              <div class="slots-h" id="slots-h">Wednesday, October 7</div>
-              <div class="slots-list" role="group" aria-labelledby="slots-h">
-                <button class="slot" type="button" aria-pressed="false">9:00 am</button>
-                <button class="slot" type="button" aria-pressed="true">10:30 am</button>
-                <button class="slot" type="button" aria-pressed="false">12:00 pm</button>
-                <button class="slot" type="button" aria-pressed="false">1:30 pm</button>
-                <button class="slot" type="button" aria-pressed="false">3:00 pm</button>
-                <button class="slot" type="button" aria-pressed="false">4:30 pm</button>
-              </div>
-            </div>
-          </div>
-          <div class="tz">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.5 2.7 3.7 5.7 3.7 9s-1.2 6.3-3.7 9c-2.5-2.7-3.7-5.7-3.7-9S9.5 5.7 12 3z" stroke="currentColor" stroke-width="2"/></svg>
-            Time zone: Eastern Time (US &amp; Canada)
-          </div>
+        <!-- GHL: live Tax & College Opportunity Review Call calendar (inline, full width). GHL's widget renders its own header. -->
+        <!-- GHL: rename the calendar "Tax Scholarships 1 on 1 mtg" to "Tax & College Opportunity Review Call" in Calendars > Settings so the widget header matches -->
+        <div class="cfs-cal">
+          <iframe src="https://bookings.collegefundingsecrets.com/widget/booking/jz4PWYKlNfHjOEj0p1p5" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="jz4PWYKlNfHjOEj0p1p5_cfs" class="cfs-cal-frame" title="Book a Tax &amp; College Opportunity Review Call"></iframe>
+          <script src="https://bookings.collegefundingsecrets.com/js/form_embed.js" type="text/javascript"></script>
         </div>
         <!-- /GHL calendar embed -->
         <p class="micro">There's no need to choose a strategy on this call. It's an exploratory conversation, and no tax, legal, investment, or financial outcome is promised.</p>
@@ -983,15 +897,15 @@
   </div>
 </section>
 
-<!-- ===== GHL SECTION 05: reviews ===== -->
-<section id="reviews" class="sec reviews" data-ghl-section="05-reviews" aria-labelledby="rev-h">
+<!-- ===== GHL SECTION 04: reviews ===== -->
+<section id="reviews" class="sec reviews" data-ghl-section="04-reviews" aria-labelledby="rev-h">
   <div class="wrap">
     <h2 class="sec-h" id="rev-h">What Families Say</h2>
     <!-- GHL: production MUST use the official Trustpilot TrustBox widget and the BBB dynamic Accredited Business seal here (both self-update). These styled text cards are mockup stand-ins only. -->
     <div class="ratings">
       <div class="rating">
         <span class="big">4.4</span>
-        <div class="txt"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-rev"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-rev)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><strong>out of 5 on Trustpilot</strong>, 26 reviews. <a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">See Trustpilot</a></div>
+        <div class="txt"><svg class="stars" viewBox="0 0 100 20" role="img" aria-label="4.4 out of 5 stars"><defs><clipPath id="ts-rev"><rect x="0" y="0" width="88.2" height="20"/></clipPath></defs><g class="s-empty"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g><g class="s-full" clip-path="url(#ts-rev)"><polygon transform="translate(0 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(20 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(40 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(60 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/><polygon transform="translate(80 0)" points="10,1.2 12.6,7 18.9,7.4 14.1,11.5 15.6,17.7 10,14.4 4.4,17.7 5.9,11.5 1.1,7.4 7.4,7"/></g></svg><strong>out of 5 on Trustpilot</strong>. <a href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">See Trustpilot</a></div>
       </div>
       <div class="rating">
         <span class="seal" aria-hidden="true"><b>A+</b><small>BBB</small></span>
@@ -1086,9 +1000,9 @@
   </div>
 </section>
 
-<!-- ===== GHL SECTION: video testimonials ===== -->
-<!-- GHL: each card is a click-to-play facade (thumbnail link). The inline script below swaps it for the player iframe on click; without JS the link opens the video on YouTube/Vimeo. Keep the facade: do not paste raw embeds. -->
-<section id="videos" class="sec cfs-videos" data-ghl-section="05b-videos" aria-labelledby="vid-h">
+<!-- ===== GHL SECTION 05: videos ===== -->
+<!-- GHL: each card is a click-to-play facade (thumbnail link). The page script (ghl/99-footer-scripts.html) swaps it for the player iframe on click; without JS the link opens the video on YouTube/Vimeo. Keep the facade: do not paste raw embeds. -->
+<section id="videos" class="sec cfs-videos" data-ghl-section="05-videos" aria-labelledby="vid-h">
   <div class="wrap">
     <h2 class="sec-h" id="vid-h">Hear It From Families</h2>
     <div class="cfs-vid-feat">
@@ -1356,73 +1270,126 @@
 
 <script>
 (function () {
-  // Step tabs: progressive enhancement. Without JS all three steps render stacked and readable.
-  var root = document.getElementById('steps');
-  if (!root) return;
-  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
-  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
-  var dots = Array.prototype.slice.call(root.querySelectorAll('.dots span'));
+  // CFS booking page scripts. Progressive enhancement only: with JS off every step is stacked and readable,
+  // and every video link opens the video. Safe when the page's blocks are separate GHL elements: it finds
+  // them by ID/class, runs on DOMContentLoaded (or at once if the DOM is ready), and retries briefly in case
+  // GHL renders the custom-code blocks after this script runs.
+  if (window.cfsLpBooted) return;
+  window.cfsLpBooted = true;
 
-  function select(i, focus) {
-    tabs.forEach(function (t, j) {
-      var on = j === i;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      panels[j].hidden = !on;
-      if (dots[j]) dots[j].className = on ? 'on' : '';
+  var ROTATE_MS = 5000;
+  var reduceMq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+  // ---- Reduce / Offset / Fund tabs: auto-advance every 5s until the visitor uses a tab ----
+  function initSteps(root) {
+    if (!root || root.getAttribute('data-cfs-ready') === '1') return !!root;
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    if (!tabs.length || panels.indexOf(null) !== -1) return false;
+    root.setAttribute('data-cfs-ready', '1');
+    var dots = Array.prototype.slice.call(root.querySelectorAll('.dots span'));
+    var current = 0, timer = null, startedAt = 0, remaining = ROTATE_MS;
+    var stopped = false, hovering = false, focused = false;
+
+    function select(i, focus) {
+      current = i;
+      tabs.forEach(function (t, j) {
+        var on = j === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[j].hidden = !on;
+        if (dots[j]) dots[j].className = on ? 'on' : '';
+      });
+      if (focus) tabs[i].focus();
+    }
+    function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
+    function schedule(ms) {
+      clearTimer();
+      remaining = ms;
+      startedAt = Date.now();
+      timer = setTimeout(advance, ms);
+    }
+    function advance() {
+      timer = null;
+      if (stopped) return;
+      select((current + 1) % tabs.length, false);
+      schedule(ROTATE_MS);
+    }
+    function pause() {
+      if (stopped) return;
+      if (timer) { remaining = Math.max(0, remaining - (Date.now() - startedAt)); clearTimer(); }
+      root.classList.add('is-paused');
+    }
+    function resume() {
+      if (stopped || hovering || focused || timer) return;
+      root.classList.remove('is-paused');
+      schedule(remaining);
+    }
+    function stop() {
+      stopped = true;
+      clearTimer();
+      root.classList.remove('is-rotating', 'is-paused');
+    }
+
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { stop(); select(i, false); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = tabs.length;
+        if (k === 'ArrowRight') { e.preventDefault(); stop(); select((i + 1) % n, true); }
+        else if (k === 'ArrowLeft') { e.preventDefault(); stop(); select((i - 1 + n) % n, true); }
+        else if (k === 'Home') { e.preventDefault(); stop(); select(0, true); }
+        else if (k === 'End') { e.preventDefault(); stop(); select(n - 1, true); }
+      });
     });
-    if (focus) tabs[i].focus();
+    root.addEventListener('mouseenter', function () { hovering = true; pause(); });
+    root.addEventListener('mouseleave', function () { hovering = false; resume(); });
+    root.addEventListener('focusin', function () { focused = true; pause(); });
+    root.addEventListener('focusout', function () {
+      setTimeout(function () {
+        if (root.contains(document.activeElement)) return;
+        focused = false;
+        resume();
+      }, 0);
+    });
+
+    select(0, false);
+    root.classList.add('cfs-js');
+    if (reduceMq && reduceMq.matches) return true; // no auto-rotation at all under reduced motion
+    if (reduceMq) {
+      var onChange = function (e) { if (e.matches) stop(); };
+      if (reduceMq.addEventListener) reduceMq.addEventListener('change', onChange);
+      else if (reduceMq.addListener) reduceMq.addListener(onChange);
+    }
+    root.classList.add('is-rotating');
+    schedule(ROTATE_MS);
+    return true;
   }
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { select(i, false); });
-    t.addEventListener('keydown', function (e) {
-      var k = e.key, n = tabs.length;
-      if (k === 'ArrowRight') { e.preventDefault(); select((i + 1) % n, true); }
-      else if (k === 'ArrowLeft') { e.preventDefault(); select((i - 1 + n) % n, true); }
-      else if (k === 'Home') { e.preventDefault(); select(0, true); }
-      else if (k === 'End') { e.preventDefault(); select(n - 1, true); }
-    });
-  });
-  select(0, false);
-  document.documentElement.classList.add('js');
 
-  // Calendar mockup only (removed with .cal-mock in GHL): date + slot selection states, visual only.
-  var days = Array.prototype.slice.call(document.querySelectorAll('.cal-mock button.d'));
-  var head = document.getElementById('slots-h');
-  days.forEach(function (d) {
-    d.addEventListener('click', function () {
-      days.forEach(function (x) { x.setAttribute('aria-pressed', x === d ? 'true' : 'false'); });
-      if (head) head.textContent = d.getAttribute('aria-label');
-    });
+  // ---- Video facades: no iframe exists until a click (one delegated listener, so late-rendered blocks work) ----
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // keep new-tab clicks
+    var a = e.target && e.target.closest ? e.target.closest('a.cfs-vid[data-embed]') : null;
+    if (!a) return;
+    var src = a.getAttribute('data-embed');
+    if (!src) return;
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.className = 'cfs-vid-frame';
+    f.src = src;
+    f.title = a.getAttribute('data-title') || 'Testimonial video';
+    f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+    f.setAttribute('allowfullscreen', '');
+    a.parentNode.replaceChild(f, a);
+    f.focus();
   });
-  var slots = Array.prototype.slice.call(document.querySelectorAll('.cal-mock .slot'));
-  slots.forEach(function (s) {
-    s.addEventListener('click', function () {
-      slots.forEach(function (x) { x.setAttribute('aria-pressed', x === s ? 'true' : 'false'); });
-    });
-  });
-})();
-</script>
-<script>
-(function () {
-  // Video facades: progressive enhancement. No iframe exists until a click; without JS each link opens the video.
-  var vids = document.querySelectorAll('#videos a.cfs-vid[data-embed]');
-  Array.prototype.forEach.call(vids, function (a) {
-    a.addEventListener('click', function (e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // keep new-tab clicks
-      var src = a.getAttribute('data-embed');
-      if (!src) return;
-      e.preventDefault();
-      var f = document.createElement('iframe');
-      f.className = 'cfs-vid-frame';
-      f.src = src;
-      f.title = a.getAttribute('data-title') || 'Testimonial video';
-      f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-      f.setAttribute('allowfullscreen', '');
-      a.parentNode.replaceChild(f, a);
-      f.focus();
-    });
-  });
+
+  var tries = 0;
+  function boot() {
+    if (initSteps(document.getElementById('steps'))) return;
+    if (tries++ < 40) setTimeout(boot, 250); // up to ~10s for late-rendered GHL blocks
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })();
 </script>
 </body>
