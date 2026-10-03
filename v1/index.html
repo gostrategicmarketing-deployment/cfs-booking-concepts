@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>CFS Booking Split</title>
 <meta name="description" content="V1 Booking-Forward Split: visual-direction mockup for the College Funding Secrets review-call booking page.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,13 +117,97 @@
 
   /* footer */
   .foot{background:var(--navy);color:rgba(255,255,255,.86);padding:22px 0;font-size:14px}
-  .foot .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+  .foot .foot-row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
   .foot img{height:26px;width:auto;filter:brightness(0) invert(1)}
   .foot a{color:var(--white);text-underline-offset:3px}
   .foot nav{display:inline-flex;gap:8px;align-items:center}
 
+
+  /* shared */
+  .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .sec{padding:48px 0}
+  .sec-head{max-width:44em}
+  .sec h2{margin-top:12px;font-weight:800;font-size:clamp(1.6rem,3vw,2.25rem);line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+  .sec-lead{margin-top:10px;color:var(--slate)}
+  .note{margin-top:14px;font-size:14px;color:var(--muted)}
+
+  /* trust bar (hero) */
+  .trust{margin-top:14px}
+  .badges{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}
+  .badge{position:relative;display:flex;align-items:center;gap:8px;min-height:52px;padding:7px 10px;background:var(--white);border:1px solid var(--line);border-radius:12px;color:var(--navy);text-decoration:none;font-size:14px;line-height:1.3;font-weight:600}
+  .badge:hover{border-color:var(--blue)}
+  .badge:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  .badge b{font-weight:700}
+  .badge > svg{flex:none}
+  .bt,.tpt{display:flex;flex-direction:column}
+  .bt .sep{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tp1{display:flex;align-items:center;gap:6px}
+  .tp2{font-size:13px;color:var(--slate)}
+  .badge .stars{width:70px;height:12px;flex:none}
+  .featured{margin-top:10px;display:flex;flex-wrap:wrap;align-items:baseline;font-size:14px;line-height:1.55}
+  .featured .lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:8px}
+  .wm{font-family:Epilogue,Inter,sans-serif;font-weight:700;font-size:14px;color:var(--slate);white-space:nowrap}
+  .wm:not(:last-child)::after{content:"·";margin:0 6px;color:rgba(7,43,83,.35);font-weight:700}
+
+  /* reviews */
+  .reviews{background:var(--white)}
+  .rev-row{list-style:none;margin:22px calc(-1 * var(--gutter)) 0;padding:4px var(--gutter) 10px;display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gutter);scrollbar-width:thin}
+  .rev-row:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+  .rev{position:relative;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--gray);border:1px solid var(--line);border-radius:14px;padding:18px 18px 8px}
+  .rev blockquote{margin:12px 0 0;flex:1}
+  .rev blockquote p{font-size:16px;line-height:1.55;color:var(--ink)}
+  .who{margin-top:14px;font-weight:700;color:var(--navy)}
+  .src{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--slate);text-decoration:underline;text-decoration-color:rgba(65,146,215,.6);text-underline-offset:3px}
+  .src:hover{color:var(--navy)}
+  .swipe{margin-top:6px;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+  /* press */
+  .press{background:var(--gray)}
+  .press-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .press-all{margin-top:22px}
+  .pcard a{position:relative;display:block;border-radius:12px;overflow:hidden;background:var(--white);border:1px solid var(--line);box-shadow:0 2px 6px rgba(7,43,83,.05);transition:box-shadow .15s ease,transform .15s ease}
+  .pcard a:hover{box-shadow:0 8px 22px rgba(7,43,83,.12);transform:translateY(-2px)}
+  .pcard a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  .pcard img{width:100%;height:auto;aspect-ratio:860/1330;object-fit:cover;background:var(--white)}
+  .press-more{margin-top:12px}
+  .press-more > summary{list-style:none;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border:1.5px solid var(--blue);border-radius:var(--radius-ctl);background:var(--white);color:var(--navy);font-weight:700;cursor:pointer}
+  .press-more > summary::-webkit-details-marker{display:none}
+  .press-more > summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .press-more > summary svg{transition:transform .2s ease}
+  .press-more[open] > summary svg{transform:rotate(180deg)}
+  .press-more[open] > summary .open-lbl{display:none}
+  .press-more:not([open]) > summary .close-lbl{display:none}
+  .press-more .press-grid{margin-top:12px}
+  .tfeat{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+  .tfeat a{position:relative;display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 16px;background:var(--white);border:1px solid var(--line);border-radius:12px;color:var(--navy);text-decoration:none}
+  .tfeat a:hover{border-color:var(--blue)}
+  .tfeat a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  .tf-ico{flex:none;width:40px;height:40px;border-radius:50%;background:var(--blue-soft);display:grid;place-items:center}
+  .tf-txt{flex:1;min-width:0}
+  .tf-outlet{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .tf-title{display:block;font-weight:600;line-height:1.35;color:var(--navy)}
+  .tfeat a > svg{flex:none}
+
+  /* closing CTA */
+  .close{background:var(--white)}
+  .close-card{background:radial-gradient(700px 360px at 85% 0%, rgba(65,146,215,.14), transparent 70%),var(--gray);border:1px solid var(--line);border-radius:var(--radius-card);padding:32px 20px;text-align:center}
+  .close-card h2{margin-top:0}
+  .close-card p{margin:12px auto 0;max-width:34em;color:var(--slate);font-size:17px}
+  .close-card .cta{margin-top:22px}
+
+  /* footer compliance */
+  .foot-disc{font-size:14px;line-height:1.6;color:rgba(255,255,255,.86);padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.16)}
+
   /* tablet */
   @media (min-width:640px){
+    .sec{padding:64px 0}
+    .rev-row{align-items:stretch;grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:auto;overflow:visible;margin:24px 0 0;padding:0;gap:16px}
+    .swipe{display:none}
+    .press-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .close-card{padding:44px 32px}
+    .close-card .cta{display:inline-flex}
+    .tfeat{grid-template-columns:repeat(2,minmax(0,1fr))}
+
     :root{--gutter:24px}
     .steps{grid-auto-columns:minmax(0,1fr);grid-auto-flow:column;overflow:visible;margin:0;padding:0}
     .book{padding:24px}
@@ -157,16 +241,47 @@
     .node{width:34px;height:34px;font-size:15px;position:relative;z-index:1}
     .step h3{font-size:19px;background:var(--white);padding:0 12px 0 14px;position:relative;z-index:1}
     .step p{font-size:16.5px}
+
+    .sec{padding:80px 0}
+    .trust{margin-top:24px}
+    .badges{grid-template-columns:auto auto;justify-content:start;gap:10px}
+    .badge{padding:8px 14px;min-height:48px}
+    .bt,.tpt{flex-direction:row;flex-wrap:wrap;align-items:center}
+    .bt .sep{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:pre}
+    .tp2{font-size:14px;color:var(--navy);white-space:pre}
+    .badge .stars{width:80px;height:14px}
+    .featured .lbl{width:100%;margin:0 0 2px}
+    .rev-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .rev{padding:22px 22px 10px}
+    .press-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+    /* desktop: all 33 cards in one continuous 4-col grid where ::details-content is supported */
+    @supports selector(::details-content){
+      .press-all{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+      .press-all > .press-grid,.press-more,.press-more .press-grid{display:contents}
+      .press-more::details-content{display:contents;content-visibility:visible}
+      .press-more > summary{display:none}
+    }
+    .close-card{padding:56px 48px}
   }
 
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .u{animation:none;background-size:100% .16em}
     .cta,.cta:hover{transition:none;transform:none}
+    .pcard a,.pcard a:hover{transition:none;transform:none}
+    .press-more > summary svg{transition:none}
   }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="star" d="M9 .2L11.17 6.21 17.56 6.42 12.52 10.34 14.29 16.48 9 12.9 3.71 16.48 5.48 10.34 .44 6.42 6.83 6.21Z"/>
+    <g id="starrow"><use href="#star"/><use href="#star" x="20"/><use href="#star" x="40"/><use href="#star" x="60"/><use href="#star" x="80"/></g>
+    <clipPath id="clip44"><rect width="87.3" height="17"/></clipPath>
+    <clipPath id="clip4"><rect width="78" height="17"/></clipPath>
+  </defs>
+</svg>
 
 <header class="bar">
   <div class="wrap"><img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181"></div>
@@ -187,6 +302,18 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#4192D7" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="#072B53" stroke-width="2.2" stroke-linecap="round"/></svg>
           <span>This review is for families earning about $250,000+ or paying $30,000+ a year in federal taxes.</span>
         </p>
+        <div class="trust" aria-label="Ratings and press">
+          <div class="badges">
+            <a class="badge" href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">
+              <svg width="20" height="22" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M9 1l7 2.6v5.6c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V3.6L9 1z" fill="rgba(65,146,215,.16)" stroke="#072B53" stroke-width="1.6" stroke-linejoin="round"/><path d="M5.6 10l2.4 2.4 4.4-4.6" stroke="#072B53" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="bt"><b>BBB Accredited</b><span class="sep"> · </span><b>A+ Rating</b></span><span class="sr"> (opens in a new tab)</span>
+            </a>
+            <a class="badge" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">
+              <span class="tpt"><span class="tp1"><svg class="stars" viewBox="0 0 98 17" width="98" height="17" aria-hidden="true" focusable="false"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903" clip-path="url(#clip44)"/></svg><b>4.4 out of 5</b></span><span class="tp2"> on Trustpilot · 26 reviews</span></span><span class="sr"> (opens in a new tab)</span>
+            </a>
+          </div>
+          <p class="featured"><span class="lbl">As featured in</span> <span class="wm">Yahoo Finance</span><span class="wm">MarketWatch</span><span class="wm">CNET</span><span class="wm">Realtor.com</span><span class="wm">GOBankingRates</span><span class="wm">Financial Advisor magazine</span></p>
+        </div>
       </div>
 
       <ol class="steps" aria-label="Three steps">
@@ -262,10 +389,172 @@
 
     </div>
   </section>
+
+  <section class="sec reviews" aria-labelledby="rev-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Trustpilot &amp; BBB reviews</span>
+        <h2 id="rev-h">What Families Say</h2>
+      </div>
+      <ul class="rev-row" tabindex="0" aria-label="Client reviews, 12 total">
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;Each member of the team was knowledgeable, professional and nice. We appreciate that there was always clear next steps and follow up though no one was pushy&rdquo;</p></blockquote>
+            <p class="who">Jennifer Kornicks Askjaer</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · May 24, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;The entire process felt incredibly educational and genuine [...] and we never felt pressured to continue.&rdquo;</p></blockquote>
+            <p class="who">Rita T</p>
+            <a class="src" href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">BBB · Jan 30, 2025<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;Most comprehensive way to save money for college and retirement that I have seen so far. This is not a one size fits all type of college planning company. They work with you on your situation to determine what would fit best.&rdquo;</p></blockquote>
+            <p class="who">James McKinney</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Dec 1, 2025<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;Everyone I've worked with has been so helpful and patient while navigating a complicated process. The team is committed to being hands on and really working with my own financial situation for the best possible solutions. I've seen the strategies they help with work for my family. I plan to be with them for a long time.&rdquo;</p></blockquote>
+            <p class="who">Jesse Wasson</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Jul 29, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;College Funding Secrets helped our family with tax strategies and held our hand in completing FAFSA and CSS forms. They also walked us through the financial aid appeals process which gave us peace of mind to know that we have the team at College Funding Secrets on our side to navigate the complexities of financial aid.&rdquo;</p></blockquote>
+            <p class="who">Sophia Park</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Jul 29, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;We recently started working with College Funding Secrets, and although we're still early in the process, we've been very impressed with our experience so far. We feel confident that we're in the right place to receive exceptional, practical guidance on planning for our daughter's college education.&rdquo;</p></blockquote>
+            <p class="who">Mora da Silva</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Jul 31, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="4 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903" clip-path="url(#clip4)"/></svg>
+            <blockquote><p>&ldquo;Every one of them was incredibly patient, knowledgeable, and willing to explain every detail, making sure I understood the process every step of the way.&rdquo;</p></blockquote>
+            <p class="who">Sumathi Nandagopalan</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Aug 6, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;Working with College Funding Secrets, I've consistently been impressed by the depth of knowledge of this team. From tax strategy, to College planning, [Lance's] team does an exceptional job at distilling complex planning into a clear process.&rdquo;</p></blockquote>
+            <p class="who">Michael Hammack</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Dec 19, 2025<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;The entire team that we have worked with has been amazing. [...] We are looking forward to many years to come as their clients.&rdquo;</p></blockquote>
+            <p class="who">Alicia Balsman</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Jul 24, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;The team they have put together, really works for you and is very responsive!&rdquo;</p></blockquote>
+            <p class="who">Toby</p>
+            <a class="src" href="https://www.trustpilot.com/review/legetty.com" target="_blank" rel="noopener">Trustpilot · Mar 26, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;Great team to work with. Very knowledgeable - they truly help you understand the pros and cons of each strategy. Their approach to college funding is innovative and eye opening.&rdquo;</p></blockquote>
+            <p class="who">Laura R</p>
+            <a class="src" href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">BBB · Nov 7, 2025<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+          <li class="rev">
+            <svg class="rstars" viewBox="0 0 98 17" width="98" height="17" role="img" aria-label="5 out of 5 stars"><use href="#starrow" fill="rgba(7,43,83,.16)"/><use href="#starrow" fill="#FCB903"/></svg>
+            <blockquote><p>&ldquo;What stood out is how much they actually care about getting it right, not just saying the right things.&rdquo;</p></blockquote>
+            <p class="who">Michael H</p>
+            <a class="src" href="https://www.bbb.org/us/ut/wellsville/profile/educational-consultant/legetty-1126-90040765" target="_blank" rel="noopener">BBB · Mar 26, 2026<span class="sr"> (opens in a new tab)</span></a>
+          </li>
+      </ul>
+      <p class="swipe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#4192D7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Swipe for more reviews (12 in all)</p>
+      <p class="note">Ratings as of October 2026.</p>
+    </div>
+  </section>
+
+  <section class="sec press" aria-labelledby="press-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Press &amp; podcasts</span>
+        <h2 id="press-h">In the News</h2>
+        <p class="sec-lead">Tap any feature to open the original article, episode, or video.</p>
+      </div>
+      <div class="press-all">
+        <ul class="press-grid">
+          <li class="pcard"><a href="https://wbznewsradio.iheart.com/featured/nightside-with-dan-rea/content/2025-11-21-1002-nightside-with-dan-rea-nightside-news-update-112125/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877d8c8a3f4ae.png" alt="WBZ NewsRadio 1030 (iHeart) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          <li class="pcard"><a href="https://www.realtor.com/advice/finance/emergency-savings-insurance-crisis-homeowners/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d1aec6771c45.png" alt="Realtor.com feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          <li class="pcard"><a href="https://soundcloud.com/kmet-1490-am/reverse-your-thinking-december" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877e0dba3f4af.png" alt="KMET 1490 AM feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          <li class="pcard"><a href="https://podcasts.apple.com/us/podcast/dr-jason-r-williams-cynthia-rivard-lance-morgan-ig-live/id1678157057?i=1000733018168" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cbf7a877954ca3f4ad.png" alt="Office Hours podcast (Apple Podcasts) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          <li class="pcard"><a href="https://podcasts.apple.com/us/podcast/college-without-the-debt-smart-funding-secrets-for-parents/id1844377860?i=1000730428301" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f60646195fbb.png" alt="Parenting Teens Today (Apple Podcasts) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          <li class="pcard"><a href="https://podcasts.apple.com/us/podcast/how-this-7-figure-entrepreneur-grew-his-online-empire/id1495662075?i=1000725725609" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1fd82745e11641f3.png" alt="Profit Your Knowledge (Apple Podcasts) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+        </ul>
+        <details class="press-more">
+          <summary><span class="open-lbl">See all 33 features</span><span class="close-lbl">Show fewer features</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <ul class="press-grid">
+            <li class="pcard"><a href="https://podcasts.apple.com/us/podcast/lance-morgan-college-funding-secrets-mark-stephen-pooler/id994705264?i=1000720934293" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb66e7ca8b8f57aa4c.png" alt="Mark Stephen Pooler podcast (Apple Podcasts) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.fa-mag.com/news/mortgage-rates-drop-again--should-you-buy-now-84893.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f61493195fb9.png" alt="Financial Advisor magazine feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.theamericanreporter.com/retirement-proofing-college-how-creative-college-funding-helps-families-fund-education-without-sacrificing-long-term-security/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d13183771c42.png" alt="The American Reporter feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://washingtonindependent.org/how-to-pay-for-college-tuition/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e0b47f7a877555fa42b9e.png" alt="The Washington Independent feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://calbizjournal.com/behind-the-scenes-of-college-funding-secrets-real-families-real-savings/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e0b58f7a877b669a42d50.png" alt="California Business Journal feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.kulr8.com/news/state/come-to-jesus-moment-are-we-ready-to-deal-with-social-securitys-looming-fiscal-cliff/article_69a45ea8-d4ef-50c1-b203-b0c1fbf7785d.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d12810771c43.png" alt="KULR-8 feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.reflector.com/news/local/come-to-jesus-moment-are-we-ready-to-deal-with-social-securitys-looming-fiscal-cliff/article_2dafa874-b0e7-5754-9a50-fd162ceea277.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1f68d1af98771c44.png" alt="The Daily Reflector feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.newsbreak.com/the-daily-reflector-1593112/4317893655587-come-to-jesus-moment-are-we-ready-to-deal-with-social-security-s-looming-fiscal-cliff" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f6738f195fba.png" alt="NewsBreak feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://thelosangelestribune.com/2025/10/27/creative-college-funding-the-only-done-with-you-program-combining-tax-real-estate-and-financial-aid/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1fd827967c1641f4.png" alt="The Los Angeles Tribune feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://programminginsider.com/creative-college-funding-the-only-done-with-you-program-combining-tax-real-estate-and-financial-aid/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/697e09cb1311f62d14195fbc.png" alt="Programming Insider feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://finance.yahoo.com/news/financial-expert-smartest-way-boomers-150759170.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f01770704efc15911.png" alt="Yahoo Finance feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://groovemoney.org/2025-student-loan-changes-explained-what-they-mean-for-borrowers" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b87c80d8bd99f.png" alt="GrooveMoney feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://epodcastnetwork.com/college-funding-secrets-founder-breaks-down-the-intersection-of-taxes-real-estate-and-tuition-planning/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f7305aa7318707385.png" alt="ePodcast Network feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.dailyscanner.com/real-estate-investing-tips-is-buying-a-condo-a-better-investment-strategy-than-a-401k/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f52c952edb8ee5089.png" alt="Daily Scanner feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://usawire.com/investor-tips-real-estate-investing-with-a-50-year-mortgage/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b871f5e8bd9a1.png" alt="USA Wire feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.marketwatch.com/picks/i-have-1-4m-in-cash-and-2-5m-invested-but-my-adviser-who-i-pay-0-5-seems-like-a-set-it-and-forget-it-type-of-guy-what-now-69044d22" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123fa41b8773428bd9a0.png" alt="MarketWatch feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://businesspartnermagazine.com/home-loan-strategies-borrowing-from-401k-for-down-payment/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f7f6dcf0af4ffcbcd.png" alt="Business Partner Magazine feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.cnet.com/tech/services-and-software/w2-vs-1099-difference/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f017707f5f7c15910.png" alt="CNET feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.youtube.com/watch?v=3hsb1UPX2tI" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f0177070a3ac1590f.png" alt="The Business Roundup (YouTube) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.onnj.com/videos/home-payments/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/698c123f01770744c3c1590e.png" alt="ON NJ feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://thebossmagazine.com/post/real-estate-investment-strategies-meeting-tax-and-housing-needs-with-the-box-house/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69b2b049277ba0f3fa928d59.png" alt="The Boss Magazine feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.gobankingrates.com/taxes/tax-laws/im-financial-advisor-capital-gains-moves-that-can-quietly-increase-your-tax-bill/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69b2b049bfc81fc4dcb16b66.png" alt="GOBankingRates feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://finance.yahoo.com/news/m-financial-advisor-7-capital-141310303.html" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69b2b049bfc81f4e7db16b65.png" alt="Yahoo Finance feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.mpamag.com/us/mortgage-industry/market-updates/what-brokers-need-to-know-before-clients-use-401k-funds-for-a-down-payment/568406" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48dd7871cddf7075b60.png" alt="MPA (Mortgage Professional America) feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.gobankingrates.com/home-loans/refinance/im-financial-advisor-when-retirees-should-refinance-mortgages-in-2026/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d23917331fbbaa1e4.png" alt="GOBankingRates feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.lifehealth.com/401k-vs-real-estate/" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d019dc508d3fb811e.png" alt="LifeHealth feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+            <li class="pcard"><a href="https://www.youtube.com/watch?v=eGH_gKICR5Y" target="_blank" rel="noopener"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/drk0ArGlymV297Q7swkl/media/69d8e48d019dc508d3fb811f.png" alt="YouTube interview feature on Lance Morgan" width="860" height="1330" loading="lazy" decoding="async"><span class="sr">(opens in a new tab)</span></a></li>
+          </ul>
+        </details>
+      </div>
+      <ul class="tfeat">
+        <li><a href="https://moneytreepodcast.com/real-estate-to-reduce-college-costs-lance-morgan-818/" target="_blank" rel="noopener">
+          <span class="tf-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="#072B53" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="#072B53" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span class="tf-txt"><span class="tf-outlet">Money Tree Podcast</span><span class="tf-title">Using Real Estate to Reduce College Costs</span></span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" stroke="#4192D7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.youtube.com/watch?v=T41LSiwIk5w" target="_blank" rel="noopener">
+          <span class="tf-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#072B53" stroke-width="2"/><path d="M10.5 9.5v5l4-2.5-4-2.5z" fill="#072B53"/></svg></span>
+          <span class="tf-txt"><span class="tf-outlet">Money Matters TV</span><span class="tf-title">Solutions to use your Tax Bill to pay for college</span></span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" stroke="#4192D7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr"> (opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec close" aria-labelledby="close-h">
+    <div class="wrap">
+      <div class="close-card">
+        <h2 id="close-h">You Don't Need to Figure It Out Today</h2>
+        <p>There's no need to choose a strategy today. You're simply taking the next logical step: finding out what may apply to your family.</p>
+        <a class="cta" href="#book">Book My Free Call
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="2.2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
+    <p class="foot-disc">This page is for educational purposes only and does not provide tax, legal, investment, accounting, or financial advice. Tax outcomes, financial aid eligibility, investment performance, cash flow, and other results depend on individual circumstances and are not guaranteed. Any strategy should be reviewed with qualified tax, legal, and financial professionals before implementation.</p>
+  </div>
+  <div class="wrap foot-row">
     <img src="assets/cfs-logo.png" alt="College Funding Secrets" width="900" height="181">
     <span>Copyright © 2026. College Funding Education, LLC. All Rights Reserved. · <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></span>
   </div>
