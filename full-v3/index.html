@@ -531,6 +531,67 @@
   }
 
   /* =====================================================================
+     GHL SECTION 05b: video testimonials (navy; click-to-play facades, no iframe until a click)
+     ===================================================================== */
+  .cfs-videos { background: var(--navy); color: var(--white); }
+  .cfs-videos .sec-h { color: var(--white); }
+  .cfs-vid-media {
+    position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden;
+    background: var(--ink); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  }
+  .cfs-vid, .cfs-vid-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .cfs-vid { color: var(--navy); text-decoration: none; }
+  .cfs-vid img { width: 100%; height: 100%; object-fit: cover; }
+  .cfs-vid:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
+  .cfs-vid-play {
+    position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px;
+    border-radius: 50%; background: var(--green); color: var(--navy); /* navy on green = 10.6:1 */
+    box-shadow: 0 0 0 2px var(--navy), 0 6px 16px rgba(0, 0, 0, 0.35);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .cfs-vid-play svg { margin-left: 4px; }
+  .cfs-vid:hover .cfs-vid-play { transform: scale(1.08); }
+  .cfs-vid-dur {
+    position: absolute; right: 10px; bottom: 10px; padding: 3px 8px; border-radius: 6px;
+    background: var(--navy); color: var(--white); font-size: 14px; font-weight: 600; line-height: 1.3;
+  }
+  .cfs-vid-feat { margin-top: 24px; display: grid; gap: 16px; }
+  .cfs-vid-feat .cfs-vid-play { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
+  .cfs-vid-cap { margin-top: 12px; display: grid; gap: 6px; }
+  .cfs-vid-feat .cfs-vid-cap { margin-top: 0; }
+  .cfs-vid-name { font-family: var(--font-head); font-weight: 700; font-size: 19px; line-height: 1.25; color: var(--white); }
+  .cfs-vid-feat .cfs-vid-name { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); }
+  .cfs-vid-cap p { font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, 0.9); }
+  .cfs-vid-cap blockquote { margin: 0; }
+  .cfs-vid-cap blockquote p::before { content: "\201C"; }
+  .cfs-vid-cap blockquote p::after { content: "\201D"; }
+  .cfs-vid-row { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 22px; }
+  .cfs-vid-hint { display: none; }
+  .cfs-vid-note { margin-top: 22px; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+  @media (max-width: 639px) {
+    .cfs-vid-hint {
+      display: flex; align-items: center; gap: 8px; margin-top: 26px;
+      font-size: 15px; font-weight: 600; color: var(--green);
+    }
+    .cfs-vid-row {
+      margin: 12px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter) 10px;
+      grid-auto-flow: column; grid-auto-columns: 80%; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--gutter);
+      -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+    }
+    .cfs-vid-row > li { scroll-snap-align: start; }
+  }
+  @media (min-width: 640px) {
+    .cfs-vid-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 980px) {
+    .cfs-vid-feat { margin-top: 32px; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+    .cfs-vid-feat .cfs-vid-cap p { font-size: 18px; }
+    .cfs-vid-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; margin-top: 40px; }
+  }
+
+  /* =====================================================================
      GHL SECTION 06: fit (light gray; two-column contrast on desktop)
      ===================================================================== */
   .cfs-fit { background: var(--gray); }
@@ -764,6 +825,8 @@
     .cfs-lance-body .btn, .closer-in .btn { margin-left: auto; margin-right: auto; }
     .cfs-photo { margin-left: auto; margin-right: auto; }
     #book .micro { text-align: center; text-wrap: balance; }
+    .cfs-vid-note { text-align: center; text-wrap: balance; }
+    .cfs-vid-hint { justify-content: center; }
     .cfs-header img { margin-left: auto; margin-right: auto; }
     /* Lance: photo stacked and centered above the name */
     .cfs-lance-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "head" "body"; row-gap: 14px; }
@@ -1023,6 +1086,80 @@
   </div>
 </section>
 
+<!-- ===== GHL SECTION: video testimonials ===== -->
+<!-- GHL: each card is a click-to-play facade (thumbnail link). The inline script below swaps it for the player iframe on click; without JS the link opens the video on YouTube/Vimeo. Keep the facade: do not paste raw embeds. -->
+<section id="videos" class="sec cfs-videos" data-ghl-section="05b-videos" aria-labelledby="vid-h">
+  <div class="wrap">
+    <h2 class="sec-h" id="vid-h">Hear It From Families</h2>
+    <div class="cfs-vid-feat">
+      <div class="cfs-vid-media">
+        <a class="cfs-vid" href="https://youtu.be/UeqVZzVce5M" data-embed="https://www.youtube-nocookie.com/embed/UeqVZzVce5M?rel=0&amp;autoplay=1" data-title="Client Testimonial Supercut testimonial video" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/UeqVZzVce5M/maxresdefault.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Client Testimonial Supercut testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span></a>
+      </div>
+      <div class="cfs-vid-cap">
+        <strong class="cfs-vid-name">Client Testimonial Supercut</strong>
+        <p>A few of our clients share their thoughts on working with us.</p>
+      </div>
+    </div>
+    <p class="cfs-vid-hint" aria-hidden="true">Swipe for more videos <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+    <ul class="cfs-vid-row" aria-label="More client videos">
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://vimeo.com/1056972648" data-embed="https://player.vimeo.com/video/1056972648?byline=0&amp;portrait=0&amp;title=0&amp;autoplay=1" data-title="Chuck testimonial video" target="_blank" rel="noopener"><img src="https://i.vimeocdn.com/video/1982827983-42f6b37cc2740d4c269a6839602bc050f66dfc250817a56d4814991ba1bee716-d_1280?region=us" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Chuck testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span><span class="cfs-vid-dur"><span class="sr-only">Length </span>3:36</span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Chuck</strong>
+          <blockquote><p>The College Funding Secrets plan has given my wife and I peace of mind and security in knowing that we're going to be able to send both of our kids to college and also be able to retire.</p></blockquote>
+        </div>
+      </li>
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://vimeo.com/1056973739" data-embed="https://player.vimeo.com/video/1056973739?byline=0&amp;portrait=0&amp;title=0&amp;autoplay=1" data-title="Bill testimonial video" target="_blank" rel="noopener"><img src="https://i.vimeocdn.com/video/1982829811-70d4bc6be1b7e1a637085ed589d814d454cf00a6241d7f2e6dba2f091cf951f1-d_1280?region=us" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Bill testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span><span class="cfs-vid-dur"><span class="sr-only">Length </span>3:47</span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Bill</strong>
+          <blockquote><p>I never thought I could keep my college savings and allow it to keep earning interest.</p></blockquote>
+        </div>
+      </li>
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://vimeo.com/1052841306" data-embed="https://player.vimeo.com/video/1052841306?byline=0&amp;portrait=0&amp;title=0&amp;autoplay=1" data-title="Justin testimonial video" target="_blank" rel="noopener"><img src="https://i.vimeocdn.com/video/1977902392-ee25774958c3109e11025839c44dc799efca80b13a5119ca66040d411cd8681d-d_1280?region=us" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Justin testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span><span class="cfs-vid-dur"><span class="sr-only">Length </span>4:41</span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Justin</strong>
+          <blockquote><p>Having a real plan for college costs gave us peace of mind and freedom we never thought possible.</p></blockquote>
+        </div>
+      </li>
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://vimeo.com/1052839918" data-embed="https://player.vimeo.com/video/1052839918?byline=0&amp;portrait=0&amp;title=0&amp;autoplay=1" data-title="Sarah testimonial video" target="_blank" rel="noopener"><img src="https://i.vimeocdn.com/video/1977900093-90fec020d92dfbe7f7963f189c46e95976da87c3d2f2e2c287757bb5c87872b8-d_1280?region=us" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Sarah testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span><span class="cfs-vid-dur"><span class="sr-only">Length </span>5:29</span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Sarah</strong>
+          <blockquote><p>I regret waiting so long to check this out [...] it's been a total game changer for our family.</p></blockquote>
+        </div>
+      </li>
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://vimeo.com/1056961230" data-embed="https://player.vimeo.com/video/1056961230?byline=0&amp;portrait=0&amp;title=0&amp;autoplay=1" data-title="Kevin Harrington testimonial video" target="_blank" rel="noopener"><img src="https://i.vimeocdn.com/video/1982814854-a1edd5decb9e2b34c68ed95a4399cf939d6b52f57360b0ae4665d703610c9cf4-d_1280?region=us" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Kevin Harrington testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span><span class="cfs-vid-dur"><span class="sr-only">Length </span>4:37</span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Kevin Harrington</strong>
+          <blockquote><p>I'm Kevin Harrington original shark from shark tank and I recommend these strategies. I wish I knew you when I was going to school.</p></blockquote>
+        </div>
+      </li>
+      <li>
+        <div class="cfs-vid-media">
+          <a class="cfs-vid" href="https://youtu.be/A0mwCc9JLQA" data-embed="https://www.youtube-nocookie.com/embed/A0mwCc9JLQA?rel=0&amp;autoplay=1" data-title="Micaela Karlson testimonial video" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/A0mwCc9JLQA/maxresdefault.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Play video: Micaela Karlson testimonial"><span class="cfs-vid-play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg></span></a>
+        </div>
+        <div class="cfs-vid-cap">
+          <strong class="cfs-vid-name">Micaela Karlson</strong>
+        </div>
+      </li>
+    </ul>
+    <p class="cfs-vid-note">Testimonials reflect individual experiences. Results vary.</p>
+  </div>
+</section>
+
 <!-- ===== GHL SECTION 06: fit ===== -->
 <section id="fit" class="sec cfs-fit" data-ghl-section="06-fit" aria-labelledby="fit-h">
   <div class="wrap">
@@ -1262,6 +1399,28 @@
   slots.forEach(function (s) {
     s.addEventListener('click', function () {
       slots.forEach(function (x) { x.setAttribute('aria-pressed', x === s ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>
+<script>
+(function () {
+  // Video facades: progressive enhancement. No iframe exists until a click; without JS each link opens the video.
+  var vids = document.querySelectorAll('#videos a.cfs-vid[data-embed]');
+  Array.prototype.forEach.call(vids, function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // keep new-tab clicks
+      var src = a.getAttribute('data-embed');
+      if (!src) return;
+      e.preventDefault();
+      var f = document.createElement('iframe');
+      f.className = 'cfs-vid-frame';
+      f.src = src;
+      f.title = a.getAttribute('data-title') || 'Testimonial video';
+      f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      f.setAttribute('allowfullscreen', '');
+      a.parentNode.replaceChild(f, a);
+      f.focus();
     });
   });
 })();
