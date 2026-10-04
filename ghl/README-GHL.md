@@ -24,11 +24,13 @@ GHL page, and GHL's own styles won't change this page. We tested that against a 
    page stays fast.
 6. **Who the review is for / not a fit.**
 7. **Numbers to have ready for the call.**
-8. **Meet the Founder:** Lance's bio.
+8. **Meet the Founder:** Lance's family photo and bio.
 9. **Common questions.**
 10. **In the News:** 32 press features, each linked to its article.
 11. **Closing call to action.**
-12. **Footer:** Legetty logo, compliance text, copyright, Privacy and Terms links.
+12. **Footer:** Legetty logo, compliance text, copyright, and links to the College Funding Secrets
+    [Privacy Policy](https://collegefundingsecrets.com/privacy-policy) and
+    [Terms of Service](https://collegefundingsecrets.com/terms-of-service).
 
 ## Pick ONE way to install it
 
@@ -68,7 +70,7 @@ Use this if you want to move, hide or edit sections separately in GHL.
 - **SEO settings** (GHL page settings):
   - Title: `Tax Scholarships: 3 Steps to Pay for College Differently`
   - Description: `Book a Tax & College Opportunity Review and see how the Reduce, Offset, Fund framework could apply to your family's income, tax bill, college timeline, and retirement.`
-- **Logos** are built into the code (01 and 12), so there's nothing to upload.
+- **Logos and Lance's family photo** are built into the code (01, 08 and 12), so there's nothing to upload.
 
 ## Calendar settings (in GHL Calendars)
 
@@ -93,10 +95,8 @@ Use this if you want to move, hide or edit sections separately in GHL.
 
 ## Still needed from your side
 
-- **Lance's headshot.** In `08-lance` (and ALL-IN-ONE), replace the dashed "Lance photo (client to supply)" box with
-  his real photo. Or send it to Phil and we'll build it in.
-- **Privacy Policy and Terms of Service links.** In the footer they are placeholders (`href="#"`). Point them to the
-  real pages.
+- **FYI on today's Terms link.** The current page's footer links to `collegefundingsecrets.com/terms`, which just shows
+  the home page. The new footer links to the real page, `/terms-of-service`.
 - **Official rating widgets.** The Trustpilot and BBB badges are styled text for now. On the live page, please use
   Trustpilot's official TrustBox widget (your Trustpilot plan includes it) and BBB's official Accredited Business
   seal. Both keep themselves up to date.

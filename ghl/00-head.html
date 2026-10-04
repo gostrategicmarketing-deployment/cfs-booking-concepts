@@ -794,4 +794,16 @@
     .cfs-lp .closer-in .btn { margin-left: auto; margin-right: auto; }
     .cfs-lp .cfs-photo { max-width: 320px; justify-self: center; }
   }
+  /* Lance family photo (2026-10-03): square group shot replaces the 4:5 placeholder box */
+  .cfs-lp img.cfs-photo {
+    display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+    padding: 0; border: 0; background: var(--gray);
+    border-radius: var(--radius-card); box-shadow: 0 10px 30px rgba(7, 43, 83, 0.16);
+  }
+  @media (max-width: 639px) {
+    .cfs-lp img.cfs-photo { width: 100%; max-width: 360px; }
+  }
+  @media (min-width: 980px) {
+    .cfs-lp img.cfs-photo { max-width: 420px; }
+  }
 </style>

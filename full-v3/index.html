@@ -810,6 +810,15 @@
     .closer-in .btn { margin-left: auto; margin-right: auto; }
     .cfs-photo { max-width: 320px; justify-self: center; }
   }
+
+  /* Lance family photo (2026-10-03): square group shot replaces the 4:5 placeholder box */
+  img.cfs-photo {
+    display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+    padding: 0; border: 0; background: var(--gray);
+    border-radius: var(--radius-card); box-shadow: 0 10px 30px rgba(7, 43, 83, 0.16);
+  }
+  @media (max-width: 639px) { img.cfs-photo { width: 100%; max-width: 360px; } }
+  @media (min-width: 980px) { img.cfs-photo { max-width: 420px; } }
 </style>
 </head>
 <body>
@@ -1089,11 +1098,7 @@
 <section id="lance" class="sec cfs-lance" data-ghl-section="08-lance" aria-labelledby="lance-h">
   <div class="wrap">
     <div class="cfs-lance-grid">
-      <!-- GHL: replace .cfs-photo with Lance's headshot (client to supply). No AI or stock faces. -->
-      <div class="cfs-photo" role="img" aria-label="Lance photo (client to supply)">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14.5" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 5l1.5-2h4l1.5 2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12.2" r="3.6" stroke="currentColor" stroke-width="1.8"/></svg>
-        <span>Lance photo (client to supply)</span>
-      </div>
+      <img class="cfs-photo" src="assets/lance-family.webp" alt="Lance Morgan with his family" width="840" height="840" loading="lazy" decoding="async">
       <div class="cfs-lance-head">
         <p class="eyebrow">MEET THE FOUNDER</p>
         <h2 class="sec-h" id="lance-h">Lance Morgan</h2>
@@ -1226,8 +1231,7 @@
     <p class="legal">This page is for educational purposes only and does not provide tax, legal, investment, accounting, or financial advice. Tax outcomes, financial aid eligibility, investment performance, cash flow, and other results depend on individual circumstances and are not guaranteed. Any strategy should be reviewed with qualified tax, legal, and financial professionals before implementation.</p>
     <div class="cfs-footer-row">
       <p>Copyright © 2026. College Funding Education, LLC. All Rights Reserved.</p>
-      <!-- GHL: point to the canonical privacy/terms URLs -->
-      <p class="cfs-footer-links"><a href="#">Privacy Policy</a><span class="bar" aria-hidden="true">|</span><a href="#">Terms of Service</a></p>
+      <p class="cfs-footer-links"><a href="https://collegefundingsecrets.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><span class="bar" aria-hidden="true">|</span><a href="https://collegefundingsecrets.com/terms-of-service" target="_blank" rel="noopener">Terms of Service</a></p>
     </div>
   </footer>
 </section>
